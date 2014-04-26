@@ -65,6 +65,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="Text.txt" />
+    <Text Include="Text1.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
