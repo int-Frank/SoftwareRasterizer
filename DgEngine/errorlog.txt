@@ -1,0 +1,6 @@
+Error list for last startup.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.

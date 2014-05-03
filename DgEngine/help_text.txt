@@ -1,0 +1,12 @@
+w	forward
+s	back
+a	strafe left
+d	strafe right
+q	move up
+e	move down
+z	roll CCW
+c	roll CW
+space	mouselook
+b	toggle top camera
+esc	exit
+h	toggle help

@@ -1,0 +1,36 @@
+<default font="Sansation_Regular" color="255 255 255 255"
+         size="15" line_spacing="0.2" x="10" y="10">
+  <line>
+    <text indent="10">Clipped polygon</text>
+  </line>
+  <line></line>
+  <line>
+    <text>p0 :</text>
+    <output id="p0" indent="100"></output>
+  </line>
+  <line>
+    <text>p1 :</text>
+    <output id="p1" indent="100"></output>
+  </line>
+  <line>
+    <text>p2 :</text>
+    <output id="p2" indent="100"></output>
+  </line>
+  <line>
+    <text>p3 :</text>
+    <output id="p3" indent="100"></output>
+  </line>
+  <line>
+    <text>p4 :</text>
+    <output id="p4" indent="100"></output>
+  </line>
+  <line>
+    <text>p5 :</text>
+    <output id="p5" indent="100"></output>
+  </line>
+  <line>
+    <text>p6 :</text>
+    <output id="p6" indent="100"></output>
+  </line>
+  <line></line>
+</default>

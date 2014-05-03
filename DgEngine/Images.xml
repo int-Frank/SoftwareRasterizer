@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Textures>
+
+  <single id="DEFAULT">blank.png</single>
+  <single id="WHITE">white.png</single>
+  <single id="DOOR101">door101.png</single>
+  <single id="WALL304">wall304.png</single>
+  <single id="CHECKERBOARD">checkerboard.png</single>
+  <single id="MARBLE1">marble1.png</single>
+  <single id="TEAPOT101">teapot101.png</single>
+  <single id="AXIS">axis.png</single>
+  <single id="GRASS">grass.png</single>
+  <single id="WATER">water.png</single>
+  <single id="SPACESHIP">spaceship.png</single>
+  <single id="ROCK">rock.png</single>
+  <single id="ROCK_01">rock_01.png</single>
+  <single id="MOON">moon.png</single>
+  <single id="BORG">borg.png</single>
+  <single id="PORTRAIT">portrait.png</single>
+
+  <animated id="ANIMATED_CRYSTAL">
+    <frame delay="50">ani_crystal_0.png</frame>
+    <frame delay="50">ani_crystal_1.png</frame>
+    <frame delay="50">ani_crystal_2.png</frame>
+    <frame delay="50">ani_crystal_3.png</frame>
+    <frame delay="50">ani_crystal_4.png</frame>
+    <frame delay="50">ani_crystal_5.png</frame>
+    <frame delay="50">ani_crystal_6.png</frame>
+    <frame delay="50">ani_crystal_7.png</frame>
+    <frame delay="50">ani_crystal_8.png</frame>
+    <frame delay="50">ani_crystal_9.png</frame>
+    <frame delay="50">ani_crystal_10.png</frame>
+    <frame delay="50">ani_crystal_11.png</frame>
+    <frame delay="50">ani_crystal_12.png</frame>
+    <frame delay="50">ani_crystal_13.png</frame>
+    <frame delay="50">ani_crystal_14.png</frame>
+    <frame delay="50">ani_crystal_15.png</frame>
+    <frame delay="50">ani_crystal_16.png</frame>
+    <frame delay="50">ani_crystal_17.png</frame>
+    <frame delay="50">ani_crystal_18.png</frame>
+    <frame delay="50">ani_crystal_19.png</frame>
+    <frame delay="50">ani_crystal_20.png</frame>
+    <frame delay="50">ani_crystal_21.png</frame>
+    <frame delay="50">ani_crystal_22.png</frame>
+    <frame delay="50">ani_crystal_23.png</frame>
+    <frame delay="50">ani_crystal_24.png</frame>
+    <frame delay="50">ani_crystal_25.png</frame>
+    <frame delay="50">ani_crystal_26.png</frame>
+    <frame delay="50">ani_crystal_27.png</frame>
+    <frame delay="50">ani_crystal_28.png</frame>
+    <frame delay="50">ani_crystal_29.png</frame>
+    <frame delay="50">ani_crystal_30.png</frame>
+    <frame delay="50">ani_crystal_31.png</frame>
+    <frame delay="50">ani_crystal_32.png</frame>
+    <frame delay="50">ani_crystal_33.png</frame>
+    <frame delay="50">ani_crystal_34.png</frame>
+    <frame delay="50">ani_crystal_35.png</frame>
+    <frame delay="50">ani_crystal_36.png</frame>
+    <frame delay="50">ani_crystal_37.png</frame>
+    <frame delay="50">ani_crystal_38.png</frame>
+    <frame delay="50">ani_crystal_39.png</frame>
+    <frame delay="50">ani_crystal_40.png</frame>
+    <frame delay="50">ani_crystal_41.png</frame>
+    <frame delay="50">ani_crystal_42.png</frame>
+    <frame delay="50">ani_crystal_43.png</frame>
+    <frame delay="50">ani_crystal_44.png</frame>
+    <frame delay="50">ani_crystal_45.png</frame>
+    <frame delay="50">ani_crystal_46.png</frame>
+    <frame delay="50">ani_crystal_47.png</frame>
+    <frame delay="50">ani_crystal_48.png</frame>
+    <frame delay="50">ani_crystal_49.png</frame>
+    <frame delay="50">ani_crystal_50.png</frame>
+    <frame delay="50">ani_crystal_51.png</frame>
+    <frame delay="50">ani_crystal_52.png</frame>
+    <frame delay="50">ani_crystal_53.png</frame>
+    <frame delay="50">ani_crystal_54.png</frame>
+    <frame delay="50">ani_crystal_55.png</frame>
+    <frame delay="50">ani_crystal_56.png</frame>
+    <frame delay="50">ani_crystal_57.png</frame>
+    <frame delay="50">ani_crystal_58.png</frame>
+    <frame delay="50">ani_crystal_59.png</frame>
+  </animated>
+
+  <animated id="PORTAL">
+    <frame delay="50">portal_0.png</frame>
+    <frame delay="50">portal_1.png</frame>
+    <frame delay="50">portal_2.png</frame>
+    <frame delay="50">portal_3.png</frame>
+    <frame delay="50">portal_4.png</frame>
+    <frame delay="50">portal_5.png</frame>
+    <frame delay="50">portal_6.png</frame>
+    <frame delay="50">portal_7.png</frame>
+    <frame delay="50">portal_8.png</frame>
+    <frame delay="50">portal_9.png</frame>
+    <frame delay="50">portal_10.png</frame>
+    <frame delay="50">portal_11.png</frame>
+    <frame delay="50">portal_12.png</frame>
+    <frame delay="50">portal_13.png</frame>
+    <frame delay="50">portal_14.png</frame>
+    <frame delay="50">portal_15.png</frame>
+    <frame delay="50">portal_16.png</frame>
+    <frame delay="50">portal_17.png</frame>
+    <frame delay="50">portal_18.png</frame>
+    <frame delay="50">portal_19.png</frame>
+    <frame delay="50">portal_20.png</frame>
+    <frame delay="50">portal_21.png</frame>
+    <frame delay="50">portal_22.png</frame>
+    <frame delay="50">portal_23.png</frame>
+    <frame delay="50">portal_24.png</frame>
+    <frame delay="50">portal_25.png</frame>
+    <frame delay="50">portal_26.png</frame>
+    <frame delay="50">portal_27.png</frame>
+    <frame delay="50">portal_28.png</frame>
+    <frame delay="50">portal_29.png</frame>
+    <frame delay="50">portal_30.png</frame>
+    <frame delay="50">portal_31.png</frame>
+    <frame delay="50">portal_32.png</frame>
+    <frame delay="50">portal_33.png</frame>
+    <frame delay="50">portal_34.png</frame>
+    <frame delay="50">portal_35.png</frame>
+    <frame delay="50">portal_36.png</frame>
+    <frame delay="50">portal_37.png</frame>
+    <frame delay="50">portal_38.png</frame>
+    <frame delay="50">portal_39.png</frame>
+    <frame delay="50">portal_40.png</frame>
+  </animated>
+  
+  
+  <skybox id="SPACE_PURPLE_NEBULA">
+    <top>space_purple_nebula_top3.png</top>
+    <bottom>space_purple_nebula_bottom4.png</bottom>
+    <left>space_purple_nebula_left2.png</left>
+    <right>space_purple_nebula_right1.png</right>
+    <front>space_purple_nebula_front5.png</front>
+    <back>space_purple_nebula_back6.png</back>
+  </skybox>
+
+  <skybox id="SPACE101">
+    <top>space101_top3.png</top>
+    <bottom>space101_bottom4.png</bottom>
+    <left>space101_left2.png</left>
+    <right>space101_right1.png</right>
+    <front>space101_front5.png</front>
+    <back>space101_back6.png</back>
+  </skybox>
+  
+</Textures>

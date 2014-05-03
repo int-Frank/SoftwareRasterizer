@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+  <!-- NOTES -->
+
+  <!-- * Children can NOT have the id of 00.
+       * Entity IDs are 32 bit unsigned integers broken into three parts:
+          - octet 1   (FF000000) : class type
+          - octet 2   (00FF0000) : used to identify children of a class
+          - octet 3,4 (0000FFFF) : instance id
+   -->
+
+<entities>
+
+  <!-- ################################################################################## -->
+  <!-- ###                             Teapot                                         ### -->
+  <!-- ################################################################################## -->
+  <class id="A0">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <physics>
+    </physics>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>teapot</mesh>
+      <texture>TEAPOT101</texture>
+    </aspect>
+  </class>
+
+  <!-- ################################################################################## -->
+  <!-- ###                             Water spout                                    ### -->
+  <!-- ################################################################################## -->
+  <class id="A5">
+    <particle_emitter>
+      <discEmitter>
+        <globals>0 0 0 0 -6 0</globals>
+        <disc>0 0 0   1 0 0   0.1</disc>
+        <outerAngle>0.02</outerAngle>
+        <alphaTemplate>2 1</alphaTemplate>
+        <radii>0.3 0.02 0.24 0.36  1.5 0.1 1.2 1.8</radii>
+        <emission_Linear>60</emission_Linear>
+        <maxNumber>300</maxNumber>
+        <life>2.5 0.01 2.47 2.53</life>
+        <entrySpeed>8.4 0.5 6.9 9.9</entrySpeed>
+        <force>1 0 0 0</force>
+        <color>
+          141 2 135 147   141 2 135 147
+          167 2 161 173   167 2 161 173
+          188 2 182 196   188 2 182 196
+          245 5 230 255   120 5 105 135
+        </color>
+        <isActive>true</isActive>
+      </discEmitter>
+    </particle_emitter>
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+  </class>
+
+  <!-- ################################################################################## -->
+  <!-- ###                             Water splash                                   ### -->
+  <!-- ################################################################################## -->
+  <class id="A6">
+    <particle_emitter>
+      <discEmitter>
+        <globals>0 0 0 0 -6 0</globals>
+        <disc>0 0 0   0 1 0   3</disc>
+        <outerAngle>1.2</outerAngle>
+        <alphaTemplate>2 1</alphaTemplate>
+        <radii>1.1 0.1 0.8 1.4  1.1 0.1 0.8 1.4</radii>
+        <emission_Linear>40</emission_Linear>
+        <maxNumber>200</maxNumber>
+        <life>3 0.1 2.7 3.3</life>
+        <entrySpeed>4 1 1 7</entrySpeed>
+        <force>1 0 0 0</force>
+        <color>
+          141 2 135 147   141 2 135 147
+          167 2 161 173   167 2 161 173
+          188 2 182 196   188 2 182 196
+          200 5 185 215   0 0 0 0
+        </color>
+        <isActive>true</isActive>
+      </discEmitter>
+    </particle_emitter>
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+  </class>
+
+  
+  
+  <!-- ################################################################################## -->
+  <!-- ###                             Rock                                           ### -->
+  <!-- ################################################################################## -->
+  <class id="A7">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0.3</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>rock</mesh>
+      <texture>ROCK_01</texture>
+    </aspect>
+  </class>
+
+
+  <!-- ################################################################################## -->
+  <!-- ###                             Grass                                           ### -->
+  <!-- ################################################################################## -->
+  <class id="A9">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0.3</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <materials>
+        <isdoublesided>true</isdoublesided>
+        <isalphaPP>true</isalphaPP>
+      </materials>
+      <mesh>grass</mesh>
+      <texture>GRASS</texture>
+    </aspect>
+  </class>
+  
+  
+  <!-- ################################################################################## -->
+  <!-- ###                                 Light demo                                 ### -->
+  <!-- ################################################################################## -->
+  <class id="DA">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <physics>
+    </physics>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>sphere_low</mesh>
+      <texture>MOON</texture>
+    </aspect>
+  
+    <child id="01">
+      <position>
+        <vqs>
+          <lookat>
+            <origin>0 3 0</origin>
+            <target>-0.1 3 0</target>
+            <up_vector>0 0 1</up_vector>
+            <s>0.1</s>
+          </lookat>
+        </vqs>
+      </position>
+      <pointlight>
+        <color>255 0 0 255</color>
+        <intensity>1000</intensity>
+      </pointlight>
+      <movement>
+        <direction>0 0 -8</direction>
+        <yaw>0.25</yaw>
+      </movement>
+      <aspect>
+        <materials>
+          <isemissive>true</isemissive>
+          <emission>1 0 0</emission>
+          <isreflective>false</isreflective>
+        </materials>
+        <mesh>sphere_low_low</mesh>
+        <texture>WHITE</texture>
+      </aspect>
+    </child>
+  
+    <child id="02">
+      <position>
+        <vqs>
+          <lookat>
+            <origin>0 0 -3</origin>
+            <target>0.1 0 -3</target>
+            <up_vector>0 -1 0</up_vector>
+            <s>0.1</s>
+          </lookat>
+        </vqs>
+      </position>
+      <pointlight>
+        <color>0 255 0 255</color>
+        <intensity>1000</intensity>
+      </pointlight>
+      <movement>
+        <direction>0 0 -10</direction>
+        <yaw>0.3</yaw>
+      </movement>
+      <aspect>
+        <materials>
+          <isemissive>true</isemissive>
+          <emission>0 1 0</emission>
+          <isreflective>false</isreflective>
+        </materials>
+        <mesh>sphere_low_low</mesh>
+        <texture>WHITE</texture>
+      </aspect>
+    </child>
+  
+     <child id="03">
+      <position>
+        <vqs>
+          <lookat>
+            <origin>3 3 0</origin>
+            <target>3 3 0.1</target>
+            <up_vector>0.7071 0.7071 0</up_vector>
+            <s>0.1</s>
+          </lookat>
+        </vqs>
+      </position>
+      <pointlight>
+        <color>64 64 255 255</color>
+        <intensity>1000</intensity>
+      </pointlight>
+      <movement>
+        <direction>0 0 -9</direction>
+        <pitch>-0.3</pitch>
+      </movement>
+      <aspect>
+        <materials>
+          <isemissive>true</isemissive>
+          <emission>0.25 0.25 1</emission>
+          <isreflective>false</isreflective>
+        </materials>
+        <mesh>sphere_low_low</mesh>
+        <texture>WHITE</texture>
+      </aspect>
+    </child>
+  
+  </class>
+
+
+  <!-- ################################################################################## -->
+  <!-- ###                           Travelling Spaceship                             ### -->
+  <!-- ################################################################################## -->
+  <class id="A1">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <physics>
+    </physics>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>spaceship</mesh>
+      <texture>SPACESHIP</texture>
+    </aspect>
+
+    <!-- Engine trails -->
+    <child id="E0">
+      <particle_emitter>
+        <discEmitter>
+          <disc>0 -0.05 2   0 0 1   0.1</disc>
+          <outerAngle>0.02</outerAngle>
+          <alphaTemplate>2 1</alphaTemplate>
+          <radii>0.4 0.02 0.34 0.46  1.1 0.1 0.8 1.4</radii>
+          <emission_Linear>100</emission_Linear>
+          <maxNumber>400</maxNumber>
+          <life>1 0.1 0.7 1.3</life>
+          <entrySpeed>-10 0 -10 -10</entrySpeed>
+          <force>1 0 0 0</force>
+          <color>
+            245 3 236 254   245 3 236 254
+            245 3 236 254   10  2 4   16
+            120 3 111 129   10  2 4   16
+            245 5 224 255   10  2 4   16
+          </color>
+          <isActive>true</isActive>
+        </discEmitter>
+      </particle_emitter>
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 0</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+    </child>
+
+    <child id="C0">
+      <position>
+        <vqs>
+          <lookat>
+            <origin>4 2 5</origin>
+            <target>0 2 0</target>
+            <up_vector>0 1 0</up_vector>
+            <s>1</s>
+          </lookat>
+        </vqs>
+      </position>
+      <movement>
+        <direction>1 0 0</direction>
+        <yaw>0.1</yaw>
+      </movement>
+      <camera>
+        <camera_system>
+          <camera_obj>
+            <fov>1.7</fov>
+            <near_clip>0.02</near_clip>
+            <far_clip>1000</far_clip>
+          </camera_obj>
+        </camera_system>
+      </camera>
+    </child>
+
+  </class>
+
+
+  
+  <!-- ################################################################################## -->
+  <!-- ###                             Ground                                  ### -->
+  <!-- ################################################################################## -->
+  <class id="DE">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+
+    <child id="07">
+      <position>
+        <vqs>
+          <vqs>
+            <v>-2 0 -2</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="08">
+      <position>
+        <vqs>
+          <vqs>
+            <v>-2 0 0</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="09">
+      <position>
+        <vqs>
+          <vqs>
+            <v>-2 0 2</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="12">
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 -2</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="13">
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 0</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="14">
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 2</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="17">
+      <position>
+        <vqs>
+          <vqs>
+            <v>2 0 -2</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="18">
+      <position>
+        <vqs>
+          <vqs>
+            <v>2 0 0</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+    <child id="19">
+      <position>
+        <vqs>
+          <vqs>
+            <v>2 0 2</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <aspect>
+        <materials>
+          <emission>0.7 0.7 0.7</emission>
+          <isemissive>true</isemissive>
+          <isdoublesided>1</isdoublesided>
+        </materials>
+        <mesh>square_2</mesh>
+        <texture>CHECKERBOARD</texture>
+      </aspect>
+    </child>
+
+  </class>
+  
+  
+  
+  <!-- ################################################################################## -->
+  <!-- ###                             High res portrait                              ### -->
+  <!-- ################################################################################## -->
+  <class id="F1">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <physics>
+    </physics>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <materials>
+        <isdoublesided>1</isdoublesided>
+      </materials>
+      <mesh>high_poly_square</mesh>
+      <texture>PORTRAIT</texture>
+    </aspect>
+  </class>
+  
+  
+  
+  
+  <!-- ################################################################################## -->
+  <!-- ###                               Portal                                       ### -->
+  <!-- ################################################################################## -->
+  <class id="D0">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>torus</mesh>
+      <texture>BORG</texture>
+    </aspect>
+  
+    <child id="01">
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 0</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+      <lights_affecting>
+      </lights_affecting>
+      <aspect>
+        <materials>
+          <isdoublesided>1</isdoublesided>
+          <isemissive>1</isemissive>
+          <emission>1 1 1</emission>
+          <isreflective>0</isreflective>
+          <alphaMaster>0.4</alphaMaster>
+          <isalphaMaster>1</isalphaMaster>
+        </materials>
+        <mesh>disk</mesh>
+        <texture>PORTAL</texture>
+      </aspect>
+    </child>
+  
+    <!-- Particles -->
+    <child id="F2">
+      <particle_emitter>
+        <discEmitter>
+          <disc>0 -0.2 0   0 -1 0   0.8</disc>
+          <outerAngle>-0.1</outerAngle>
+          <alphaTemplate>2 1</alphaTemplate>
+          <radii>0.05 0 0.05 0.05   0.05 0 0.05 0.05</radii>
+          <emission_Linear>20</emission_Linear>
+          <maxNumber>100</maxNumber>
+          <life>3 0.01 2.97 3.03</life>
+          <entrySpeed>0.1 0 0.1 0.1</entrySpeed>
+          <force>5 0 0 0</force>
+          <color>
+            188 2 182 196   188 2 182 196
+            80  5 65  95    50  5 35  65
+            188 2 182 196   188 2 182 196
+            120 5 105 135   50  5 35  65
+          </color>
+          <isActive>true</isActive>
+        </discEmitter>
+      </particle_emitter>
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 0</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+    </child>
+  
+  </class>
+  
+  
+  
+  
+  <!-- ################################################################################## -->
+  <!-- ###                           Broken Spacechip                                 ### -->
+  <!-- ################################################################################## -->
+  <class id="A2">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <movement>
+      <direction>0 0 0</direction>
+      <roll>0.1</roll>
+      <pitch>0.05</pitch>
+      <yaw>0.3</yaw>
+    </movement>
+    <physics>
+    </physics>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>spaceship</mesh>
+      <texture>SPACESHIP</texture>
+    </aspect>
+
+     <!-- Smoke -->
+    <child id="E0">
+      <particle_emitter>
+        <pointEmitter>
+          <alphaTemplate>2 1</alphaTemplate>
+          <radii>0.5 0.01 0.47 0.53  1 0.1 0.7 1.3</radii>
+          <emission_Poisson>40</emission_Poisson>
+          <maxNumber>200</maxNumber>
+          <life>10 1 7 13</life>
+          <entrySpeed>0.2 0 0.2 0.2</entrySpeed>
+          <force>1 0 0 0</force>
+          <color>
+            125 2 119 131   125 2 119 131
+            125 2 119 131   125 2 119 131
+            125 2 119 131   125 2 119 131
+            245 5 224 255     0 0 0 0
+          </color>
+          <isActive>true</isActive>
+        </pointEmitter>
+      </particle_emitter>
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 2.7</v>
+            <q>1 0 0 0</q>
+            <s>1</s>
+          </vqs>
+        </vqs>
+      </position>
+    </child>
+    
+  </class>
+  
+  
+  
+
+  <!-- ################################################################################## -->
+  <!-- ###                               Main Camera                                  ### -->
+  <!-- ################################################################################## -->
+  <class id="C0">
+    <position>
+      <vqs>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </vqs>
+    </position>
+    <movement>
+    </movement>
+    <spotlight>
+      <axis>0 0 -1</axis>
+      <color>255 255 255 255</color>
+      <intensity>200</intensity>
+    </spotlight>
+    <lights_affecting>
+    </lights_affecting>
+    <aspect>
+      <mesh>spaceship</mesh>
+      <texture>SPACESHIP</texture>
+    </aspect>
+    <camera>
+      <camera_system>
+        <camera_obj>
+          <fov>1.7</fov>
+          <near_clip>0.02</near_clip>
+          <far_clip>1000</far_clip>
+        </camera_obj>
+      </camera_system>
+    </camera>
+
+    <!-- Space particles (spawn around the camera) -->
+    <child id="E0">
+      <particle_emitter>
+        <boxEmitter>
+          <box>
+            <lengths>50 50 50</lengths>
+            <origin>0 0 0</origin>
+          </box>
+          <deviationAngle>0 -1 0    6.2 0.1 6.3 6.1</deviationAngle>
+          <alphaTemplate>2 1</alphaTemplate>
+          <radii>0.1 0.01 0.07 0.13  0.1 0.01 0.07 0.13</radii>
+          <emission_Linear>50</emission_Linear>
+          <maxNumber>500</maxNumber>
+          <life>10 1 7 13</life>
+          <entrySpeed>0.2 0 0.2 0.2</entrySpeed>
+          <force>1 0 0 0</force>
+          <color>
+            245 3 254 236   125 2 119 131
+            245 3 254 236   125 2 119 131
+            245 3 254 236   245 3 254 236
+            245 5 224 255     0 0 0 0
+          </color>
+          <isActive>true</isActive>
+        </boxEmitter>
+      </particle_emitter>
+      <position>
+        <vqs>
+          <vqs>
+            <v>0 0 0</v>
+            <q>1 0 0 0</q>
+            <s>3</s>
+          </vqs>
+        </vqs>
+      </position>
+    </child>
+
+  </class>
+
+
+</entities>

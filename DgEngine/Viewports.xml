@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renderers id="default">
+
+  <!-- 
+  This file contains the list of viewports the application can use. It is loaded once at
+  startup and immutable. The first viewport should be the root "00" and should represent
+  the entire screen. Negative values for viewport id are invalid and will not be loaded.
+  -->
+  
+  <!-- FULL SCREEN -->
+  <viewport id="00">
+    <blend>0</blend>
+    <x_rel>0</x_rel>
+    <y_rel>0</y_rel>
+    <w_rel>1</w_rel>
+    <h_rel>1</h_rel>
+  </viewport>
+
+  <!-- UPPER LEFT -->
+  <viewport id="A0">
+    <blend>0</blend>
+    <x_rel>0.1</x_rel>
+    <y_rel>0.1</y_rel>
+    <w_rel>0.3</w_rel>
+    <h_rel>0.3</h_rel>
+  </viewport>
+
+  <!-- UPPER RIGHT -->
+  <viewport id="A1">
+    <blend>0</blend>
+    <x_rel>0.6</x_rel>
+    <y_rel>0.1</y_rel>
+    <w_rel>0.3</w_rel>
+    <h_rel>0.3</h_rel>
+  </viewport>
+
+  <!-- BOTTOM LEFT -->
+  <viewport id="A2">
+    <blend>0</blend>
+    <x_rel>0.1</x_rel>
+    <y_rel>0.6</y_rel>
+    <w_rel>0.3</w_rel>
+    <h_rel>0.3</h_rel>
+  </viewport>
+
+  <!-- BOTTOM RIGHT -->
+  <viewport id="A3">
+    <blend>0</blend>
+    <x_rel>0.6</x_rel>
+    <y_rel>0.6</y_rel>
+    <w_rel>0.3</w_rel>
+    <h_rel>0.3</h_rel>
+  </viewport>
+
+</renderers>

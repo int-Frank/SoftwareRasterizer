@@ -5,9 +5,17 @@
       <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -21,7 +29,20 @@
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
@@ -34,11 +55,22 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>C:\dev\SDL2_image-2.0.0\include;C:\dev\SDL2_ttf-2.0.12\include;C:\dev\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\dev\SDL2_image-2.0.0\include;C:\dev\SDL2_ttf-2.0.12\include;C:\dev\SDL2-2.0.3\include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -47,6 +79,19 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.0\lib\x64;C:\dev\SDL2_ttf-2.0.12\lib\x64;C:\dev\SDL2-2.0.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -63,9 +108,257 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.0\lib\x64;C:\dev\SDL2_ttf-2.0.12\lib\x64;C:\dev\SDL2-2.0.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="Text.txt" />
-    <Text Include="Text1.txt" />
+    <Text Include="errorlog.txt" />
+    <Text Include="help_text.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AmbientLight.cpp" />
+    <ClCompile Include="BasisR3.cpp" />
+    <ClCompile Include="BoxParticleEmitter.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraSystem.cpp" />
+    <ClCompile Include="Circle4.cpp" />
+    <ClCompile Include="Clipper.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="CommonGraphics.cpp" />
+    <ClCompile Include="CommonMath.cpp" />
+    <ClCompile Include="Component_Aspect.cpp" />
+    <ClCompile Include="Component_Camera.cpp" />
+    <ClCompile Include="Component_Lights_Affecting.cpp" />
+    <ClCompile Include="Component_Movement.cpp" />
+    <ClCompile Include="Component_ParticleEmitter.cpp" />
+    <ClCompile Include="Component_Physics.cpp" />
+    <ClCompile Include="Component_PointLight.cpp" />
+    <ClCompile Include="Component_Position.cpp" />
+    <ClCompile Include="Component_SpotLight.cpp" />
+    <ClCompile Include="Cone.cpp" />
+    <ClCompile Include="Debugger.cpp" />
+    <ClCompile Include="DgError.cpp" />
+    <ClCompile Include="Dg_io.cpp" />
+    <ClCompile Include="DirectionalLight.cpp" />
+    <ClCompile Include="DiscParticleEmitter.cpp" />
+    <ClCompile Include="Events_Overworld.cpp" />
+    <ClCompile Include="FontManager.cpp" />
+    <ClCompile Include="FPSTimer.cpp" />
+    <ClCompile Include="Frustum.cpp" />
+    <ClCompile Include="GameDatabase.cpp" />
+    <ClCompile Include="Global_Objects.cpp" />
+    <ClCompile Include="HPoint.cpp" />
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ImageManager.cpp" />
+    <ClCompile Include="Inititiate_Overworld.cpp" />
+    <ClCompile Include="Light.cpp" />
+    <ClCompile Include="Line4.cpp" />
+    <ClCompile Include="LineSegment4.cpp" />
+    <ClCompile Include="Logic_Overworld.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MasterPList.cpp" />
+    <ClCompile Include="Materials.cpp" />
+    <ClCompile Include="Matrix44.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Mesh_List.cpp" />
+    <ClCompile Include="MessageBox.cpp" />
+    <ClCompile Include="Mipmap.cpp" />
+    <ClCompile Include="MouseLook.cpp" />
+    <ClCompile Include="OBB.cpp" />
+    <ClCompile Include="ObjectController.cpp" />
+    <ClCompile Include="ParticleAlphaTemplate.cpp" />
+    <ClCompile Include="ParticleEmitter.cpp" />
+    <ClCompile Include="particle_rasterization.cpp" />
+    <ClCompile Include="Plane4.cpp" />
+    <ClCompile Include="Point4.cpp" />
+    <ClCompile Include="PointLight.cpp" />
+    <ClCompile Include="PointLightBASE.cpp" />
+    <ClCompile Include="polygon_building.cpp" />
+    <ClCompile Include="Polygon_RASTER.cpp" />
+    <ClCompile Include="polygon_rasterization.cpp" />
+    <ClCompile Include="polygon_RASTER_SB.cpp" />
+    <ClCompile Include="pugixml.cpp" />
+    <ClCompile Include="Quaternion.cpp" />
+    <ClCompile Include="Ray4.cpp" />
+    <ClCompile Include="Rectangle.cpp" />
+    <ClCompile Include="Render_Overworld.cpp" />
+    <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SimpleRNG.cpp" />
+    <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="SpotLight.cpp" />
+    <ClCompile Include="StateMachine.cpp" />
+    <ClCompile Include="SYSTEM_AddLights.cpp" />
+    <ClCompile Include="SYSTEM_Add_Entities.cpp" />
+    <ClCompile Include="SYSTEM_Add_Skyboxes.cpp" />
+    <ClCompile Include="SYSTEM_AssignViewports.cpp" />
+    <ClCompile Include="SYSTEM_CameraControl.cpp" />
+    <ClCompile Include="SYSTEM_FrustumCull.cpp" />
+    <ClCompile Include="SYSTEM_Move.cpp" />
+    <ClCompile Include="SYSTEM_PostProcess.cpp" />
+    <ClCompile Include="SYSTEM_Render.cpp" />
+    <ClCompile Include="SYSTEM_UpdateLights.cpp" />
+    <ClCompile Include="SYSTEM_UpdateParticleEmitters.cpp" />
+    <ClCompile Include="SYSTEM_UpdatePhysics.cpp" />
+    <ClCompile Include="SYSTEM_UpdatePositionHierarchies.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="Texture_A.cpp" />
+    <ClCompile Include="Texture_S.cpp" />
+    <ClCompile Include="Timer.cpp" />
+    <ClCompile Include="Title.cpp" />
+    <ClCompile Include="Utility.cpp" />
+    <ClCompile Include="Vector2.cpp" />
+    <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="Vector4.cpp" />
+    <ClCompile Include="Viewport.cpp" />
+    <ClCompile Include="ViewportEvent.cpp" />
+    <ClCompile Include="ViewportHandler.cpp" />
+    <ClCompile Include="ViewportManager.cpp" />
+    <ClCompile Include="VQS.cpp" />
+    <ClCompile Include="WindowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AmbientLight.h" />
+    <ClInclude Include="BaseClass.h" />
+    <ClInclude Include="BaseWrapper.h" />
+    <ClInclude Include="BasisR3.h" />
+    <ClInclude Include="BoxParticleEmitter.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraSystem.h" />
+    <ClInclude Include="Circle4.h" />
+    <ClInclude Include="Clipper.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="CommonGraphics.h" />
+    <ClInclude Include="CommonMath.h" />
+    <ClInclude Include="Component_Aspect.h" />
+    <ClInclude Include="Component_Camera.h" />
+    <ClInclude Include="Component_Lights_Affecting.h" />
+    <ClInclude Include="Component_Movement.h" />
+    <ClInclude Include="Component_ParticleEmitter.h" />
+    <ClInclude Include="Component_Physics.h" />
+    <ClInclude Include="Component_PointLight.h" />
+    <ClInclude Include="Component_Position.h" />
+    <ClInclude Include="Component_SpotLight.h" />
+    <ClInclude Include="Cone.h" />
+    <ClInclude Include="Debugger.h" />
+    <ClInclude Include="DgArray.h" />
+    <ClInclude Include="DgError.h" />
+    <ClInclude Include="DgLinkedList.h" />
+    <ClInclude Include="DgMap.h" />
+    <ClInclude Include="DgMapS.h" />
+    <ClInclude Include="DgOrderedArray.h" />
+    <ClInclude Include="DgRect.h" />
+    <ClInclude Include="DgTypes.h" />
+    <ClInclude Include="Dg_io.h" />
+    <ClInclude Include="DirectionalLight.h" />
+    <ClInclude Include="DiscParticleEmitter.h" />
+    <ClInclude Include="Documentation.h" />
+    <ClInclude Include="Drawable.h" />
+    <ClInclude Include="DrawablesList.h" />
+    <ClInclude Include="FastPoisson.h" />
+    <ClInclude Include="FontManager.h" />
+    <ClInclude Include="FPSTimer.h" />
+    <ClInclude Include="Frustum.h" />
+    <ClInclude Include="GameDatabase.h" />
+    <ClInclude Include="HPoint.h" />
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="ImageManager.h" />
+    <ClInclude Include="Light.h" />
+    <ClInclude Include="Line4.h" />
+    <ClInclude Include="LineSegment4.h" />
+    <ClInclude Include="MasterPList.h" />
+    <ClInclude Include="Materials.h" />
+    <ClInclude Include="Matrix44.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Mesh_List.h" />
+    <ClInclude Include="MessageBox.h" />
+    <ClInclude Include="Mipmap.h" />
+    <ClInclude Include="MouseLook.h" />
+    <ClInclude Include="NormalDistributionBounded.h" />
+    <ClInclude Include="OBB.h" />
+    <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectController.h" />
+    <ClInclude Include="ObjectPair.h" />
+    <ClInclude Include="Overworld.h" />
+    <ClInclude Include="Particle.h" />
+    <ClInclude Include="ParticleAlphaTemplate.h" />
+    <ClInclude Include="ParticleEmitter.h" />
+    <ClInclude Include="Particle_RASTER.h" />
+    <ClInclude Include="Plane4.h" />
+    <ClInclude Include="Point4.h" />
+    <ClInclude Include="PointLight.h" />
+    <ClInclude Include="PointLightBASE.h" />
+    <ClInclude Include="Polygon.h" />
+    <ClInclude Include="Polygon_RASTER.h" />
+    <ClInclude Include="Polygon_RASTER_SB.h" />
+    <ClInclude Include="Primitive.h" />
+    <ClInclude Include="Primitive1D.h" />
+    <ClInclude Include="Primitive2D.h" />
+    <ClInclude Include="Primitive3D.h" />
+    <ClInclude Include="pugiconfig.hpp" />
+    <ClInclude Include="pugixml.hpp" />
+    <ClInclude Include="Quaternion.h" />
+    <ClInclude Include="Rasterizer.h" />
+    <ClInclude Include="rasterizer_defines.h" />
+    <ClInclude Include="Ray4.h" />
+    <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="SimpleRNG.h" />
+    <ClInclude Include="Skybox.h" />
+    <ClInclude Include="SortContainer.h" />
+    <ClInclude Include="Sphere.h" />
+    <ClInclude Include="SpotLight.h" />
+    <ClInclude Include="StateMachine.h" />
+    <ClInclude Include="Systems.h" />
+    <ClInclude Include="Text.h" />
+    <ClInclude Include="Texture.h" />
+    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="Texture_A.h" />
+    <ClInclude Include="Texture_S.h" />
+    <ClInclude Include="Timer.h" />
+    <ClInclude Include="Title.h" />
+    <ClInclude Include="Tuple.h" />
+    <ClInclude Include="Utility.h" />
+    <ClInclude Include="Vector2.h" />
+    <ClInclude Include="Vector3.h" />
+    <ClInclude Include="Vector4.h" />
+    <ClInclude Include="Vertex.h" />
+    <ClInclude Include="Vertex_RASTER.h" />
+    <ClInclude Include="Viewport.h" />
+    <ClInclude Include="ViewportEvent.h" />
+    <ClInclude Include="ViewportHandler.h" />
+    <ClInclude Include="ViewportManager.h" />
+    <ClInclude Include="VQS.h" />
+    <ClInclude Include="WindowManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="NormalDistributionTable.inl" />
+    <None Include="ParticleEngineDefaults.inl" />
+    <None Include="setup.ini" />
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="debug_text.xml" />
+    <Xml Include="gamma.xml" />
+    <Xml Include="gamma_base.xml" />
+    <Xml Include="Images.xml" />
+    <Xml Include="MessageBoxes.xml" />
+    <Xml Include="Viewports.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

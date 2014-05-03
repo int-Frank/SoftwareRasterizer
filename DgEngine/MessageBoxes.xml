@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<allMessageBoxes>
+
+  <message id="help">
+    <string>w		forward
+s		back
+a		strafe left
+d		strafe right
+q		move up
+e		move down
+z		roll CCW
+c		roll CW
+space	mouselook
+y		invert mouse
+[, ]	mouse sensitivity
+b		toggle minicam
+esc	exit
+h		toggle help</string>
+    <size>20</size>
+    <textColor>255 125 125 255</textColor>
+    <backgroundColor>0 0 0 200</backgroundColor>
+    <position>50 50</position>
+    <active>false</active>
+    <borderWidth>10</borderWidth>
+    <spacing>1.3</spacing>
+  </message>
+  
+</allMessageBoxes>
