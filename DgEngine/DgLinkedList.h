@@ -53,7 +53,7 @@ public:
 		
 	private:
 		//Special constructor, not for external use
-		const_iterator(data_container* _ptr) {ptr = _ptr;}
+		const_iterator(const data_container* _ptr) {ptr = _ptr;}
 
 	public:
 		//Constructor / destructor
@@ -139,9 +139,9 @@ public:
 
 	//Accessors
 	inline iterator			begin()		const {return iterator(root_container.next);}
-	inline iterator			end()		const {return iterator(end_ptr);}
+    inline iterator			end()		const { return iterator(const_cast<data_container*>(&end_container)); }
 	inline const_iterator	cbegin()	const {return const_iterator(root_container.next);}
-	inline const_iterator	cend()		const {return const_iterator(end_ptr);}
+    inline const_iterator	cend()		const { return const_iterator(const_cast<data_container*>(&end_container)); }
 	inline uint32			size()		const {return current_size;}
 	inline uint32 			max_size()	const {return maximum_size;}
 	inline bool 			empty()		const {return current_size == 0;}
@@ -172,8 +172,6 @@ private:
 	//Root and end objects, and pointers
 	data_container root_container;
 	data_container end_container;
-	data_container* const root_ptr;
-	data_container* const end_ptr;
 
 	//Next free element in the list;
 	data_container* next_free;		
@@ -356,8 +354,8 @@ void DgLinkedList<T>::init(uint32 new_size)
 	next_free = &data[0];
 
 	//Set outer container pointers
-	root_container.next = end_ptr;
-	end_container.previous = root_ptr;
+    root_container.next = &end_container;
+    end_container.previous = &root_container;
 
 	//Only need to assign forward pointers
 	for (uint32 i = 0; i < maximum_size-1; i++)
@@ -374,8 +372,7 @@ void DgLinkedList<T>::init(uint32 new_size)
 //		Constructor
 //--------------------------------------------------------------------------------
 template<class T>
-DgLinkedList<T>::DgLinkedList() : data(NULL), next_free(NULL), 
-	root_ptr(&root_container), end_ptr(&end_container)
+DgLinkedList<T>::DgLinkedList() : data(NULL), next_free(NULL)
 {
 	//Set data
 	init(1);
@@ -389,8 +386,7 @@ DgLinkedList<T>::DgLinkedList() : data(NULL), next_free(NULL),
 //		Constructor
 //--------------------------------------------------------------------------------
 template<class T>
-DgLinkedList<T>::DgLinkedList(uint32 new_size): data(NULL), next_free(NULL), 
-	root_ptr(&root_container), end_ptr(&end_container)
+DgLinkedList<T>::DgLinkedList(uint32 new_size): data(NULL), next_free(NULL)
 {
 	//Size must be at least 1
 	assert(new_size > 0);
@@ -473,8 +469,8 @@ void DgLinkedList<T>::clear()
 	next_free = &data[0];
 
 	//Set outer container pointers
-	root_container.next = end_ptr;
-	end_container.previous = root_ptr;
+    root_container.next = &end_container;
+    end_container.previous = &root_container;
 
 	//close the last element in the list
 	data[maximum_size-1].next = NULL;
@@ -534,7 +530,7 @@ void DgLinkedList<T>::push_back(const T& val)
 	//Add the current element to the back of the active list
 	end_container.previous->next = new_element;
 	new_element->previous = end_container.previous;
-	new_element->next = end_ptr;
+    new_element->next = &end_container;
 	end_container.previous = new_element;
 
 	//Increment current_size
@@ -565,7 +561,7 @@ bool DgLinkedList<T>::push_back_blank()
 	//Add the current element to the back of the active list
 	end_container.previous->next = new_element;
 	new_element->previous = end_container.previous;
-	new_element->next = end_ptr;
+    new_element->next = &end_container;
 	end_container.previous = new_element;
 
 	//Increment current_size
@@ -614,7 +610,7 @@ void DgLinkedList<T>::push_front(const T& val)
 
 	//Add the current element to the back of the active list
 	root_container.next->previous = new_element;
-	new_element->previous = root_ptr;
+	new_element->previous = &root_container;
 	new_element->next = root_container.next;
 	root_container.next = new_element;
 
@@ -651,14 +647,14 @@ void DgLinkedList<T>::pop_back()
 	assert(current_size != 0);
 	
 	//Get new last element
-	data_container* last = end_ptr->previous->previous;
+    data_container* last = end_container.previous->previous;
 
 	//Assign next free
 	end_container.previous->next = next_free;
 	next_free = end_container.previous;
 
 	//Break element from chain
-	last->next = end_ptr;			//prev points to next
+    last->next = &end_container;			//prev points to next
 	end_container.previous = last;	//next points to previous
 
 	//Deincrement current_size
@@ -679,14 +675,14 @@ void DgLinkedList<T>::pop_front()
 	assert(current_size != 0);
 	
 	//Get new first element
-	data_container* first = root_ptr->next->next;
+    data_container* first = root_container.next->next;
 
 	//Assign next free
 	root_container.next->next = next_free;
 	next_free = root_container.next;
 
 	//Break element from chain
-	first->previous = root_ptr;		//prev points to next
+    first->previous = &root_container;		//prev points to next
 	root_container.next = first;	//next points to previous
 
 	//Deincrement current_size
@@ -703,7 +699,7 @@ void DgLinkedList<T>::pop_front()
 template<class T>
 void DgLinkedList<T>::insert(const iterator& it, const T& val)
 {
-	assert(it.ptr != root_ptr);
+    assert(it.ptr != &root_container);
 
 	//Is the list full?
 	if (current_size == maximum_size)
@@ -819,15 +815,15 @@ void DgLinkedList<T>::extend()
 	//Determine root and end pointers
 	if (current_size == 0)
 	{
-		root_container.next = end_ptr;
-		end_container.previous = root_ptr;
+        root_container.next = &end_container;
+        end_container.previous = &root_container;
 	}
 	else
 	{
 		root_container.next = &data[0];
 		end_container.previous = &data[current_size-1];
-		new_data[0].previous = root_ptr;
-		new_data[current_size-1].next = end_ptr;
+        new_data[0].previous = &root_container;
+        new_data[current_size - 1].next = &end_container;
 	}
 	
 }	//End: DgLinkedList<T>::extend()

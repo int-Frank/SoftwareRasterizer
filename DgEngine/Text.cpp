@@ -409,10 +409,10 @@ DgRect Text::GetBounds() const
 			xmin = images[i].x;
 		if (images[i].y < ymin)
 			ymin = images[i].y;
-		if (images[i].x + images[i].surface.w() > xmax)
-			xmax = images[i].x + images[i].surface.w();
-		if (images[i].y + images[i].surface.h() > ymax)
-			ymax = images[i].y + images[i].surface.h();
+		if (images[i].x + int32(images[i].surface.w()) > xmax)
+			xmax = images[i].x + int32(images[i].surface.w());
+		if (images[i].y + int32(images[i].surface.h()) > ymax)
+			ymax = images[i].y + int32(images[i].surface.h());
 	}
 
 	return DgRect(xmin, ymin, (xmax - xmin), (ymax - ymin));

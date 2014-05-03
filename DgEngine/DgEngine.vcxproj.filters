@@ -5,13 +5,93 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Cameras, windows and viewports">
+      <UniqueIdentifier>{2dfc4c19-8d79-4c11-8bf9-e724caa7bdc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Cameras, windows and viewports\Rasterizer">
+      <UniqueIdentifier>{f2f66ad2-9cf3-419c-b27d-25e4197ffe0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity component system">
+      <UniqueIdentifier>{7a690840-049e-430a-8b31-a55a724f028f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity component system\Components">
+      <UniqueIdentifier>{d909991c-1ebc-48c5-b286-1adf97ffa446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity component system\Systems">
+      <UniqueIdentifier>{de03f9ee-e9cf-4031-836b-61f6187cf413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{2eb0fa61-2945-4400-a7d0-c41e44c2b425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Mesh">
+      <UniqueIdentifier>{7d4d3462-569c-457c-bbf6-62e4c71c6547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects\Rasterization">
+      <UniqueIdentifier>{05d8d6a5-5127-4a57-aac5-a12054f39a60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Game States">
+      <UniqueIdentifier>{2c15d84c-1d4b-45ae-9370-9df441cd6b37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Globals">
+      <UniqueIdentifier>{acd62559-630a-48a1-9b1f-b4aef8f2039c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics">
+      <UniqueIdentifier>{ebc3e5aa-7c43-4c66-9061-fbf417190f32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Image">
+      <UniqueIdentifier>{6c22af16-5f53-4919-82a0-93ea37910abb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Shapes">
+      <UniqueIdentifier>{1b3636ec-08f8-4b7a-a2a8-17c874ee99b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Text">
+      <UniqueIdentifier>{09198c05-1c81-49de-a313-11e719be9bfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Graphics\Texture">
+      <UniqueIdentifier>{18251bcb-2112-435e-b543-3d5bde3ff41f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Lighting">
+      <UniqueIdentifier>{7cdf85e4-8457-4e6d-8dca-7f0ebf260c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{9c1e2106-346f-4550-8f7b-fa077cecb77a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometric Primitives">
+      <UniqueIdentifier>{468486fa-c7ce-4995-991c-8d10aa0711c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometric Primitives\0D Primitive">
+      <UniqueIdentifier>{06fa38dd-3460-4584-bb5c-af03ca36f057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometric Primitives\1D Primitive">
+      <UniqueIdentifier>{6e765501-e26c-465f-8e18-10e6a732f54d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometric Primitives\2D Primitive">
+      <UniqueIdentifier>{bd85bd2e-6451-4b75-8cc3-f89a0ee6d19f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Geometric Primitives\3D Primitive">
+      <UniqueIdentifier>{6591b3b7-6b0b-4e3c-b212-33fc03b3a025}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Random Numbers">
+      <UniqueIdentifier>{798d510a-095b-4bee-8dbf-328257e30e55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility">
+      <UniqueIdentifier>{458605ae-60b0-4d35-ac9c-c0ec1bcd6a68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility\Containers">
+      <UniqueIdentifier>{ebaf7a2e-6963-46b3-8401-e14c46d78069}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility\Controls">
+      <UniqueIdentifier>{0e37c6b8-6a02-4cb8-a840-107a0cbb0a4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Particle Engine">
+      <UniqueIdentifier>{6bd05947-b4f3-468a-be6c-992e7c292f6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utility\pugixml">
+      <UniqueIdentifier>{ed52849e-efda-4754-9029-5b68e084e98f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -23,649 +103,649 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AmbientLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BasisR3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxParticleEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Circle4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Clipper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CommonGraphics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CommonMath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_Aspect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_Lights_Affecting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_Movement.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_ParticleEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_Physics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_PointLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_Position.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Component_SpotLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Cone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Debugger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Dg_io.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DgError.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectionalLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DiscParticleEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Events_Overworld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FontManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FPSTimer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Frustum.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameDatabase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Global_Objects.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HPoint.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ImageManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Inititiate_Overworld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Light.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Line4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LineSegment4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Logic_Overworld.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MasterPList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Materials.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Matrix44.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mesh_List.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MessageBox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mipmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MouseLook.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="OBB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObjectController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="particle_rasterization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleAlphaTemplate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plane4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Point4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PointLight.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PointLightBASE.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon_building.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Polygon_RASTER.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon_RASTER_SB.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="polygon_rasterization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pugixml.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Quaternion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ray4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Render_Overworld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Resources.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SimpleRNG.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AmbientLight.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="BasisR3.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="particle_rasterization.cpp">
+      <Filter>Source Files\Cameras, windows and viewports\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon_building.cpp">
+      <Filter>Source Files\Cameras, windows and viewports\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon_rasterization.cpp">
+      <Filter>Source Files\Cameras, windows and viewports\Rasterizer</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files\Objects\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh_List.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Materials.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="polygon_RASTER_SB.cpp">
+      <Filter>Source Files\Objects\Rasterization</Filter>
+    </ClCompile>
+    <ClCompile Include="Polygon_RASTER.cpp">
+      <Filter>Source Files\Objects\Rasterization</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleEmitter.cpp">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="BoxParticleEmitter.cpp">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="DiscParticleEmitter.cpp">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleAlphaTemplate.cpp">
+      <Filter>Source Files\Particle Engine</Filter>
     </ClCompile>
     <ClCompile Include="Skybox.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MouseLook.cpp">
+      <Filter>Source Files\Utility\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="SpotLight.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ObjectController.cpp">
+      <Filter>Source Files\Utility\Controls</Filter>
     </ClCompile>
-    <ClCompile Include="StateMachine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="pugixml.cpp">
+      <Filter>Source Files\Utility\pugixml</Filter>
     </ClCompile>
-    <ClCompile Include="SYSTEM_Add_Entities.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Dg_io.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="SYSTEM_Add_Skyboxes.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="DgError.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
-    <ClCompile Include="SYSTEM_AddLights.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_AssignViewports.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_CameraControl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_FrustumCull.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_Move.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_PostProcess.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_Render.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_UpdateLights.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_UpdateParticleEmitters.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_UpdatePhysics.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SYSTEM_UpdatePositionHierarchies.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture_A.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Texture_S.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="FPSTimer.cpp">
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Title.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Utility.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonMath.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="HPoint.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix44.cpp">
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Quaternion.cpp">
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Vector2.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="Vector4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Viewport.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewportEvent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewportHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ViewportManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
     <ClCompile Include="VQS.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Point4.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\0D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Circle4.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Line4.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="LineSegment4.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray4.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Plane4.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\2D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Cone.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Frustum.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="OBB.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="SimpleRNG.cpp">
+      <Filter>Source Files\Math\Random Numbers</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLightBASE.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotLight.cpp">
+      <Filter>Source Files\Lighting</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageManager.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Mipmap.cpp">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Rectangle.cpp">
+      <Filter>Source Files\Graphics\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="Debugger.cpp">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="FontManager.cpp">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture_A.cpp">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture_S.cpp">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="CommonGraphics.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="MessageBox.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_Add_Entities.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_Add_Skyboxes.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_AddLights.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_AssignViewports.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_CameraControl.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_FrustumCull.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_Move.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_PostProcess.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_Render.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_UpdateLights.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_UpdateParticleEmitters.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_UpdatePhysics.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="SYSTEM_UpdatePositionHierarchies.cpp">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Global_Objects.cpp">
+      <Filter>Source Files\Globals</Filter>
+    </ClCompile>
+    <ClCompile Include="Events_Overworld.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="Inititiate_Overworld.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="Logic_Overworld.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="Render_Overworld.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="Title.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="StateMachine.cpp">
+      <Filter>Source Files\Game States</Filter>
+    </ClCompile>
+    <ClCompile Include="GameDatabase.cpp">
+      <Filter>Source Files\Entity component system</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Aspect.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Camera.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Lights_Affecting.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Movement.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_ParticleEmitter.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Physics.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_PointLight.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_Position.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Component_SpotLight.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraSystem.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="Clipper.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="MasterPList.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewport.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewportEvent.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewportHandler.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewportManager.cpp">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
     </ClCompile>
     <ClCompile Include="WindowManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AmbientLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseWrapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BasisR3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxParticleEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Circle4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Clipper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonGraphics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CommonMath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_Aspect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_Lights_Affecting.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_Movement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_ParticleEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_Physics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_PointLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_Position.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Component_SpotLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Debugger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Dg_io.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgError.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgLinkedList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgMapS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgOrderedArray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgRect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DgTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectionalLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DiscParticleEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Documentation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Drawable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DrawablesList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FastPoisson.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FontManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FPSTimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Frustum.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDatabase.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="HPoint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ImageManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Line4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LineSegment4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MasterPList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Materials.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Matrix44.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh_List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MessageBox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mipmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MouseLook.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="NormalDistributionBounded.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="OBB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjectPair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Overworld.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle_RASTER.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleAlphaTemplate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ParticleEmitter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Plane4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Point4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PointLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PointLightBASE.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Polygon.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Polygon_RASTER.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Polygon_RASTER_SB.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Primitive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Primitive1D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Primitive2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Primitive3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pugiconfig.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pugixml.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Quaternion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rasterizer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="rasterizer_defines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ray4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rectangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SimpleRNG.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Skybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SortContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpotLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StateMachine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Systems.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Text.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture_A.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture_S.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Title.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tuple.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utility.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vertex_RASTER.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Viewport.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewportEvent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewportHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ViewportManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="WindowManager.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
     </ClInclude>
     <ClInclude Include="VQS.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="WindowManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ViewportManager.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewport.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewportEvent.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewportHandler.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector4.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture_A.h">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture_S.h">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Source Files\Graphics\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex_RASTER.h">
+      <Filter>Source Files\Objects\Rasterization</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Aspect.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Camera.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Lights_Affecting.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Movement.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_ParticleEmitter.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Physics.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_PointLight.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_Position.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component_SpotLight.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Systems.h">
+      <Filter>Source Files\Entity component system\Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraSystem.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="MasterPList.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="Rasterizer.h">
+      <Filter>Source Files\Cameras, windows and viewports\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="rasterizer_defines.h">
+      <Filter>Source Files\Cameras, windows and viewports\Rasterizer</Filter>
+    </ClInclude>
+    <ClInclude Include="Vertex.h">
+      <Filter>Source Files\Objects\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon.h">
+      <Filter>Source Files\Objects\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Objects\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="BoxParticleEmitter.h">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="DiscParticleEmitter.h">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleEmitter.h">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleAlphaTemplate.h">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle_RASTER.h">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Particle.h">
+      <Filter>Source Files\Particle Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon_RASTER_SB.h">
+      <Filter>Source Files\Objects\Rasterization</Filter>
+    </ClInclude>
+    <ClInclude Include="Polygon_RASTER.h">
+      <Filter>Source Files\Objects\Rasterization</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Source Files\Objects\Rasterization</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageManager.h">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Mipmap.h">
+      <Filter>Source Files\Graphics\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Source Files\Graphics\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Rectangle.h">
+      <Filter>Source Files\Graphics\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="FontManager.h">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Debugger.h">
+      <Filter>Source Files\Graphics\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Source Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonGraphics.h">
+      <Filter>Source Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MessageBox.h">
+      <Filter>Source Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="AmbientLight.h">
+      <Filter>Source Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.h">
+      <Filter>Source Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>Source Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.h">
+      <Filter>Source Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLightBASE.h">
+      <Filter>Source Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="SpotLight.h">
+      <Filter>Source Files\Lighting</Filter>
+    </ClInclude>
+    <ClInclude Include="BasisR3.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="CommonMath.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="HPoint.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix44.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Quaternion.h">
+      <Filter>Source Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="DgArray.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DgLinkedList.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DgMap.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DgMapS.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="DgOrderedArray.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="MouseLook.h">
+      <Filter>Source Files\Utility\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectController.h">
+      <Filter>Source Files\Utility\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseClass.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseWrapper.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Dg_io.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DgError.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DgRect.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="DgTypes.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSTimer.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectPair.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="SortContainer.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Tuple.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Clipper.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="Documentation.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Overworld.h">
+      <Filter>Source Files\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Source Files\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="Title.h">
+      <Filter>Source Files\Game States</Filter>
+    </ClInclude>
+    <ClInclude Include="pugixml.hpp">
+      <Filter>Source Files\Utility\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="pugiconfig.hpp">
+      <Filter>Source Files\Utility\pugixml</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh_List.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Materials.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDatabase.h">
+      <Filter>Source Files\Entity component system</Filter>
+    </ClInclude>
+    <ClInclude Include="DrawablesList.h">
+      <Filter>Source Files\Cameras, windows and viewports</Filter>
+    </ClInclude>
+    <ClInclude Include="Point4.h">
+      <Filter>Source Files\Math\Geometric Primitives\0D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Circle4.h">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Line4.h">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="LineSegment4.h">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive1D.h">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Ray4.h">
+      <Filter>Source Files\Math\Geometric Primitives\1D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Plane4.h">
+      <Filter>Source Files\Math\Geometric Primitives\2D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive2D.h">
+      <Filter>Source Files\Math\Geometric Primitives\2D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Cone.h">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Frustum.h">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="OBB.h">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive3D.h">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Source Files\Math\Geometric Primitives\3D Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="FastPoisson.h">
+      <Filter>Source Files\Math\Random Numbers</Filter>
+    </ClInclude>
+    <ClInclude Include="NormalDistributionBounded.h">
+      <Filter>Source Files\Math\Random Numbers</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleRNG.h">
+      <Filter>Source Files\Math\Random Numbers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
