@@ -22,7 +22,7 @@ struct Polygon_RASTER : public Drawable
 	//Copy operatorations
 
 	void Draw(Rasterizer& r) { r.DrawPolygon(*this); }
-	float GetSortValue() const { return zAverage;}
+	float GetSortValue() const { return (p0.pos.Z() + p1.pos.Z() + p2.pos.Z()) * 0.333333f;}
 
 	Polygon_RASTER& operator= (const Polygon_RASTER&);
 
@@ -32,13 +32,7 @@ struct Polygon_RASTER : public Drawable
 	//Data
 	//The first vertex needs to be a number reference when building
 	//the vertex list, but a pointer for the rasterizer.
-	union V0
-	{
-		uint32 begin;
-		const Vertex* p_begin;
-	};
-	uint32 size;
-	float zAverage;
+	Vertex_RASTER p0, p1, p2;
 	const Materials* materials;	//materials
 	const Mipmap* mipmap;		//The image mipmap
 };
