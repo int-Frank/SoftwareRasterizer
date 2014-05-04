@@ -150,7 +150,7 @@ template<class T>
 DgArray<T>::~DgArray()
 {
 	//Free memory
-	delete[array_size] data;
+	delete[] data;
 
 }	//End: DgArray::~DgArray()
 

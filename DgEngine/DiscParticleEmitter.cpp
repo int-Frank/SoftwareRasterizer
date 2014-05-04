@@ -170,39 +170,36 @@ void DiscParticleEmitter::SetOuterAngle(float ang)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void DiscParticleEmitter::AddParticles(uint32 toAdd)
+void DiscParticleEmitter::AddParticle()
 {
-	for (uint32 i = 0; i < toAdd; ++i)
+	//Get next element at the back
+	Particle* par(GetFreeParticle());
+
+	if (par == NULL)
+		return;
+
+	if (IsZero(discRadius))
 	{
-		//Get next element at the back
-		Particle* par(GetFreeParticle());
+		par->position = origin;
+		par->velocity = axis * entry_speed.Get() * vqs.S() + velocity_global;
+	}
+	else
+	{
+		//Get random orthogonal vector
+		BasisR3 b(axis, GetRandomVector());
 
-		if (par == NULL)
-			break;
+		//Get distance from origin along v.
+		float dist = generator.GetUniform<float>(0.0f, discRadius);
+		float ang = dist * outerAngle / discRadius;
 
-		if (IsZero(discRadius))
-		{
-			par->position = origin;
-			par->velocity = axis * entry_speed.Get() * vqs.S() + velocity_global;
-		}
-		else
-		{
-			//Get random orthogonal vector
-			BasisR3 b(axis, GetRandomVector());
+		Quaternion q(b.x2(), ang);
 
-			//Get distance from origin along v.
-			float dist = generator.GetUniform<float>(0.0f, discRadius);
-			float ang = dist * outerAngle / discRadius;
-
-			Quaternion q(b.x2(), ang);
-
-			par->position = origin + b.x1() * dist;
-			par->velocity = q.Rotate(axis) * entry_speed.Get() * vqs.S() + velocity_global;
-
-		}
-
-		par->acceleration = acceleration_global;
-		par->life = 0.0f;
+		par->position = origin + b.x1() * dist;
+		par->velocity = q.Rotate(axis) * entry_speed.Get() * vqs.S() + velocity_global;
 
 	}
+
+	par->acceleration = acceleration_global;
+	par->life = 0.0f;
+	
 }	//End: ParticleEmitter::FrustumCull()

@@ -522,20 +522,17 @@ uint32 ParticleEmitter::GetNumberToAdd(float dt)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void ParticleEmitter::AddParticles(uint32 toAdd)
+void ParticleEmitter::AddParticle()
 {
-	for (uint32 i = 0; i < toAdd; ++i)
-	{
-		//Open up an element in the back of the list
-		if (!particles.push_back_blank())
-			break;
+	//Open up an element in the back of the list
+	if (!particles.push_back_blank())
+		return;
 
-		particles.back().position = Point4::origin + vqs.V();
-		particles.back().velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + velocity_global;
-		particles.back().acceleration = acceleration_global;
-		particles.back().life = 0.0f;
+	particles.back().position = Point4::origin + vqs.V();
+	particles.back().velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + velocity_global;
+	particles.back().acceleration = acceleration_global;
+	particles.back().life = 0.0f;
 
-	}
 }	//End: ParticleEmitter::FrustumCull()
 
 
@@ -556,6 +553,37 @@ Particle* ParticleEmitter::GetFreeParticle()
 
 
 //--------------------------------------------------------------------------------
+//	@	ParticleEmitter::UpdateParticle()
+//--------------------------------------------------------------------------------
+//		Updates a single particle in the pool
+//--------------------------------------------------------------------------------
+void ParticleEmitter::UpdateParticle(DgLinkedList<Particle>::iterator& it, float dt)
+{
+    //Find current life
+    it->life += dt;
+
+    if (it->life > it->life_total)
+    {
+        //Erase element
+        particles.erase(it);
+        --it; //Will be incremented to the next particle next loop
+        return;
+    }
+
+    //How far along in life is it?
+    float dl = it->life / it->life_total;
+
+    //Adjust position and velocity
+    it->velocity = (it->velocity + it->acceleration * dt) * DgPow(it->force, dt);
+    it->position += (it->velocity * dt);
+
+    //Adjust radius
+    it->radius = it->radius_start + (it->d_radius * dl);
+}
+
+
+
+//--------------------------------------------------------------------------------
 //	@	ParticleEmitter::GetNumberToEmit()
 //--------------------------------------------------------------------------------
 //		Loop through all pixels and update data
@@ -565,35 +593,32 @@ uint32 ParticleEmitter::Update(float dt)
 	if (!IsActive())
 		return 0;
 
-	//Add any new particles
-	AddParticles(GetNumberToAdd(dt));
-
 	DgLinkedList<Particle>::iterator it = particles.begin();
 
+    //Move particles along.
 	for (it; it != particles.end(); ++it)
 	{
-		//Find current life
-		it->life += dt;
-
-		if (it->life > it->life_total)
-		{
-			//Erase element
-			particles.erase(it);
-			--it; //Will be incremented to the next particle next loop
-			continue;
-		}
-
-		//How far along in life is it?
-		float dl = it->life / it->life_total;
-
-		//Adjust position and velocity
-		it->velocity = (it->velocity + it->acceleration * dt) * DgPow(it->force,dt);
-		it->position += (it->velocity * dt);
-
-		//Adjust radius
-		it->radius = it->radius_start + (it->d_radius * dl);
-
+        UpdateParticle(it, dt);
 	}
+
+    //Add any new particles
+    uint32 toAdd = GetNumberToAdd(dt);
+    
+    if (toAdd < 1)
+        return 1;
+
+    //Stagger multiple particles
+    float delta_t = dt / static_cast<float>(toAdd);
+    float t = 0.0f;
+
+    for (uint32 i = 0; i < toAdd; ++i)
+    {
+        AddParticle(); 
+        it = particles.end();
+        --it;
+        UpdateParticle(it, t);
+        t += delta_t;
+    }
 
 	return 1;
 }	//End: ParticleEmitter::Update()
@@ -603,8 +628,6 @@ uint32 ParticleEmitter::Update(float dt)
 //	@	ParticleEmitter::GenerateParticles()
 //--------------------------------------------------------------------------------
 //		Generate all pixels. 
-//	SHOULD BE CALLED IN A POSTPROCESS SYSTEM. SHOULD BE THE LAST THING TO DO
-//	BEFORE ENTERING THE GAME.
 //--------------------------------------------------------------------------------
 uint32 ParticleEmitter::Initiate()
 {

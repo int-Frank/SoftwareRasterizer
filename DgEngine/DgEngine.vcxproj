@@ -132,6 +132,7 @@
   <ItemGroup>
     <Text Include="errorlog.txt" />
     <Text Include="help_text.txt" />
+    <Text Include="TODO.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AmbientLight.cpp" />

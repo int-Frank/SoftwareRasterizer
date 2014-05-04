@@ -166,20 +166,17 @@ void BoxParticleEmitter::SetOBB(const OBB& b)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void BoxParticleEmitter::AddParticles(uint32 toAdd)
+void BoxParticleEmitter::AddParticle()
 {
-	for (uint32 i = 0; i < toAdd; ++i)
-	{
-		//Get next element at the back
-		Particle* par(GetFreeParticle());
+	//Get next element at the back
+	Particle* par(GetFreeParticle());
 
-		if (par == NULL)
-			break;
+	if (par == NULL)
+		return;
 
-		par->position = box.current.GetPointInside();
-		par->velocity = GetRandomConeVector(direction, theta.Get()) * entry_speed.Get() * vqs.S() + velocity_global;
-		par->acceleration = acceleration_global;
-		par->life = 0.0f;
+	par->position = box.current.GetPointInside();
+	par->velocity = GetRandomConeVector(direction, theta.Get()) * entry_speed.Get() * vqs.S() + velocity_global;
+	par->acceleration = acceleration_global;
+	par->life = 0.0f;
 
-	}
 }	//End: ParticleEmitter::FrustumCull()
