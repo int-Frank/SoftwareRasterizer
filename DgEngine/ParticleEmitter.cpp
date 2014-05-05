@@ -522,34 +522,14 @@ uint32 ParticleEmitter::GetNumberToAdd(float dt)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void ParticleEmitter::AddParticle()
+void ParticleEmitter::SetNewParticle(Particle* par)
 {
-	//Open up an element in the back of the list
-	if (!particles.push_back_blank())
-		return;
-
-	particles.back().position = Point4::origin + vqs.V();
-	particles.back().velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + velocity_global;
-	particles.back().acceleration = acceleration_global;
-	particles.back().life = 0.0f;
+    par->position = Point4::origin + vqs.V();
+    par->velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + velocity_global;
+    par->acceleration = acceleration_global;
+    par->life = 0.0f;
 
 }	//End: ParticleEmitter::FrustumCull()
-
-
-//--------------------------------------------------------------------------------
-//	@	ParticleEmitter::GetFreeParticle()
-//--------------------------------------------------------------------------------
-//		Gets the back of the particle list
-//--------------------------------------------------------------------------------
-Particle* ParticleEmitter::GetFreeParticle()
-{
-		//Open up an element in the back of the list
-		if (!particles.push_back_blank())
-			return NULL;
-
-		return &particles.back();
-
-}	//End: ParticleEmitter::GetFreeParticle()
 
 
 //--------------------------------------------------------------------------------
@@ -613,12 +593,24 @@ uint32 ParticleEmitter::Update(float dt)
 
     for (uint32 i = 0; i < toAdd; ++i)
     {
-        AddParticle(); 
-        it = particles.end();
-        --it;
+        //Open up an element in the front of the list
+        if (!particles.push_front_blank())
+            break;
+
+        //Set new particle data
+        Particle* par = &particles.front();
+        SetNewParticle(par); 
+
+        //Move the particle along
+        it = particles.begin();
         UpdateParticle(it, t);
         t += delta_t;
     }
+
+    it = particles.begin();
+
+    while (it != particles.end())
+        ++it;
 
 	return 1;
 }	//End: ParticleEmitter::Update()

@@ -148,9 +148,6 @@ protected:
 	//Current vqs
 	VQS vqs;
 
-	//Get the back of the particle list
-	Particle* GetFreeParticle();
-
 	ndb_f entry_speed;
 
 	//Velocity and acceleration applied to all particles
@@ -212,7 +209,7 @@ private:
 	//--------------------------------------------------------------------------------
 	void init(const ParticleEmitter& other);
 	uint32 GetNumberToAdd(float dt);
-	virtual void AddParticle(); 
+    virtual void SetNewParticle(Particle*);
 
     //May decrement the iterator if a particle is removed
     void UpdateParticle(DgLinkedList<Particle>::iterator&, float dt);

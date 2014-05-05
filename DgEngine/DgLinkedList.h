@@ -151,7 +151,8 @@ public:
 	//Manipulators
 	void push_back(const T&);
 	bool push_back_blank();
-	void push_front(const T&);
+    void push_front(const T&);
+    bool push_front_blank();
 	void insert(const iterator&, const T&);
 	void push_back_noresize(const T&);
 	void push_front_noresize(const T&);
@@ -568,6 +569,39 @@ bool DgLinkedList<T>::push_back_blank()
 	current_size++;
 
 	return true;
+
+}	//End: DgLinkedList::push_back_blank()
+
+
+//--------------------------------------------------------------------------------
+//	@	DgLinkedList<T>::push_front_blank()
+//--------------------------------------------------------------------------------
+//		Add an element to the front of the list, but does not assign, nor
+//		resize the array.
+//--------------------------------------------------------------------------------
+template<class T>
+bool DgLinkedList<T>::push_front_blank()
+{
+    //Is the list full?
+    if (current_size == maximum_size)
+        return false;
+
+    //Get the list node to work on
+    data_container *new_element = next_free;
+
+    //Move next_free pointer to the next data_container
+    next_free = next_free->next;
+
+    //Add the current element to the back of the active list
+    root_container.next->previous = new_element;
+    new_element->previous = &root_container;
+    new_element->next = root_container.next;
+    root_container.next = new_element;
+
+    //Increment current_size
+    current_size++;
+
+    return true;
 
 }	//End: DgLinkedList::push_back_blank()
 
