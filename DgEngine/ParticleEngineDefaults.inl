@@ -89,9 +89,9 @@
 //--------------------------------------------------------------------------------
 #define BE_DEFAULT_ORIGIN					Point4(0.0f, 0.0f, 0.0f)
 
-#define BE_DEFAULT_LENGTH_X0				10.0f
-#define BE_DEFAULT_LENGTH_X1				10.0f
-#define BE_DEFAULT_LENGTH_X2				10.0f
+#define BE_DEFAULT_LENGTH_X0				1.0f
+#define BE_DEFAULT_LENGTH_X1				1.0f
+#define BE_DEFAULT_LENGTH_X2				1.0f
 
 #define BE_DEFAULT_AXIS						Vector4::xAxis
 
@@ -108,5 +108,5 @@
 #define DE_DEFAULT_ORIGIN					Point4(0.0f, 0.0f, 0.0f)
 #define DE_DEFAULT_AXIS						Vector4(1.0f, 0.0f, 0.0f)
 
-#define DE_DEFAULT_RADIUS					0.5f
+#define DE_DEFAULT_RADIUS					1.0f
 #define DE_DEFAULT_OUTERANGLE				0.5f

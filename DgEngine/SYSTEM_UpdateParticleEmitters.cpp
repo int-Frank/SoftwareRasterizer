@@ -15,6 +15,7 @@ void SYSTEM_UpdateParticleEmitters(GameDatabase& data, float dt)
 {
 	//add current skybox to each camera
 	int index = 0;
+    int mov_ind = 0;
 	for (int i = 0; i < data.ParticleEmitters.size(); ++i)
 	{
 		//Try to find corresponding position
@@ -29,6 +30,9 @@ void SYSTEM_UpdateParticleEmitters(GameDatabase& data, float dt)
 
 		//Set the VQS
 		data.ParticleEmitters[i].particleEmitter->SetVQS(data.Positions[index].T_WLD_OBJ);
+
+        /// Should move them here via the move component, but really need global
+        /// movement, not relative to parent.
 
 		////Update particles
 		data.ParticleEmitters[i].particleEmitter->Update(dt);

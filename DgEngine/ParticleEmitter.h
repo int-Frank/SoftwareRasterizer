@@ -14,6 +14,7 @@
 #include "Particle.h"
 #include "ParticleAlphaTemplate.h"
 #include "DgLinkedList.h"
+#include "DgArray.h"
 #include "DgTypes.h"
 #include "Color.h"
 #include "VQS.h"
@@ -116,8 +117,11 @@ public:
 	//! Culls particles against a frustum
 	void FrustumCull(const Frustum&);
 
-	//! Set the global velocity and acceleration for this emitter
-	void SetGlobal(const Vector4& v, const Vector4& a);
+    //! Set the global velocity and acceleration for this emitter
+    void SetGlobal(const Vector4& v, const Vector4& a);
+
+    //! Set the global velocity for this emitter
+    void SetGlobalVelocity(const Vector4& v);
 
 	//! Turns an emitter on/off.
 	void SetActive(bool b){ flags.isActive = b; }
@@ -153,6 +157,14 @@ protected:
 	//Velocity and acceleration applied to all particles
 	Vector4 velocity_global;
 	Vector4 acceleration_global;
+
+    struct FixedPoint
+    {
+        Point4 point;
+        float pull;
+    };
+
+    DgArray<FixedPoint> FixedPoints;
 
 private:
 

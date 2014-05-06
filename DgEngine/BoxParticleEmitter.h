@@ -72,6 +72,7 @@ private:
 	//		Functions
 	//--------------------------------------------------------------------------------
     void SetNewParticle(Particle*);
+
 };
 
 #endif

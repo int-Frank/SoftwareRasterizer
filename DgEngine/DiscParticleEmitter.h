@@ -20,7 +20,12 @@
 *
 * @class DiscParticleEmitter
 *
-* @brief A particle emitter which emits particles in a defined OBB
+* @brief A particle emitter which emits particles in a defined OBB. 
+*
+* The base disk always has the attributes:
+*       radius = 1
+*       origin = (0,0,0)
+*       axis = (1,0,0)
 *
 * [detailed description]
 *
@@ -51,10 +56,6 @@ public:
 	*/
 	void SetVQS(const VQS&);
 
-
-	//!Set the disc.
-	void SetDisc(const Point4& _origin, const Vector4& _axis, float radius);
-
 	//!The angle of deviation outer particles will birth at.
 	void SetOuterAngle(float ang);
 
@@ -63,11 +64,8 @@ private:
 	SimpleRNG generator;
 
 	//Axis of the disc
-	Point4 origin_BASE;
 	Point4 origin;
-	Vector4 axis_BASE;
 	Vector4 axis;
-	float discRadius_BASE;
 	float discRadius;
 
 	//Particles birthing on the outer rim of the disc will veer off at this angle 
@@ -78,6 +76,12 @@ private:
 	//		Functions
 	//--------------------------------------------------------------------------------
     void SetNewParticle(Particle*);
+
+private:
+
+    static const Point4 ORIGIN;
+    static const Vector4 AXIS;
+    static const float RADIUS;
 };
 
 #endif

@@ -13,6 +13,13 @@
 
 
 //--------------------------------------------------------------------------------
+//	@	Statics
+//--------------------------------------------------------------------------------
+const Point4 DiscParticleEmitter::ORIGIN = DE_DEFAULT_ORIGIN;
+const Vector4 DiscParticleEmitter::AXIS = DE_DEFAULT_AXIS;
+const float DiscParticleEmitter::RADIUS = DE_DEFAULT_RADIUS;
+
+//--------------------------------------------------------------------------------
 //	@	DiscParticleEmitter::DiscParticleEmitter()
 //--------------------------------------------------------------------------------
 //		Constructor. Uses default parameters.
@@ -20,7 +27,9 @@
 DiscParticleEmitter::DiscParticleEmitter() : ParticleEmitter()
 {
 	//Set the disc
-	SetDisc(DE_DEFAULT_ORIGIN, DE_DEFAULT_AXIS, DE_DEFAULT_RADIUS);
+    origin = ORIGIN;
+    axis = AXIS;
+    discRadius = RADIUS;
 
 	//Set the outer angle
 	SetOuterAngle(DE_DEFAULT_OUTERANGLE);
@@ -35,9 +44,7 @@ DiscParticleEmitter::DiscParticleEmitter() : ParticleEmitter()
 //--------------------------------------------------------------------------------
 DiscParticleEmitter::DiscParticleEmitter(const DiscParticleEmitter& other) :
 ParticleEmitter(other), generator(other.generator), origin(other.origin),
-origin_BASE(other.origin_BASE), axis_BASE(other.axis_BASE), axis(other.axis),
-discRadius(other.discRadius), discRadius_BASE(other.discRadius_BASE), 
-outerAngle(other.outerAngle)
+axis(other.axis), discRadius(other.discRadius), outerAngle(other.outerAngle)
 {
 }	//End: DiscParticleEmitter::DiscParticleEmitter()
 
@@ -56,11 +63,8 @@ DiscParticleEmitter& DiscParticleEmitter::operator=(const DiscParticleEmitter& o
 
 	generator = other.generator;
 	origin = other.origin;
-	origin_BASE = other.origin_BASE;
-	axis_BASE = other.axis_BASE;
 	axis = other.axis;
 	discRadius = other.discRadius;
-	discRadius_BASE = other.discRadius_BASE;
 	outerAngle = other.outerAngle;
 
 	return *this;
@@ -83,15 +87,7 @@ pugi::xml_node& operator>>(pugi::xml_node& node, DiscParticleEmitter& dest)
 		//Get the name of the node
 		std::string tag = it->name();
 
-		if (tag == "disc")
-		{
-			Point4 o;
-			Vector4 a;
-			float r;
-			DgString(it->child_value()) >> o >> a >> r;
-			dest.SetDisc(o, a, r);
-		}
-		else if (tag == "outerAngle")
+		if (tag == "outerAngle")
 		{
 			float a;
 			DgString(it->child_value()) >> a;
@@ -115,42 +111,15 @@ void DiscParticleEmitter::SetVQS(const VQS& in_vqs)
 	vqs = in_vqs;
 
 	//Transform the disc
-	origin = origin_BASE;
-	axis = axis_BASE;
-	discRadius = discRadius_BASE;
+	origin = ORIGIN;
+	axis = AXIS;
+	discRadius = RADIUS;
 
 	origin *= vqs;
 	vqs.RotateSelf(axis);
 	discRadius *= vqs.S();
 
 }	//End: ParticleEmitter::SetNumberParticles()
-
-
-//--------------------------------------------------------------------------------
-//	@	DiscParticleEmitter::SetDisc()
-//--------------------------------------------------------------------------------
-//		
-//--------------------------------------------------------------------------------
-void DiscParticleEmitter::SetDisc(const Point4& _origin, const Vector4& _axis, float radius)
-{
-	origin_BASE = _origin;
-
-	if (_axis.IsZero())
-		axis_BASE = Vector4::xAxis;
-	else
-	{
-		axis_BASE = _axis;
-		axis_BASE.Normalize();
-	}
-
-	if (radius < 0.0f)
-		discRadius_BASE = 0.0f;
-	else
-		discRadius_BASE = radius;
-
-	SetVQS(vqs);
-
-}	//End: ParticleEmitter::SetDirection()
 
 
 //--------------------------------------------------------------------------------
@@ -190,7 +159,7 @@ void DiscParticleEmitter::SetNewParticle(Particle* par)
 
         par->position = origin + b.x1() * dist;
         par->velocity = q.Rotate(axis) * entry_speed.Get() * vqs.S() + velocity_global;
-
+        
 	}
 
 	par->acceleration = acceleration_global;

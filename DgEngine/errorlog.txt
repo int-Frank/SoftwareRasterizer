@@ -4,3 +4,5 @@ Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
 Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
 Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
 Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
+Error: @NormalDistributionBounded::SetBounds() -> invalid bounds.
