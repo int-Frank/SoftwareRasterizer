@@ -234,16 +234,22 @@
 
     <!-- Spaceship -->
     <entity class="A1" id="0000">
-      <position>
-          <vqs>
-              <vqs>
-                  <v>0 0 0</v>
-                  <q>1 0 0 0</q>
-                  <s>1</s>
-              </vqs>
-          </vqs>
-      </position>
+        <position>
+            <vqs>
+                <lookat>
+                    <origin>-100 0 -13</origin>
+                    <target>-99 0 -12.8</target>
+                    <up_vector>0 1 0</up_vector>
+                    <s>1</s>
+                </lookat>
+            </vqs>
+        </position>
+        <movement>
+            <direction> 0 0 -30</direction>
+            <yaw>0.1</yaw>
+        </movement>
     </entity>
+
 
     <!-- The camera -->
     <entity class="C0" id="0000">
