@@ -1,0 +1,47 @@
+StartFontMetrics 2.0
+FontName BoisterCapitals
+FullName BoisterCapitals
+FamilyName BoisterCapitals
+FontBBox 0 -778 1409 1204
+Version 001.003
+Weight normal
+Notice BoisterCapitals (C) Copyright PJL MMII
+ItalicAngle  0.00
+IsFixedPitch false
+UnderlinePosition -100
+UnderlineThickness 50
+EncodingScheme AdobeStandardEncoding
+CapHeight 750
+Ascender 1249
+Descender -128
+XHeight 550
+StartCharMetrics 27
+C -1 ; WX 350 ; N space ; B 0 0 0 0 ;
+C 65 ; WX 1419 ; N A ; B 10 -711 1409 1195 ;
+C 66 ; WX 1419 ; N B ; B 10 -743 1409 1163 ;
+C 67 ; WX 1419 ; N C ; B 10 -740 1409 1166 ;
+C 68 ; WX 1419 ; N D ; B 10 -722 1409 1184 ;
+C 69 ; WX 1419 ; N E ; B 10 -737 1409 1169 ;
+C 70 ; WX 1419 ; N F ; B 10 -762 1409 1144 ;
+C 71 ; WX 1419 ; N G ; B 10 -740 1409 1166 ;
+C 72 ; WX 1419 ; N H ; B 10 -743 1409 1163 ;
+C 73 ; WX 1419 ; N I ; B 10 -737 1409 1169 ;
+C 74 ; WX 1411 ; N J ; B 10 -714 1401 1204 ;
+C 75 ; WX 1419 ; N K ; B 10 -752 1409 1154 ;
+C 76 ; WX 1419 ; N L ; B 10 -762 1409 1144 ;
+C 77 ; WX 1419 ; N M ; B 10 -745 1409 1161 ;
+C 78 ; WX 1419 ; N N ; B 10 -778 1409 1128 ;
+C 79 ; WX 1419 ; N O ; B 10 -768 1409 1138 ;
+C 80 ; WX 1411 ; N P ; B 10 -725 1401 1193 ;
+C 81 ; WX 1419 ; N Q ; B 10 -750 1409 1156 ;
+C 82 ; WX 1419 ; N R ; B 10 -729 1409 1177 ;
+C 83 ; WX 1419 ; N S ; B 10 -743 1409 1163 ;
+C 84 ; WX 1419 ; N T ; B 10 -737 1409 1169 ;
+C 85 ; WX 1419 ; N U ; B 10 -740 1409 1166 ;
+C 86 ; WX 1419 ; N V ; B 10 -752 1409 1154 ;
+C 87 ; WX 1419 ; N W ; B 10 -754 1409 1152 ;
+C 88 ; WX 1419 ; N X ; B 10 -756 1409 1150 ;
+C 89 ; WX 1411 ; N Y ; B 10 -732 1401 1186 ;
+C 90 ; WX 1419 ; N Z ; B 10 -749 1409 1157 ;
+EndCharMetrics
+EndFontMetrics
