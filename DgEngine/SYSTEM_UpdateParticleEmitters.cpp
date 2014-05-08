@@ -18,8 +18,9 @@ void SYSTEM_UpdateParticleEmitters(GameDatabase& data, float dt)
     int mov_ind = 0;
 	for (int i = 0; i < data.ParticleEmitters.size(); ++i)
 	{
+        entityID id = data.ParticleEmitters.ID(i);
 		//Try to find corresponding position
-		if (!data.Positions.find(data.ParticleEmitters.ID(i), index, index))
+		if (!data.Positions.find(id, index, index))
 			continue;
 
 		if (data.ParticleEmitters[i].particleEmitter == NULL)
@@ -31,8 +32,12 @@ void SYSTEM_UpdateParticleEmitters(GameDatabase& data, float dt)
 		//Set the VQS
 		data.ParticleEmitters[i].particleEmitter->SetVQS(data.Positions[index].T_WLD_OBJ);
 
-        /// Should move them here via the move component, but really need global
-        /// movement, not relative to parent.
+        /// Try to find global velocity
+        Vector4 mov(0.0f, 0.0f, 0.0f);
+        if (GetWorldSpaceVelocity(data, mov, id))
+        {
+            data.ParticleEmitters[i].particleEmitter->SetGlobalVelocity(mov);
+        }
 
 		////Update particles
 		data.ParticleEmitters[i].particleEmitter->Update(dt);

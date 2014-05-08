@@ -13,6 +13,13 @@
 /** \addtogroup utility_types
 *  @{
 */
+
+enum DgReturnCode
+{
+    dg_OK,
+    dg_Fail
+};
+
 typedef unsigned __int8     uint8;
 typedef __int8              int8;
 typedef unsigned __int16    uint16;

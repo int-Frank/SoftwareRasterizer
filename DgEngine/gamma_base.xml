@@ -301,9 +301,9 @@
           <alphaTemplate>2 1</alphaTemplate>
           <radii>2 0.05 2.15 1.85  6 0.1 6.3 5.7</radii>
           <emission_Linear>100</emission_Linear>
-          <maxNumber>400</maxNumber>
+          <maxNumber>200</maxNumber>
           <life>1 0.1 0.7 1.3</life>
-          <entrySpeed>80 0 80 80</entrySpeed>
+          <entrySpeed>200 0 200 200</entrySpeed>
           <force>1 0 0 0</force>
           <color>
             245 3 236 254   245 3 236 254

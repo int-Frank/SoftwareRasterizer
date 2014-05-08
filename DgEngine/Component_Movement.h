@@ -6,7 +6,7 @@
 namespace pugi{class xml_node;}
 
 //--------------------------------------------------------------------------------
-//		Movement
+//		Movement, relative to the parent.
 //--------------------------------------------------------------------------------
 struct Component_MOVEMENT
 {

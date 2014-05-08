@@ -9,8 +9,11 @@
 //--------------------------------------------------------------------------------
 void Overworld::Logic()
 {
-	//Get dt
-	dt = timer.Lap();
+    while (timer.Time() % 200) {  }
+
+    //Get dt
+    dt = timer.Lap();
+
 	float dtf = float(dt) / 1000.0f;
 
 	//Assign/Deassign cameras

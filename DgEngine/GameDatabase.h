@@ -112,5 +112,9 @@ inline entityID GetID(uint32 classID, uint32 childID, uint32 instanceID)
 	return (((classID << 24) | (childID << 16)) | instanceID);
 }
 
+// Find the global velocity vector from a child in the family tree.
+// Note: The family heirarcy of positions must be established before this
+//       function should be called.
+bool GetWorldSpaceVelocity(GameDatabase&, Vector4&, entityID);
 
 #endif

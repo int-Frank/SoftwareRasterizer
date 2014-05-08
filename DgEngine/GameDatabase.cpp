@@ -10,6 +10,37 @@ static bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
 static bool LoadSkybox(pugi::xml_node&, GameDatabase&);
 
 //--------------------------------------------------------------------------------
+//		@GetWorldSpaceVelocity()
+//--------------------------------------------------------------------------------
+bool GetWorldSpaceVelocity(GameDatabase& data, Vector4& output, entityID id)
+{
+    //Try to find position component
+    int pos = 0;
+    if (!data.Positions.find(id, pos))
+        return false;
+
+    //Try to find movement position component
+    int mov = 0;
+    if (data.Movements.find(id, mov))
+    {
+        //Add the world space velocity vector to the output.
+        output += (data.Positions[pos].T_WLD_OBJ * data.Movements[mov].direction);
+    }
+
+    entityID parent = data.Positions[pos].parent;
+
+    //If we've reached the root, stop the chain.
+    if (parent == ROOT_ID)
+    {
+        return true;
+    }
+
+    //Add in the parents velocity
+    return GetWorldSpaceVelocity(data, output, parent);
+}
+
+
+//--------------------------------------------------------------------------------
 //		Completely removes all entity components from the database
 //--------------------------------------------------------------------------------
 void GameDatabase::RemoveEntity(entityID id)

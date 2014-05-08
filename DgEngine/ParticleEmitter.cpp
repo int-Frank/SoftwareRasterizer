@@ -14,6 +14,7 @@
 #include "Viewport.h"
 #include "Frustum.h"
 
+
 //--------------------------------------------------------------------------------
 //	@	ParticleEmitter::ParticleEmitter()
 //--------------------------------------------------------------------------------
@@ -458,11 +459,22 @@ void ParticleEmitter::SetVQS(const VQS& in_vqs)
 //--------------------------------------------------------------------------------
 void ParticleEmitter::SetGlobal(const Vector4& v, const Vector4& a)
 {
-	//Resize array
 	velocity_global = v;
 	acceleration_global = a;
 
 }	//End: ParticleEmitter::SetGlobal()
+
+
+//--------------------------------------------------------------------------------
+//	@	ParticleEmitter::SetGlobalVelocity()
+//--------------------------------------------------------------------------------
+//		
+//--------------------------------------------------------------------------------
+void ParticleEmitter::SetGlobalVelocity(const Vector4& v)
+{
+    velocity_global = v;
+
+}	//End: ParticleEmitter::SetGlobalVelocity()
 
 
 //--------------------------------------------------------------------------------
@@ -606,11 +618,6 @@ uint32 ParticleEmitter::Update(float dt)
         UpdateParticle(it, t);
         t += delta_t;
     }
-
-    it = particles.begin();
-
-    while (it != particles.end())
-        ++it;
 
 	return 1;
 }	//End: ParticleEmitter::Update()
