@@ -166,10 +166,10 @@ void BoxParticleEmitter::SetOBB(const OBB& b)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void BoxParticleEmitter::SetNewParticle(Particle* par)
+void BoxParticleEmitter::SetNewParticle(Particle* par, float dt)
 {
 	par->position = box.current.GetPointInside();
-	par->velocity = GetRandomConeVector(direction, theta.Get()) * entry_speed.Get() * vqs.S() + velocity_global;
+	par->velocity = GetRandomConeVector(direction, theta.Get()) * entry_speed.Get() * vqs.S() + dt * velocity_global;
 	par->acceleration = acceleration_global;
 	par->life = 0.0f;
 

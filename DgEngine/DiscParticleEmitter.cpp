@@ -139,7 +139,7 @@ void DiscParticleEmitter::SetOuterAngle(float ang)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void DiscParticleEmitter::SetNewParticle(Particle* par)
+void DiscParticleEmitter::SetNewParticle(Particle* par, float dt)
 {
 	if (IsZero(discRadius))
 	{
@@ -157,7 +157,7 @@ void DiscParticleEmitter::SetNewParticle(Particle* par)
 
 		Quaternion q(b.x2(), ang);
 
-        par->position = origin + b.x1() * dist;
+        par->position = origin + b.x1() * dist - dt * velocity_global;
         par->velocity = q.Rotate(axis) * entry_speed.Get() * vqs.S() + velocity_global;
         
 	}

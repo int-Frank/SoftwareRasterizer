@@ -221,7 +221,7 @@ private:
 	//--------------------------------------------------------------------------------
 	void init(const ParticleEmitter& other);
 	uint32 GetNumberToAdd(float dt);
-    virtual void SetNewParticle(Particle*);
+    virtual void SetNewParticle(Particle*, float dt);
 
     //May decrement the iterator if a particle is removed
     void UpdateParticle(DgLinkedList<Particle>::iterator&, float dt);

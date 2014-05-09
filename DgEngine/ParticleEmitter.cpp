@@ -534,10 +534,10 @@ uint32 ParticleEmitter::GetNumberToAdd(float dt)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void ParticleEmitter::SetNewParticle(Particle* par)
+void ParticleEmitter::SetNewParticle(Particle* par, float dt)
 {
     par->position = Point4::origin + vqs.V();
-    par->velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + velocity_global;
+    par->velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + dt * velocity_global;
     par->acceleration = acceleration_global;
     par->life = 0.0f;
 
@@ -611,7 +611,7 @@ uint32 ParticleEmitter::Update(float dt)
 
         //Set new particle data
         Particle* par = &particles.front();
-        SetNewParticle(par); 
+        SetNewParticle(par, t); 
 
         //Move the particle along
         it = particles.begin();

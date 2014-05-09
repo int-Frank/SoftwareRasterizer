@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 void Overworld::Logic()
 {
-    while (timer.Time() % 200) {  }
+   // while (timer.Time() % 200) {  }
 
     //Get dt
     dt = timer.Lap();

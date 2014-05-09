@@ -19,7 +19,7 @@ bool GetWorldSpaceVelocity(GameDatabase& data, Vector4& output, entityID id)
     if (!data.Positions.find(id, pos))
         return false;
 
-    //Try to find movement position component
+    //Try to find movement component
     int mov = 0;
     if (data.Movements.find(id, mov))
     {
@@ -45,6 +45,22 @@ bool GetWorldSpaceVelocity(GameDatabase& data, Vector4& output, entityID id)
 //--------------------------------------------------------------------------------
 void GameDatabase::RemoveEntity(entityID id)
 {
+    //Erase all children
+    int ind = 0;
+    int ind1 = 0;
+    if (Positions.find(id, ind))
+    {
+        for (int i = 0; i < Positions[ind].children.size(); ++i)
+        {
+            //Find child
+            if (Positions.find(Positions[ind].children[i], ind1, ind1))
+            {
+                //Erase this child
+                RemoveEntity(Positions.ID(ind1));
+            }
+        }
+    }
+
 	EntityIDs.erase(id);
 	Positions.erase(id);
 	Movements.erase(id);
