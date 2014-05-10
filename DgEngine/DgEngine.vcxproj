@@ -148,6 +148,7 @@
     <ClCompile Include="Component_Aspect.cpp" />
     <ClCompile Include="Component_Camera.cpp" />
     <ClCompile Include="Component_Lights_Affecting.cpp" />
+    <ClCompile Include="Component_Meta.cpp" />
     <ClCompile Include="Component_Movement.cpp" />
     <ClCompile Include="Component_ParticleEmitter.cpp" />
     <ClCompile Include="Component_Physics.cpp" />
@@ -251,9 +252,11 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="CommonGraphics.h" />
     <ClInclude Include="CommonMath.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="Component_Aspect.h" />
     <ClInclude Include="Component_Camera.h" />
     <ClInclude Include="Component_Lights_Affecting.h" />
+    <ClInclude Include="Component_Meta.h" />
     <ClInclude Include="Component_Movement.h" />
     <ClInclude Include="Component_ParticleEmitter.h" />
     <ClInclude Include="Component_Physics.h" />
@@ -339,6 +342,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Tuple.h" />
+    <ClInclude Include="uint64_char.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -358,6 +362,7 @@
     <None Include="setup.ini" />
   </ItemGroup>
   <ItemGroup>
+    <Xml Include="alpha_base.xml" />
     <Xml Include="debug_text.xml" />
     <Xml Include="gamma.xml" />
     <Xml Include="gamma_base.xml" />

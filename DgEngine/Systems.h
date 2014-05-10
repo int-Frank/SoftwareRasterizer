@@ -7,7 +7,7 @@
 
 class GameDatabase;
 
-struct Component_CAMERA;
+class Component_CAMERA;
 class ObjectController;
 class Light;
 class Viewport;

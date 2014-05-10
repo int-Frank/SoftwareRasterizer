@@ -78,6 +78,11 @@ public:
 	*/
 	void Set(const T* t, bool dealloc = true);
 
+    /*!
+    * @brief Deletes the object
+    */
+    void Clear() { delete ptr; ptr = NULL; }
+
 	/*!
 	* @brief Get pointer to resource.
 	* @return Pointer to the internal resource.

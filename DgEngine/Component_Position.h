@@ -1,6 +1,7 @@
 #ifndef COMPONENT_POSITION_H
 #define COMPONENT_POSITION_H
 
+#include "Component.h"
 #include "VQS.h"
 #include "DgOrderedArray.h"
 
@@ -12,8 +13,13 @@ const entityID ROOT_ID = 0;
 //		Positional data, relative to the parent. The parent will be the 
 //		world VQS if the entity is not a child of another.
 //--------------------------------------------------------------------------------
-struct Component_POSITION
+class Component_POSITION : public Component
 {
+public:
+    Component_POSITION() : parent(ROOT_ID) {}
+    void Clear() { children.reset(); }
+
+public:
 	//DATA
 	VQS T_WLD_OBJ;	//Set in Systems
 	VQS T_PAR_OBJ;
@@ -21,8 +27,6 @@ struct Component_POSITION
 	//VQS heirachy data
 	DgOrderedArray<entityID>	children;	//This is set in the PostProcess system.
 	entityID					parent;
-
-	Component_POSITION(): parent(ROOT_ID) {}
 
 };
 

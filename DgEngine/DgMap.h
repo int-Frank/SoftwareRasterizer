@@ -76,7 +76,9 @@ public:
 	bool insert(const T&, U key);
 	bool set(U key, const T&);
 	bool erase(U key);
+    bool erase_c(U key); //Calls Clear() on the target element
 	void clear();	
+    void clear_c();      //Calls Clear() on all elements in the map
 	void resize(uint32);
 	void extend();
 	void reset();				//Reset data array to size 1.
@@ -414,6 +416,44 @@ bool DgMap<U, T>::erase(U key)
 
 
 //--------------------------------------------------------------------------------
+//	@	DgMap<U,T>::erase_c()
+//--------------------------------------------------------------------------------
+//		Remove an element from the map, calling Clear() on the element
+//--------------------------------------------------------------------------------
+template<class U, class T>
+bool DgMap<U, T>::erase_c(U key)
+{
+    //Find the index
+    int index;
+    if (!find(key, index))
+        return false;	//element not found
+
+    //Clear the element
+    keys[index].item_ptr->item.Clear();
+
+    //Remove item from data
+    keys[index].item_ptr->next->prev = keys[index].item_ptr->prev;
+    keys[index].item_ptr->prev->next = keys[index].item_ptr->next;
+
+    //Add this broken item to the begining of the free list
+    keys[index].item_ptr->next = next_ptr;				//put item in between next_free and end of the list
+
+    //Reset next_free
+    next_ptr = keys[index].item_ptr;
+
+    //shift all RHS objects to the left one.
+    for (int i = index; i < current_size - 1; ++i)
+        keys[i] = keys[i + 1];
+
+    //Set current size
+    current_size--;
+
+    return true;
+
+}	//End: DgMap::erase_c()
+
+
+//--------------------------------------------------------------------------------
 //	@	DgMap<U,T>::set()
 //--------------------------------------------------------------------------------
 //		Sets an element to a new value
@@ -426,7 +466,7 @@ bool DgMap<U, T>::set(U key, const T& val)
 	if (!find(key, index))
 		return false;	//element does not exist
 
-	*keys[index].item_ptr = val;
+	keys[index].item_ptr->item = val;
 
 	return true;
 
@@ -465,6 +505,24 @@ void DgMap<U, T>::clear()
 	current_size = 0;
 
 }	//End: DgMap::clear()
+
+
+//--------------------------------------------------------------------------------
+//	@	DgMap<U,T>::clear_c()
+//--------------------------------------------------------------------------------
+//		Set the number of elements to zero, calling Clear() on all active elements.
+//--------------------------------------------------------------------------------
+template<class U, class T>
+void DgMap<U, T>::clear_c()
+{
+    for (int i = 0; i < current_size; ++i)
+    {
+        keys[i].item_ptr->item.Clear();
+    }
+
+    clear();
+
+}	//End: DgMap::clear_c()
 
 
 #endif

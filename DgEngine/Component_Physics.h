@@ -1,6 +1,7 @@
 #ifndef COMPONENT_PHYSICS_H
 #define COMPONENT_PHYSICS_H
 
+#include "Component.h"
 #include "OBB.h"
 #include "Sphere.h"
 #include "ObjectPair.h"
@@ -13,8 +14,9 @@ namespace pugi{class xml_node;}
 //--------------------------------------------------------------------------------
 //		Geometry for physics
 //--------------------------------------------------------------------------------
-struct Component_PHYSICS
+class Component_PHYSICS : public Component
 {
+public:
 	//DATA
 	ObjectPair<OBB>    box;
 	ObjectPair<Sphere> sphere;

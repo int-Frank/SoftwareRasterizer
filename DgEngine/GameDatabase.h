@@ -7,8 +7,9 @@
 #include "DgOrderedArray.h"
 #include "DgTypes.h"
 
+#include "Component_Meta.h"
 #include "Component_Aspect.h"
-#include "Component_PHYSICS.h"
+#include "Component_Physics.h"
 #include "Component_Camera.h"
 #include "Component_Lights_Affecting.h"
 #include "Component_PointLight.h"
@@ -56,7 +57,8 @@ public:
 	std::string ID() const {return id;}
 
 	//Adding items into the lists should be done through these functions
-	bool AddPosition(const Component_POSITION&, entityID);
+    bool AddMeta(const Component_META&, entityID);
+    bool AddPosition(const Component_POSITION&, entityID);
 	bool AddPhysics(const Component_PHYSICS&, entityID);
 	bool AddPointLight(const Component_POINTLIGHT&, entityID);
 	bool AddSpotLight(const Component_SPOTLIGHT&, entityID);
@@ -74,6 +76,7 @@ public:
 	//		the interface.
 	//--------------------------------------------------------------------------------
 	DgOrderedArray<entityID>						EntityIDs;
+    DgMap<entityID, Component_META>                 Metas;
 	DgMap<entityID, Component_POSITION>				Positions;
 	DgMap<entityID, Component_MOVEMENT>				Movements;
 	DgMap<entityID, Component_PHYSICS>				Physics;

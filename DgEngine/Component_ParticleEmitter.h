@@ -1,6 +1,7 @@
 #ifndef COMPONENT_PARTICLEEMITTER_H
 #define COMPONENT_PARTICLEEMITTER_H
 
+#include "Component.h"
 #include "ParticleEmitter.h"
 #include "BaseWrapper.h"
 
@@ -11,8 +12,12 @@ namespace pugi{ class xml_node; }
 //--------------------------------------------------------------------------------
 //		
 //--------------------------------------------------------------------------------
-struct Component_PARTICLEEMITTER
+class Component_PARTICLEEMITTER : public Component
 {
+public:
+    void Clear() { particleEmitter.Clear(); }
+
+public:
 	BaseWrapper<ParticleEmitter> particleEmitter;
 
 };

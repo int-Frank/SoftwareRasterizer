@@ -369,7 +369,7 @@ void DgOrderedArray<T>::reset()
 {
 	//Delete old data
 	delete[array_size] data;
-	data = NULL;
+	data = 0;
 
 	array_size = 0;
 	current_size = 0;

@@ -1,6 +1,7 @@
 #ifndef COMPONENT_ASPECT_H
 #define COMPONENT_ASPECT_H
 
+#include "Component.h"
 #include "Materials.h"
 #include "ObjectPair.h"
 #include "Sphere.h"
@@ -13,8 +14,15 @@ namespace pugi{class xml_node;}
 //--------------------------------------------------------------------------------
 //		
 //--------------------------------------------------------------------------------
-struct Component_ASPECT
+class Component_ASPECT : public Component
 {
+public:
+    //Constructor
+    Component_ASPECT() : texture(NULL), mesh(NULL), intersects(0) {}
+
+    void Clear() { mesh = NULL; texture = NULL; }
+
+public:
 	//Mesh
 	Mesh* mesh;
 
@@ -28,9 +36,6 @@ struct Component_ASPECT
 	//Texture/materials
 	const Texture* texture;
 	Materials materials;
-
-	//Constructor
-	Component_ASPECT(): texture(NULL), mesh(NULL), intersects(0) {}
 
 };
 

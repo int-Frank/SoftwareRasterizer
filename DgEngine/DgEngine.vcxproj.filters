@@ -409,6 +409,9 @@
     <ClCompile Include="WindowManager.cpp">
       <Filter>Source Files\Cameras, windows and viewports</Filter>
     </ClCompile>
+    <ClCompile Include="Component_Meta.cpp">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowManager.h">
@@ -750,6 +753,15 @@
     <ClInclude Include="SimpleRNG.h">
       <Filter>Source Files\Math\Random Numbers</Filter>
     </ClInclude>
+    <ClInclude Include="Component_Meta.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Source Files\Entity component system\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="uint64_char.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="NormalDistributionTable.inl">
@@ -779,6 +791,9 @@
       <Filter>Resource Files</Filter>
     </Xml>
     <Xml Include="Viewports.xml">
+      <Filter>Resource Files</Filter>
+    </Xml>
+    <Xml Include="alpha_base.xml">
       <Filter>Resource Files</Filter>
     </Xml>
   </ItemGroup>

@@ -62,15 +62,15 @@ void GameDatabase::RemoveEntity(entityID id)
     }
 
 	EntityIDs.erase(id);
-	Positions.erase(id);
-	Movements.erase(id);
-	Physics.erase(id);
-	LightsAffecting.erase(id);
-	PointLights.erase(id);
-	SpotLights.erase(id);
-	Aspects.erase(id);
-	Cameras.erase(id);
-	ParticleEmitters.erase(id);
+	Positions.erase_c(id);
+	Movements.erase_c(id);
+	Physics.erase_c(id);
+	LightsAffecting.erase_c(id);
+	PointLights.erase_c(id);
+	SpotLights.erase_c(id);
+	Aspects.erase_c(id);
+	Cameras.erase_c(id);
+	ParticleEmitters.erase_c(id);
 
 }	//End: GameDatabase::RemoveEntity()
 

@@ -2,11 +2,8 @@
 
   <!-- NOTES -->
 
-  <!-- * Children can NOT have the id of 00.
-       * Entity IDs are 32 bit unsigned integers broken into three parts:
-          - octet 1   (FF000000) : class type
-          - octet 2   (00FF0000) : used to identify children of a class
-          - octet 3,4 (0000FFFF) : instance id
+  <!-- * A class ID is a 16 bit integer: 0xFFFF.
+         Duplicate IDs or the null ID (0) will not be read.
    -->
 
 <entities>
@@ -275,6 +272,11 @@
   <!-- ###                           Travelling Spaceship                             ### -->
   <!-- ################################################################################## -->
   <class id="A1">
+      <meta>
+          <name>Terran fighter</name>
+          <allegiance>Terran</allegiance>
+          <story>The Terrans are a humaniod race.</story>
+      </meta>
     <position>
       <vqs>
         <vqs>

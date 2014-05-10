@@ -63,8 +63,10 @@ public:
 	//Manipulators
 	bool insert(const T&, U key);		//Use find
 	bool set(U key, const T&);			//Use find
-	bool erase(U key);					//Use find
-	void clear();	
+    bool erase(U key);					//Use find
+    bool erase_c(U key);				//Calls Clear() on object before erasing
+    void clear();
+    void clear_c();
 	void resize(uint32);
 	void extend();
 	void reset();				//Reset data array to size 1.
@@ -323,6 +325,31 @@ bool DgMapS<U, T>::erase(U key)
 
 
 //--------------------------------------------------------------------------------
+//	@	DgMapS<U,T>::erase_c()
+//--------------------------------------------------------------------------------
+//		Remove an element from the map, Calls Clear() on target.
+//--------------------------------------------------------------------------------
+template<class U, class T>
+bool DgMapS<U, T>::erase_c(U key)
+{
+    //Find the index
+    int index;
+    if (!find(key, index))
+        return false;	//element not found
+
+    data[index].Clear();
+
+    for (int i = index; i < current_size - 1; ++i)
+        data[i] = data[i + 1];
+
+    current_size--;
+
+    return true;
+
+}	//End: DgMapS::erase_c()
+
+
+//--------------------------------------------------------------------------------
 //	@	DgMapS<U,T>::set()
 //--------------------------------------------------------------------------------
 //		Sets an element to a new value
@@ -363,11 +390,25 @@ void DgMapS<U, T>::reset()
 template<class U, class T>
 void DgMapS<U, T>::clear()
 {
-	//Set pointers
-
 	current_size = 0;
 
 }	//End: DgMapS::clear()
+
+
+//--------------------------------------------------------------------------------
+//	@	DgMap<U,T>::clear_c()
+//--------------------------------------------------------------------------------
+//		Set the number of elements to zero, Calls Clear() on all active elements.
+//--------------------------------------------------------------------------------
+template<class U, class T>
+void DgMapS<U, T>::clear_c()
+{
+    for (int i = 0; i < current_size; ++i)
+        data[i].Clear();
+
+    current_size = 0;
+
+}	//End: DgMapS::clear_c()
 
 
 #endif

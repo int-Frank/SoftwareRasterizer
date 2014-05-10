@@ -1,6 +1,7 @@
 #ifndef COMPONENT_POINTLIGHT_H
 #define COMPONENT_POINTLIGHT_H
 
+#include "Component.h"
 #include "PointLight.h"
 #include "ObjectPair.h"
 #include "DgTypes.h"
@@ -11,8 +12,9 @@ namespace pugi{class xml_node;}
 //--------------------------------------------------------------------------------
 //		
 //--------------------------------------------------------------------------------
-struct Component_POINTLIGHT
+class Component_POINTLIGHT : public Component
 {
+public:
 	//DATA
 	ObjectPair<PointLight> light;
 
