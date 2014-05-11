@@ -31,14 +31,14 @@ public:
 	//! The dimension of all alpha templates.
 	static const uint32 SIZE = 128;
 
-	ParticleAlphaTemplate() { Set(1.5, 1.0); }
-	ParticleAlphaTemplate(double exp, double master = 1.0) { Set(exp, master); }
+	ParticleAlphaTemplate() { Set(1.5); }
+	ParticleAlphaTemplate(double exp) { Set(exp); }
 	~ParticleAlphaTemplate() {}
 
 	//! Polynomial alpha fall off from 255(center) to 0(edges)
 	//! A master alpha value can be set all well to reduce
 	//! the alpha of the entire template.
-	void Set(double exp, double master = 1.0);
+	void Set(double exp);
 
 	//! Return the data
 	const uint8* GetTemplate() const { return data; }

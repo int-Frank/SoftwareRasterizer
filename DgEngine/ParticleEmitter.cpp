@@ -203,9 +203,9 @@ void ParticleEmitter::BuildBase(pugi::xml_node& node)
 		
 		if (tag == "alphaTemplate")
 		{
-			double exp, master;
-			DgString(it->child_value()) >> exp >> master;
-			alphaTemplate.Set(exp, master);
+			double exp;
+			DgString(it->child_value()) >> exp;
+			alphaTemplate.Set(exp);
 		}
 		else if (tag == "radii")
 		{
@@ -350,9 +350,9 @@ void ParticleEmitter::SetSpawnMethod_INSTANT()
 //--------------------------------------------------------------------------------
 //		
 //--------------------------------------------------------------------------------
-void ParticleEmitter::SetAlphaTemplate(double exp, double master)
+void ParticleEmitter::SetAlphaTemplate(double exp)
 {
-	alphaTemplate.Set(exp, master);
+	alphaTemplate.Set(exp);
 }	//End: ParticleEmitter::SetAlphaTemplate()
 
 

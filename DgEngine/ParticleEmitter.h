@@ -81,7 +81,7 @@ public:
 	void SetMaxNumber(uint32);
 
 	//! Sets the alpha template for each particle.
-	void SetAlphaTemplate(double exp, double master);
+	void SetAlphaTemplate(double exp);
 
 	//! Flags new values but but does not commit changes. New particles 
 	//! are only generated with the GenerateParticles() function. 

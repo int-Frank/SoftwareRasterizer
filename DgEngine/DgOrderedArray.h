@@ -39,7 +39,6 @@ public:
 	//Accessors
 
 	//Get item at position
-	T& operator[](uint32 i)				{return data[i];}
 	const T& operator[](uint32 i) const {return data[i];}
 	int size()			const			{return current_size;}
 	bool empty()		const			{return current_size == 0;}

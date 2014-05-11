@@ -759,9 +759,6 @@
     <ClInclude Include="Component.h">
       <Filter>Source Files\Entity component system\Components</Filter>
     </ClInclude>
-    <ClInclude Include="uint64_char.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="NormalDistributionTable.inl">

@@ -62,6 +62,7 @@ void GameDatabase::RemoveEntity(entityID id)
     }
 
 	EntityIDs.erase(id);
+    Metas.erase_c(id);
 	Positions.erase_c(id);
 	Movements.erase_c(id);
 	Physics.erase_c(id);
@@ -73,6 +74,36 @@ void GameDatabase::RemoveEntity(entityID id)
 	ParticleEmitters.erase_c(id);
 
 }	//End: GameDatabase::RemoveEntity()
+
+
+//--------------------------------------------------------------------------------
+//		Adds a meta data component
+//--------------------------------------------------------------------------------
+bool GameDatabase::AddMeta(const Component_META& obj, entityID id)
+{
+    //Try to find the object.
+    int32 ref;
+    if (Metas.find(id, ref))
+    {
+        Metas[ref] = obj;
+        return true;
+    }
+
+    //Object not foud, try to insert object
+    if (!Metas.insert(obj, id))
+    {
+        ERROR_OUT("GameDatabase::AddMeta() -> Failed to insert component.");
+        return false;
+    }
+
+    //Add Entity id if need be
+    int index;
+    if (!EntityIDs.find(id, index))
+        EntityIDs.insert(id);
+
+    //All good
+    return true;
+}	//End: GameDatabase::AddMeta()
 
 
 //--------------------------------------------------------------------------------
@@ -363,14 +394,21 @@ void ParseNode(	const pugi::xml_node& node, GameDatabase& dest,
 			Component_POSITION obj;
 			Read(*it, obj, parent);
 			dest.AddPosition(obj, id);
-		}
-		else if (tag == "movement")
-		{
-			//Activate component
-			Component_MOVEMENT obj;
-			*it >> obj;
-			dest.AddMovement(obj, id);
-		}
+        }
+        else if (tag == "meta")
+        {
+            //Activate component
+            Component_META obj;
+            *it >> obj;
+            dest.AddMeta(obj, id);
+        }
+        else if (tag == "movement")
+        {
+            //Activate component
+            Component_MOVEMENT obj;
+            *it >> obj;
+            dest.AddMovement(obj, id);
+        }
 		else if (tag == "lights_affecting")
 		{
 			//Activate component

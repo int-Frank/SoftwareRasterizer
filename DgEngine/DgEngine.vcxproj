@@ -342,7 +342,6 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Title.h" />
     <ClInclude Include="Tuple.h" />
-    <ClInclude Include="uint64_char.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -365,7 +364,9 @@
     <Xml Include="alpha_base.xml" />
     <Xml Include="debug_text.xml" />
     <Xml Include="gamma.xml" />
-    <Xml Include="gamma_base.xml" />
+    <Xml Include="gamma_base.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="Images.xml" />
     <Xml Include="MessageBoxes.xml" />
     <Xml Include="Viewports.xml" />

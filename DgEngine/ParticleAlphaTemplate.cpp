@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------------
 //		Linear alpha fall off from 255(center) to 0(edges)
 //--------------------------------------------------------------------------------
-void ParticleAlphaTemplate::Set(double exp, double master)
+void ParticleAlphaTemplate::Set(double exp)
 {
 	//Find center
 	int32 center = SIZE / 2 - 1;
@@ -17,11 +17,6 @@ void ParticleAlphaTemplate::Set(double exp, double master)
 	//Range check input
 	if (exp < 0.0)
 		exp = 1.0;
-
-	if (master < 0.0)
-		master = 0.0;
-	if (master > 1.0)
-		master = 1.0;
 
 	//iterate through all pixels
 	for (int32 i = 0; i <= center; ++i)
@@ -40,7 +35,7 @@ void ParticleAlphaTemplate::Set(double exp, double master)
 			//If pixel is outside the disk
 			if (dist <= side)
 			{
-				double val = pow((dist / side), exp) * master;
+				double val = pow((dist / side), exp);
 				alpha = uint8(255.0f - 255.0f * val);
 			}
 

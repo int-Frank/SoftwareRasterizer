@@ -18,7 +18,7 @@ pugi::xml_node& Read(pugi::xml_node& node, Component_POSITION& dest, entityID _p
         //Get the name of the node
 		std::string tag = it->name();
 
-        if (tag == "vqs")
+        if (tag == "vqs" || tag == "lookat")
 		{
 			*it >> dest.T_PAR_OBJ;
 		}
