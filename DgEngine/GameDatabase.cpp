@@ -1,13 +1,7 @@
 #include "GameDatabase.h"
 #include "DgError.h"
 #include "Dg_io.h"
-
-
-//--------------------------------------------------------------------------------
-//		Statics
-//--------------------------------------------------------------------------------
-static bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
-static bool LoadSkybox(pugi::xml_node&, GameDatabase&);
+#include "SimpleRNG.h"
 
 //--------------------------------------------------------------------------------
 //		@GetWorldSpaceVelocity()
@@ -30,7 +24,7 @@ bool GetWorldSpaceVelocity(GameDatabase& data, Vector4& output, entityID id)
     entityID parent = data.Positions[pos].parent;
 
     //If we've reached the root, stop the chain.
-    if (parent == ROOT_ID)
+    if (parent == ENTITYID_ROOT)
     {
         return true;
     }
@@ -41,15 +35,15 @@ bool GetWorldSpaceVelocity(GameDatabase& data, Vector4& output, entityID id)
 
 
 //--------------------------------------------------------------------------------
-//		Completely removes all entity components from the database
+//		Completely removes all entity components and children from the database
 //--------------------------------------------------------------------------------
 void GameDatabase::RemoveEntity(entityID id)
 {
     //Erase all children
     int ind = 0;
-    int ind1 = 0;
     if (Positions.find(id, ind))
     {
+        int ind1 = 0;
         for (int i = 0; i < Positions[ind].children.size(); ++i)
         {
             //Find child
@@ -379,91 +373,117 @@ bool GameDatabase::AddParticleEmitter(const Component_PARTICLEEMITTER& obj, enti
 //--------------------------------------------------------------------------------
 //		Parse a node into the database.
 //--------------------------------------------------------------------------------
-void ParseNode(	const pugi::xml_node& node, GameDatabase& dest, 
-				entityID id, entityID parent)
+entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
 {
+    //Need to convert classID to string to find in the DOM
+    DgString ss;
+    ss << classID;
+    std::string classID_str = ss.str();
+
+    //Build the combined id.
+    SimpleRNG rng;
+    uint32 instanceID = rng.GetUint(0, 0xFFFF);
+    entityID id = GetID(classID, instanceID);
+
+    //Does the id already exist in the database?
+    int32 ind;
+    if (dest.EntityIDs.find(id, ind))
+    {
+        for (uint32 i = 0; i < 0xFFFF; ++i)
+        {
+            //Adjust id
+            instanceID += (65535 + (i & 1) * 2);
+            instanceID &= 0xFFFF;
+            id = GetID(classID, instanceID);
+
+            if (!dest.EntityIDs.find(id, ind))
+            {
+                break;
+            }
+        }
+        ERROR_OUT("LoadEntity() -> All instance IDs for class " +
+            classID_str + " taken.");
+        return ENTITYID_ERROR;
+    }
+
+    //Find the class in the class document
+    pugi::xml_node classNode = dest.entityClassesRoot.find_child_by_attribute(
+        "class", "id", classID_str.c_str());
+
+    //Does the class exist?
+    if (!classNode)
+    {
+        ERROR_OUT("LoadEntity() -> Class doen not exist: " + classID_str);
+        return ENTITYID_ERROR;
+    }
+
 	//Update any values from the input node.
-	for (pugi::xml_node_iterator it = node.begin(); it != node.end(); ++it)
+	for (pugi::xml_node_iterator it = classNode.begin(); it != classNode.end(); ++it)
 	{
 		//Get the name of the node
 		std::string tag = it->name();
 
 		if (tag == "position")
 		{
-			//Activate component
 			Component_POSITION obj;
 			Read(*it, obj, parent);
 			dest.AddPosition(obj, id);
         }
         else if (tag == "meta")
         {
-            //Activate component
             Component_META obj;
             *it >> obj;
             dest.AddMeta(obj, id);
         }
         else if (tag == "movement")
         {
-            //Activate component
             Component_MOVEMENT obj;
             *it >> obj;
             dest.AddMovement(obj, id);
         }
 		else if (tag == "lights_affecting")
 		{
-			//Activate component
 			Component_LIGHTS_AFFECTING obj;
 			*it >> obj;
 			dest.AddLightsAffecting(obj, id);
 		}
 		else if (tag == "pointlight")
 		{
-			//Activate component
 			Component_POINTLIGHT obj;
 			*it >> obj;
 			dest.AddPointLight(obj, id);
 		}
 		else if (tag == "spotlight")
 		{
-			//Activate component
 			Component_SPOTLIGHT obj;
 			*it >> obj;
 			dest.AddSpotLight(obj, id);
 		}
 		else if (tag == "physics")
 		{
-			//Activate component
 			Component_PHYSICS obj;
 			*it >> obj;
 			dest.AddPhysics(obj, id);
 		}
 		else if (tag == "aspect")
 		{
-			//Activate component
 			Component_ASPECT obj;
 			*it >> obj;
 			dest.AddAspect(obj, id);
 		}
 		else if (tag == "camera")
 		{
-			//Activate component
 			Component_CAMERA obj;
 			*it >> obj;
 			dest.AddCamera(obj, id);
 		}
 		else if (tag == "particle_emitter")
 		{
-			//Activate component
 			Component_PARTICLEEMITTER obj;
 			*it >> obj;
 			dest.AddParticleEmitter(obj, id);
 		}
-		else if (tag == "player_controlled")
-		{
-			//Flag this entity as the player controlled
-			dest.player = id;
-		}
-		else if (tag == "child")
+		else if (tag == "class")
 		{
 			//Get id
 			pugi::xml_attribute idAtt = it->attribute("id");
@@ -481,13 +501,17 @@ void ParseNode(	const pugi::xml_node& node, GameDatabase& dest,
 				continue;
 			}
 
-			//Get the child ID
-			childID = (id | (childID << 16));
-
-			//Parse the child
-			ParseNode(*it, dest, childID, id);
+            if ((childID == classID) || 
+                !IsIDOK(ParseClassNode(childID, classID, dest)))
+            {
+                //Clean up 
+                dest.RemoveEntity(id);
+                return ENTITYID_ERROR;
+            }
 		}
 	}
+
+    return id;
 }
 
 
@@ -615,13 +639,12 @@ bool LoadDirectionalLight(pugi::xml_node_iterator& node, GameDatabase& dest)
 //--------------------------------------------------------------------------------
 bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
 {
-	//Get the class and instance ids
+	//Get the class id
 	pugi::xml_attribute classAtt = node->attribute("class");
-	pugi::xml_attribute idAtt = node->attribute("id");
 
-	if (!classAtt || !idAtt)
+	if (!classAtt)
 	{
-		ERROR_OUT("LoadEntity() -> Invalid ID names.");
+		ERROR_OUT("LoadEntity() -> No class ID.");
 		return false;
 	}
 
@@ -633,44 +656,19 @@ bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
 		return false;
 	}
 
-	//Read the instance id.
-	uint32 idID;
-	if (!StringToNumber(idID, idAtt.value(), std::hex))
-	{
-		ERROR_OUT("LoadEntity() -> Failed to read instance ID.");
-		return false;
-	}
-	
-	//Build the final id.
-	entityID id = GetID(classID, idID);
-
-	//Does the id already exist in the database?
-	for (int32 i = 0; i < dest.EntityIDs.size(); ++i)
-	{
-		if ((dest.EntityIDs[i] & 0xFF00FFFF) == id)
-		{
-			ERROR_OUT("LoadEntity() -> Entity already exists.");
-			return false;
-		}
-	}
-
-	//Find the class in the class document
-	pugi::xml_node classNode = dest.entityClassesRoot.find_child_by_attribute(
-		"class", "id", classAtt.value());
-
-	//Does the class exist?
-	if (!classNode)
-	{
-		std::string missingClass = classAtt.value();
-		ERROR_OUT("LoadEntity() -> Class doen not exist: " + missingClass);
-		return false;
-	}
-
 	//Add in the default class
-	ParseNode(classNode, dest, id, ROOT_ID);
+    entityID id = ParseClassNode(classID, ENTITYID_ROOT, dest);
+    if (!IsIDOK(id))
+    {
+        return false;
+    }
 
-	//Overwrite components from the input
-	ParseNode(*node, dest, id, ROOT_ID);
+    //Overwrite components from the input
+    if (!ParseInstanceNode(*node, dest, id, ROOT_ID))
+    {
+        dest.RemoveEntity(id);
+        return false;
+    }
 
 	return true;
 }	//End: void operator>>(pugi::xml__node_iterator& doc, GameDatabase& dest)

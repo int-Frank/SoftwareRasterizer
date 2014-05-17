@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<!--
+    Game data.
+    Game entities are entered by class. The following can be added/changed:
+        - Position
+        - Movement
+        - Player controlled
+        - Meta data
+        - Camera-viewport link
+        
+    Camera-viewport link:
+        <camera> : The meta data tag of the camera to link. Tags begin the class id, eg
+                        '1A23_front'
+        <instance> : There may be more than one camera in the tree with the same meta
+                     tag. The algorith to find the camera uses a depth-first search. 
+                     The instance value tells the algorithm to choose the nth instance
+                     of a camera class with the desired meta data name.
+        <view> : the id of the viewport to link to.
+-->
+
 <overworld id="GAMMA">
   
   <!-- GAME DATA (Entity list) -->
@@ -45,115 +64,99 @@
     <!-- ################################################################################## -->
 
     <!-- Light demo -->
-    <entity class="DA" id="0000">
+    <entity class="DA">
       <position>
-        <vqs>
           <vqs>
             <v>150 0 0</v>
             <q>1 0 0 0</q>
             <s>10</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
     
      <!-- Ground -->
-    <entity class="DE" id="0000">
+    <entity class="DE">
       <position>
-        <vqs>
           <vqs>
             <v>0 -40 0</v>
             <q>1 0 0 0</q>
             <s>80</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
 
     <!-- Teapot -->
-    <entity class="A0" id="0000">
+    <entity class="A0">
       <position>
-        <vqs>
           <vqs>
             <v>-67.3281 7.55024 37.472</v>
             <q>0.93202 -0.0250416 0.167677 -0.320307</q>
             <s>0.5</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
     
     
     <!-- Rock -->
-    <entity class="A7" id="0000">
+    <entity class="A7">
       <position>
-        <vqs>
           <vqs>
             <v>-40.5 -20 29.5</v>
             <q>0.99957 -0.0146014 -0.0227073 -0.0114524</q>
             <s>3</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
 
     <!-- Grass -->
-    <entity class="A9" id="0000">
+    <entity class="A9">
       <position>
-        <vqs>
           <vqs>
             <v>-50.5 -20 29.5</v>
             <q>1 0 0 0</q>
             <s>12</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
     <!-- Grass -->
-    <entity class="A9" id="0001">
+    <entity class="A9">
       <position>
-        <vqs>
           <vqs>
             <v>-45.5 -20 40.5</v>
             <q>1 0 0 0</q>
             <s>10</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
     <!-- Grass -->
-    <entity class="A9" id="0002">
+    <entity class="A9">
       <position>
-        <vqs>
           <vqs>
             <v>-30.5 -20 22.5</v>
             <q>1 0 0 0</q>
             <s>6</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
 
     <!-- Grass -->
-    <entity class="A9" id="0003">
+    <entity class="A9">
       <position>
-        <vqs>
           <vqs>
             <v>-36.5 -20 38.5</v>
             <q>1 0 0 0</q>
             <s>8</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
     <!-- Grass -->
-    <entity class="A9" id="0004">
+    <entity class="A9">
       <position>
         <vqs>
           <vqs>
@@ -166,83 +169,71 @@
     </entity>
 
     <!-- Water splash -->
-    <entity class="A6" id="0000">
+    <entity class="A6">
       <position>
-        <vqs>
           <vqs>
             <v>-40.5 -15.66 29.5</v>
             <q>1 0 0 0</q>
             <s>1</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
     <!-- Water spout -->
-    <entity class="A5" id="0000">
+    <entity class="A5">
       <position>
-        <vqs>
           <vqs>
             <v>-61.2137 4.8832 35.101</v>
             <q>0.985107 -0.0784344 0.152879 0.0061322</q>
             <s>1</s>
           </vqs>
-        </vqs>
       </position>
       <movement>
       </movement>
     </entity>
     
     <!-- Broken Spaceship -->
-    <entity class="A2" id="0000">
+    <entity class="A2">
       <position>
-        <vqs>
           <vqs>
             <v>15.5 0 47.5</v>
             <q>1 0 0 0</q>
             <s>1</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
     
     <!-- Portal -->
-    <entity class="D0" id="0023">
+    <entity class="D0">
       <position>
-        <vqs>
           <vqs>
             <v>-40 0 -29</v>
             <q>0.443359 0.717826 0.528846 -0.0921973</q>
             <s>5</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
     <!-- Portrait -->
-    <entity class="F1" id="0023">
+    <entity class="F1">
       <position>
-        <vqs>
           <vqs>
             <v>15.5 0 -47.5</v>
             <q>0.710837 0.694212 -0.0757694 0.0839297</q>
             <s>4</s>
           </vqs>
-        </vqs>
       </position>
     </entity>
 
     <!-- Spaceship -->
-    <entity class="A1" id="0000">
+    <entity class="A1">
         <position>
-            <vqs>
                 <lookat>
                     <origin>-100 0 -13</origin>
                     <target>-99 0 -12.8</target>
                     <up_vector>0 1 0</up_vector>
                     <s>1</s>
                 </lookat>
-            </vqs>
         </position>
         <movement>
             <direction> 0 0 -30</direction>
@@ -251,16 +242,19 @@
     </entity>
 
 
-    <!-- The camera -->
-    <entity class="C0" id="0000">
+    <!-- Spaceship with space dust -->
+    <entity class="1A05">
+        <camera_view_link>
+            <camera>1A05_forward</camera>
+            <instance>1</instance>
+            <view>AAAA</view>
+        </camera_view_link>
       <position>
-        <vqs>
           <lookat>
             <origin>0 0 0</origin>
             <target>0 0 -20</target>
             <s>1</s>
           </lookat>
-        </vqs>
       </position>
       <player_controlled></player_controlled>
     </entity>

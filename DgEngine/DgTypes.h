@@ -34,11 +34,18 @@ typedef double		        f64;
 //! @brief Primary ID type for the entity system.
 typedef unsigned int	entityID;
 
+//! @brief Reserved entity IDs
+const entityID ENTITYID_ROOT = 0x00000000;
+const entityID ENTITYID_ERROR = 0x06660000;
+
+
+
 //! @brief Secondary ID type for the entity system.
 typedef unsigned int	elementID;
 
 //! @brief ID type for the viewport system.
-typedef int				viewportID;
+typedef unsigned int	viewportID;
+const viewportID VIEWPORTID_NULL = 0;
 
 //! Particle emmitter ID
 typedef unsigned int	emitterID;

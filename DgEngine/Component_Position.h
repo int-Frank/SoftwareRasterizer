@@ -4,10 +4,9 @@
 #include "Component.h"
 #include "VQS.h"
 #include "DgOrderedArray.h"
+#include "DgTypes.h"
 
 namespace pugi{class xml_node;}
-
-const entityID ROOT_ID = 0;
 
 //--------------------------------------------------------------------------------
 //		Positional data, relative to the parent. The parent will be the 

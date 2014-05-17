@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
     A class XML file contains a list of object classes that can be added to the game world. Each
-    class has the following attributes:
+    class must have the following attributes:
         'id'    : Unique identifier. A 16-bit unsigned hexadecimal integer. 
         'name'  : Unique identifier. String. 
         
@@ -20,20 +20,14 @@
     BE CAREFUL! A class cannot appear more than once in a hierarcal chain. Eg 
         planet -> moon -> planet -> station = WRONG! 'planet' appears twice in the hierarcy.
         planet -> moon -> station = RIGHT!
-    All positions and movemnts of a child class become relative to the parent. For example,
-    a 'planet' class may contain several 'moon' classes, where each moon's position becomes 
-    relative to the planet.
-    If a child class is first defined in the root node, it MUST appear above all instances of 
-    it being a child. If it is not defined in the root, the first occurace of the class will 
-    become the definition. From our example, if we wanted to define the moon class in the root 
-    node, it MUST appear before any instance of the planet class, or any class that contains 
-    the moon as a child for that matter. If we didn't want to put the moon class in the root 
-    node, the fist instance of the planet class will end up defining the moon class as well.
-    It is best to define all child classes in the root first, for simplicity.
-    
+    A child's position (and usually movements) then become relative to its parent.
+    Before a class can be used as a child class, it MUST be defined in the root node.
  -->
 <entities>
   <class name="camera" id="C000">
+    <meta>
+      <camera_id>DEFAULT</camera_id>
+    </meta>
     <position/>
     <camera>
       <camera_system>
@@ -72,8 +66,7 @@
         <life>10 1 7 13</life>
         <entrySpeed>0.2 0 0.2 0.2</entrySpeed>
         <force>1 0 0 0</force>
-        <color>
-          125 2 119 131   125 2 119 131
+        <color>125 2 119 131   125 2 119 131
           125 2 119 131   125 2 119 131
           125 2 119 131   125 2 119 131
           245 5 224 255   0 0 0 0
@@ -246,7 +239,16 @@
       <texture>PORTRAIT</texture>
     </aspect>
   </class>
-  <class name="portal_vortex" id="1005">
+  <class name="portal_vortex" id="1B00">
+    <class name="portal_particles" id="E004">
+      <position>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </position>
+    </class>
     <position/>
     <lights_affecting/>
     <aspect>
@@ -263,29 +265,22 @@
     </aspect>
   </class>
   <class name="light_demo" id="1A00">
-    <position/>
-    <physics/>
-    <lights_affecting/>
-    <aspect>
-      <mesh>sphere_low</mesh>
-      <texture>MOON</texture>
-    </aspect>
     <class name="light_globe" id="A000">
       <position>
         <lookat>
-          <origin>0 0 -3</origin>
-          <target>0.1 0 -3</target>
-          <up_vector>0 -1 0</up_vector>
+          <origin>3 3 0</origin>
+          <target>3 3 0.1</target>
+          <up_vector>0.7071 0.7071 0</up_vector>
           <s>0.1</s>
         </lookat>
       </position>
       <pointlight>
-        <color>0 255 0 255</color>
+        <color>64 64 255 255</color>
         <intensity>1000</intensity>
       </pointlight>
       <movement>
-        <direction>0 0 -10</direction>
-        <yaw>0.3</yaw>
+        <direction>0 0 -9</direction>
+        <pitch>-0.3</pitch>
       </movement>
     </class>
     <class name="light_globe" id="A000">
@@ -309,44 +304,30 @@
     <class name="light_globe" id="A000">
       <position>
         <lookat>
-          <origin>3 3 0</origin>
-          <target>3 3 0.1</target>
-          <up_vector>0.7071 0.7071 0</up_vector>
+          <origin>0 0 -3</origin>
+          <target>0.1 0 -3</target>
+          <up_vector>0 -1 0</up_vector>
           <s>0.1</s>
         </lookat>
       </position>
       <pointlight>
-        <color>64 64 255 255</color>
+        <color>0 255 0 255</color>
         <intensity>1000</intensity>
       </pointlight>
       <movement>
-        <direction>0 0 -9</direction>
-        <pitch>-0.3</pitch>
+        <direction>0 0 -10</direction>
+        <yaw>0.3</yaw>
       </movement>
     </class>
-  </class>
-  <class name="spaceship" id="1A01">
-    <meta>
-      <name>Terran fighter</name>
-      <allegiance>Terran</allegiance>
-      <story>The Terrans are a humaniod race.</story>
-    </meta>
     <position/>
     <physics/>
     <lights_affecting/>
     <aspect>
-      <mesh>spaceship</mesh>
-      <texture>SPACESHIP</texture>
+      <mesh>sphere_low</mesh>
+      <texture>MOON</texture>
     </aspect>
-    <class name="engine_trails" id="E001">
-      <position>
-        <vqs>
-          <v>0 0 2.8</v>
-          <q>0.7071067 0 -0.7071067 0</q>
-          <s>0.2</s>
-        </vqs>
-      </position>
-    </class>
+  </class>
+  <class name="spaceship" id="1A01">
     <class name="camera" id="C000">
       <position>
         <lookat>
@@ -360,10 +341,33 @@
         <direction>1 0 0</direction>
         <yaw>0.1</yaw>
       </movement>
+      <meta>
+        <camera_id>circling</camera_id>
+      </meta>
     </class>
+    <class name="engine_trails" id="E001">
+      <position>
+        <vqs>
+          <v>0 0 2.8</v>
+          <q>0.7071067 0 -0.7071067 0</q>
+          <s>0.2</s>
+        </vqs>
+      </position>
+    </class>
+    <meta>
+      <name>Terran fighter</name>
+      <allegiance>Terran</allegiance>
+      <story>The Terrans are a humaniod race.</story>
+    </meta>
+    <position/>
+    <physics/>
+    <lights_affecting/>
+    <aspect>
+      <mesh>spaceship</mesh>
+      <texture>SPACESHIP</texture>
+    </aspect>
   </class>
   <class name="ground" id="1A02">
-    <position/>
     <class name="ground_check" id="1000">
       <position>
         <vqs>
@@ -445,34 +449,29 @@
         </vqs>
       </position>
     </class>
+    <position/>
   </class>
   <class name="portal" id="1A03">
+    <class name="portal_vortex" id="1B00">
+      <position/>
+    </class>
     <position/>
     <lights_affecting/>
     <aspect>
       <mesh>torus</mesh>
       <texture>BORG</texture>
     </aspect>
-    <class name="portal_vortex" id="1005">
-      <position>
-        <vqs>
-          <v>0 0 0</v>
-          <q>1 0 0 0</q>
-          <s>1</s>
-        </vqs>
-      </position>
-    </class>
-    <class name="portal_particles" id="E004">
-      <position>
-        <vqs>
-          <v>0 0 0</v>
-          <q>1 0 0 0</q>
-          <s>1</s>
-        </vqs>
-      </position>
-    </class>
   </class>
   <class name="spaceship_broken" id="1A04">
+    <class name="smoke" id="E000">
+      <position>
+        <vqs>
+          <v>0 0 2.7</v>
+          <q>1 0 0 0</q>
+          <s>1</s>
+        </vqs>
+      </position>
+    </class>
     <position/>
     <movement>
       <direction>0 0 0</direction>
@@ -486,17 +485,34 @@
       <mesh>spaceship</mesh>
       <texture>SPACESHIP</texture>
     </aspect>
-    <class name="smoke" id="E000">
+  </class>
+  <class name="player_controlled_ship" id="1A05">
+    <class name="camera" id="C000">
+      <meta>
+        <camera_id>1A05_foward</camera_id>
+      </meta>
+    </class>
+    <class name="camera" id="C000">
+      <meta>
+        <camera_id>1A05_back</camera_id>
+      </meta>
       <position>
         <vqs>
-          <v>0 0 2.7</v>
-          <q>1 0 0 0</q>
+          <v>0 0 0</v>
+          <q>0.7071067 0 -0.7071067 0</q>
           <s>1</s>
         </vqs>
       </position>
     </class>
-  </class>
-  <class name="player_controlled_ship" id="1A05">
+    <class name="space_dust" id="E005">
+      <position>
+        <vqs>
+          <v>0 0 0</v>
+          <q>1 0 0 0</q>
+          <s>3</s>
+        </vqs>
+      </position>
+    </class>
     <position/>
     <movement/>
     <spotlight>
@@ -509,15 +525,5 @@
       <mesh>spaceship</mesh>
       <texture>SPACESHIP</texture>
     </aspect>
-    <class name="camera" id="C0"/>
-    <class name="space_dust" id="E005">
-      <position>
-        <vqs>
-          <v>0 0 0</v>
-          <q>1 0 0 0</q>
-          <s>3</s>
-        </vqs>
-      </position>
-    </class>
   </class>
 </entities>

@@ -8,7 +8,7 @@
   -->
   
   <!-- FULL SCREEN -->
-  <viewport id="00">
+  <viewport id="AAAA">
     <blend>0</blend>
     <x_rel>0</x_rel>
     <y_rel>0</y_rel>
@@ -17,7 +17,7 @@
   </viewport>
 
   <!-- UPPER LEFT -->
-  <viewport id="A0">
+  <viewport id="A111">
     <blend>0</blend>
     <x_rel>0.1</x_rel>
     <y_rel>0.1</y_rel>
@@ -26,7 +26,7 @@
   </viewport>
 
   <!-- UPPER RIGHT -->
-  <viewport id="A1">
+  <viewport id="1A11">
     <blend>0</blend>
     <x_rel>0.6</x_rel>
     <y_rel>0.1</y_rel>
@@ -35,7 +35,7 @@
   </viewport>
 
   <!-- BOTTOM LEFT -->
-  <viewport id="A2">
+  <viewport id="11A1">
     <blend>0</blend>
     <x_rel>0.1</x_rel>
     <y_rel>0.6</y_rel>
@@ -44,7 +44,7 @@
   </viewport>
 
   <!-- BOTTOM RIGHT -->
-  <viewport id="A3">
+  <viewport id="111A">
     <blend>0</blend>
     <x_rel>0.6</x_rel>
     <y_rel>0.6</y_rel>

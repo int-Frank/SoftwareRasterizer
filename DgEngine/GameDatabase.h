@@ -22,6 +22,8 @@
 #include "Skybox.h"
 #include "pugixml.hpp"
 
+#define GetID(classID, instanceID) entityID((classID << 16) | instanceID)
+
 /*!
  * @ingroup entity_component
  *
@@ -31,7 +33,7 @@
  *
  * Entity IDs are constructed like so:
  * 00000000   00000000   00000000   00000000
- * class id | child id |    instance id
+ *       class id      |    instance id
  * Child IDs must NOT be 00; this is parent ID.
  * 
  * @author Frank Hart
@@ -48,7 +50,9 @@ public:
 	//		Read from xml_node
 	//--------------------------------------------------------------------------------
 	friend void operator>>(pugi::xml_node&, GameDatabase&);
-	friend bool LoadEntity(pugi::xml_node_iterator&, GameDatabase&);
+    friend bool LoadEntity(pugi::xml_node_iterator&, GameDatabase&);
+    friend bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
+    friend entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest);
 
 	//Remove all components with this entityID
 	void RemoveEntity(entityID);
@@ -101,18 +105,11 @@ private:
 	pugi::xml_document entityClasses;
 	pugi::xml_node entityClassesRoot;
 
-
 };
 
-
-inline entityID GetID(uint32 classID, uint32 instanceID)
+inline bool IsIDOK(entityID id)
 {
-	return ((classID << 24) | instanceID);
-}
-
-inline entityID GetID(uint32 classID, uint32 childID, uint32 instanceID)
-{
-	return (((classID << 24) | (childID << 16)) | instanceID);
+    return (id >> 16) > 0xFFFF;
 }
 
 // Find the global velocity vector from a child in the family tree.
