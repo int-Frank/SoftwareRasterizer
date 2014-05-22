@@ -54,6 +54,9 @@ public:
     friend bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
     friend entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest);
 
+    //! @brief Validates input and sets if valid.
+    bool SetClassDocument(const std::string&);
+
 	//Remove all components with this entityID
 	void RemoveEntity(entityID);
 
@@ -103,13 +106,12 @@ public:
 private:
 	std::string id;
 	pugi::xml_document entityClasses;
-	pugi::xml_node entityClassesRoot;
 
 };
 
 inline bool IsIDOK(entityID id)
 {
-    return (id >> 16) > 0xFFFF;
+    return (id & ENTITYID::CLASS_MASK) > ENTITYID::CUTOFF;
 }
 
 // Find the global velocity vector from a child in the family tree.

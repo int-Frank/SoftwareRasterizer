@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:attribute name="id">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:attribute>
+
+    <xs:simpleType name="hex_8">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9A-Fa-f]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="lightsAffecting"/>
+    <xs:element name="physics"/>
+    
+    <xs:simpleType name="list_dec">
+        <xs:list itemType="xs:decimal"/>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_2'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='2'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_3'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='3'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_4'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='4'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_6'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='6'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_7'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='7'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_8'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='8'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_32'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='32'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="anyString">
+        <xs:simpleType>
+            <xs:restriction base="xs:string">
+                <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]"/>
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
+    <xs:element name="meta">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded" minOccurs="0">
+          <xs:element name="camera_id"   type="xs:string" maxOccurs="1" minOccurs="0"/>
+            <xs:element name="description" type="xs:string" maxOccurs="1" minOccurs="0"/>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+
+    <xs:element name="obb">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="lengths" type="list_dec_3"/>
+                <xs:element name="basis" type="list_dec_6"/>
+                <xs:element name="origin" type="list_dec_3"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="materials">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="emission"  type="list_dec_3" minOccurs="0"/>
+                <xs:element name="reflection"  type="list_dec_3" minOccurs="0"/>
+                <xs:element name="alphaMaster"  type="xs:decimal" minOccurs="0"/>
+                <xs:element name="isEmissive"  type="xs:boolean" minOccurs="0"/>
+                <xs:element name="isReflective"  type="xs:boolean" minOccurs="0"/>
+                <xs:element name="isDoubleSided"  type="xs:boolean" minOccurs="0"/>
+                <xs:element name="isAlphaPP"  type="xs:boolean" minOccurs="0"/>
+                <xs:element name="isAlphaMaster"  type="xs:boolean" minOccurs="0"/>
+                <xs:element name="isMaster"  type="xs:boolean" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="pointEmitter">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="alphaTemplate"  type="xs:decimal"/>
+                <xs:element name="radii"  type="list_dec_8"/>
+                <xs:element name="emission_Poisson"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="emission_Linear"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="emission_Instant"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="maxNumber"  type="xs:unsignedInt"/>
+                <xs:element name="life"  type="list_dec_4"/>
+                <xs:element name="entrySpeed"  type="list_dec_4"/>
+                <xs:element name="force"  type="list_dec_4"/>
+                <xs:element name="color"  type="list_dec_32"/>
+                <xs:element name="isActive"  type="xs:boolean"/>
+                <xs:element name="globals"  type="list_dec_6"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="boxEmitter">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="alphaTemplate"  type="xs:decimal"/>
+                <xs:element name="radii"  type="list_dec_8"/>
+                <xs:element name="emission_Poisson"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="emission_Linear"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="emission_Instant"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="maxNumber"  type="xs:unsignedInt"/>
+                <xs:element name="life"  type="list_dec_4"/>
+                <xs:element name="entrySpeed"  type="list_dec_4"/>
+                <xs:element name="force"  type="list_dec_4"/>
+                <xs:element name="color"  type="list_dec_32"/>
+                <xs:element name="isActive"  type="xs:boolean"/>
+                <xs:element name="globals"  type="list_dec_6"/>
+                <xs:element ref="obb"/>
+                <xs:element name="deviation"  type="list_dec_7"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="discEmitter">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="alphaTemplate"  type="xs:decimal"/>
+                <xs:element name="radii"  type="list_dec_8"/>
+                <xs:element name="emission_Poisson"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="emission_Linear"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="emission_Instant"  type="xs:decimal"  minOccurs="0"/>
+                <xs:element name="maxNumber"  type="xs:unsignedInt"/>
+                <xs:element name="life"  type="list_dec_4"/>
+                <xs:element name="entrySpeed"  type="list_dec_4"/>
+                <xs:element name="force"  type="list_dec_4"/>
+                <xs:element name="color"  type="list_dec_32"/>
+                <xs:element name="isActive"  type="xs:boolean"/>
+                <xs:element name="globals"  type="list_dec_6"/>
+                <xs:element name="outerAngle"  type="xs:decimal"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="particleEmitter">
+      <xs:complexType>
+        <xs:choice>
+          <xs:element ref="pointEmitter"/>
+          <xs:element ref="discEmitter"/>
+          <xs:element ref="boxEmitter"/>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="aspect">
+        <xs:complexType>
+            <xs:all>
+                <xs:element ref="materials"  minOccurs="0"/>
+                <xs:element name="mesh" type="xs:string"/>
+                <xs:element name="texture" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="pointLight">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="position" type="list_dec_3"/>
+                <xs:element name="intensity" type="xs:decimal"/>
+                <xs:element name="color" type="hex_8"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="spotLight">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="origin" type="list_dec_3"/>
+                <xs:element name="direction" type="list_dec_3"/>
+                <xs:element name="angles" type="list_dec_2"/>
+                <xs:element name="intensity" type="xs:decimal"/>
+                <xs:element name="color" type="hex_8"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="movement">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="direction" type="list_dec_3" minOccurs="0"/>
+                <xs:element name="yaw" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="pitch" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="roll" type="xs:decimal" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="position">
+      <xs:complexType>
+        <xs:choice>
+            <xs:element name="vqs">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="v" type="list_dec_3"/> 
+                  <xs:element name="q" type="list_dec_4"/> 
+                  <xs:element name="s" type="xs:decimal"/> 
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="lookAt">
+              <xs:complexType>
+                <xs:all>
+                  <xs:element name="origin" type="list_dec_3"/>
+                  <xs:element name="target" type="list_dec_3"/>
+                  <xs:element name="up" type="list_dec_3"/>
+                  <xs:element name="s" type="xs:decimal"/>
+                </xs:all>
+              </xs:complexType>
+            </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+        
+    <xs:element name="class">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element ref="class" maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element ref="meta" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="lightsAffecting" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="position" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="aspect" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="movement" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="particleEmitter" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="physics" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="pointLight" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="spotLight" maxOccurs="1" minOccurs="0"/>
+            </xs:choice>
+            <xs:attribute name="name" use="required" type="xs:string"/>
+            <xs:attribute ref="id" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="root">
+        <xs:complexType>
+          <xs:choice maxOccurs="unbounded" minOccurs="0">
+            <xs:element ref="class">
+            </xs:element>
+          </xs:choice>
+        </xs:complexType>
+        <xs:unique name="UniqueClassID">
+            <xs:selector xpath="class" />
+            <xs:field xpath="@id" />
+        </xs:unique>
+        <xs:unique name="UniqueClassName">
+            <xs:selector xpath="class" />
+            <xs:field xpath="@name" />
+        </xs:unique>
+    </xs:element>
+
+</xs:schema>

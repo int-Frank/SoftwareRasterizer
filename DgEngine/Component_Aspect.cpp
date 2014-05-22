@@ -28,7 +28,6 @@ pugi::xml_node& operator>>(pugi::xml_node& node, Component_ASPECT& dest)
 		else if (tag == "texture")
 		{
 			dest.texture = TEXTURE_MANAGER[std::string(it->child_value())];
-			char ds = 5;
 		}
     }
 

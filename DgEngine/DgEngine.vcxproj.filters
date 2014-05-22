@@ -412,6 +412,9 @@
     <ClCompile Include="Component_Meta.cpp">
       <Filter>Source Files\Entity component system\Components</Filter>
     </ClCompile>
+    <ClCompile Include="gamedatabase_validate.cpp">
+      <Filter>Source Files\Entity component system</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="WindowManager.h">
@@ -793,5 +796,10 @@
     <Xml Include="alpha_base.xml">
       <Filter>Resource Files</Filter>
     </Xml>
+  </ItemGroup>
+  <ItemGroup>
+    <Xsd Include="class.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
   </ItemGroup>
 </Project>

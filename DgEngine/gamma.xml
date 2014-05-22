@@ -6,7 +6,6 @@
         - Position
         - Movement
         - Player controlled
-        - Meta data
         - Camera-viewport link
         
     Camera-viewport link:
@@ -227,6 +226,11 @@
 
     <!-- Spaceship -->
     <entity class="A1">
+        <camera_view_link>
+            <camera>1A01_circling</camera>
+            <instance>1</instance>
+            <view>1A11</view>
+        </camera_view_link>
         <position>
                 <lookat>
                     <origin>-100 0 -13</origin>

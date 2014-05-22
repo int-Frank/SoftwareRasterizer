@@ -23,12 +23,19 @@
     A child's position (and usually movements) then become relative to its parent.
     Before a class can be used as a child class, it MUST be defined in the root node.
  -->
-<entities>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="class.xsd">
   <class name="camera" id="C000">
     <meta>
       <camera_id>DEFAULT</camera_id>
     </meta>
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <camera>
       <camera_system>
         <camera_obj>
@@ -40,24 +47,42 @@
     </camera>
   </class>
   <class name="light_globe" id="A000">
-    <position/>
-    <pointlight>
-      <color>0 255 255 255</color>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <pointLight>
+      <position>0 0 0</position>
       <intensity>1000</intensity>
-    </pointlight>
+      <color>FFFFFFFF</color>
+    </pointLight>
     <aspect>
       <materials>
-        <isemissive>true</isemissive>
         <emission>0 1 0</emission>
-        <isreflective>false</isreflective>
+        <reflection>0 1 0</reflection>
+        <isEmissive>true</isEmissive>
+        <isReflective>false</isReflective>
+        <isDoubleSided>false</isDoubleSided>
+        <isAlphaPP>false</isAlphaPP>
+        <isAlphaMaster>false</isAlphaMaster>
+        <isMaster>true</isMaster>
       </materials>
       <mesh>sphere_low_low</mesh>
       <texture>WHITE</texture>
     </aspect>
   </class>
   <class name="smoke" id="E000">
-    <position/>
-    <particle_emitter>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <particleEmitter>
       <pointEmitter>
         <alphaTemplate>2</alphaTemplate>
         <radii>0.5 0.01 0.47 0.53  1 0.1 0.7 1.3</radii>
@@ -72,12 +97,19 @@
           245 5 224 255   0 0 0 0
         </color>
         <isActive>true</isActive>
+          <globals>0 0 0 0 0 0</globals>
       </pointEmitter>
-    </particle_emitter>
+    </particleEmitter>
   </class>
   <class name="engine_trails" id="E001">
-    <position/>
-    <particle_emitter>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <particleEmitter>
       <discEmitter>
         <outerAngle>0.02</outerAngle>
         <alphaTemplate>2</alphaTemplate>
@@ -93,12 +125,19 @@
                         245 5 224 255   10  2 4   16
                     </color>
         <isActive>true</isActive>
+          <globals>0 0 0 0 0 0</globals>
       </discEmitter>
-    </particle_emitter>
+    </particleEmitter>
   </class>
   <class name="water_spout" id="E002">
-    <position/>
-    <particle_emitter>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <particleEmitter>
       <discEmitter>
         <globals>0 0 0 0 -6 0</globals>
         <outerAngle>0.02</outerAngle>
@@ -116,11 +155,17 @@
                 </color>
         <isActive>true</isActive>
       </discEmitter>
-    </particle_emitter>
+    </particleEmitter>
   </class>
   <class name="water_splash" id="E003">
-    <position/>
-    <particle_emitter>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <particleEmitter>
       <discEmitter>
         <globals>0 0 0 0 -6 0</globals>
         <outerAngle>1.2</outerAngle>
@@ -138,10 +183,10 @@
                 </color>
         <isActive>true</isActive>
       </discEmitter>
-    </particle_emitter>
+    </particleEmitter>
   </class>
   <class name="portal_particles" id="E004">
-    <particle_emitter>
+    <particleEmitter>
       <discEmitter>
         <outerAngle>-0.1</outerAngle>
         <alphaTemplate>2</alphaTemplate>
@@ -157,19 +202,27 @@
                         120 5 105 135   50  5 35  65
                     </color>
         <isActive>true</isActive>
+          <globals>0 0 0 0 0 0</globals>
       </discEmitter>
-    </particle_emitter>
-    <position/>
+    </particleEmitter>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
   </class>
   <class name="space_dust" id="E005">
-    <particle_emitter>
+    <particleEmitter>
       <boxEmitter>
-        <box>
+        <obb>
           <lengths>50 50 50</lengths>
           <origin>0 0 0</origin>
-        </box>
-        <deviationAngle>0 -1 0    6.2 0.1 6.3 6.1</deviationAngle>
-        <alphaTemplate>2 1</alphaTemplate>
+            <basis>1 0 0 0 1 0</basis>
+        </obb>
+        <deviation>0 -1 0    6.2 0.1 6.3 6.1</deviation>
+        <alphaTemplate>2</alphaTemplate>
         <radii>0.1 0.01 0.07 0.13  0.1 0.01 0.07 0.13</radii>
         <emission_Linear>50</emission_Linear>
         <maxNumber>500</maxNumber>
@@ -182,58 +235,113 @@
                         245 5 224 255     0 0 0 0
                     </color>
         <isActive>true</isActive>
+          <globals>0 0 0 0 0 0</globals>
       </boxEmitter>
-    </particle_emitter>
-    <position/>
+    </particleEmitter>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
   </class>
   <class name="ground_check" id="1000">
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <aspect>
       <materials>
         <emission>0.7 0.7 0.7</emission>
-        <isemissive>true</isemissive>
-        <isdoublesided>1</isdoublesided>
+          <reflection>0 0 0</reflection>
+          <isEmissive>true</isEmissive>
+          <isReflective>false</isReflective>
+          <isDoubleSided>true</isDoubleSided>
+          <isAlphaPP>false</isAlphaPP>
+          <isAlphaMaster>false</isAlphaMaster>
+          <isMaster>true</isMaster>
       </materials>
       <mesh>square_2</mesh>
       <texture>CHECKERBOARD</texture>
     </aspect>
   </class>
   <class name="teapot" id="1001">
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <physics/>
-    <lights_affecting/>
+    <lightsAffecting/>
     <aspect>
       <mesh>teapot</mesh>
       <texture>TEAPOT101</texture>
     </aspect>
   </class>
   <class name="rock" id="1002">
-    <position/>
-    <lights_affecting/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <lightsAffecting/>
     <aspect>
       <mesh>rock</mesh>
       <texture>ROCK_01</texture>
     </aspect>
   </class>
   <class name="grass" id="1003">
-    <position/>
-    <lights_affecting/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <lightsAffecting/>
     <aspect>
       <materials>
-        <isdoublesided>true</isdoublesided>
-        <isalphaPP>true</isalphaPP>
+          <emission>0 0 0</emission>
+          <reflection>0 0 0</reflection>
+          <isEmissive>true</isEmissive>
+          <isReflective>true</isReflective>
+          <isDoubleSided>true</isDoubleSided>
+          <isAlphaPP>true</isAlphaPP>
+          <isAlphaMaster>false</isAlphaMaster>
+          <isMaster>true</isMaster>
       </materials>
       <mesh>grass</mesh>
       <texture>GRASS</texture>
     </aspect>
   </class>
   <class name="portrait" id="1004">
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <physics/>
-    <lights_affecting/>
+    <lightsAffecting/>
     <aspect>
       <materials>
-        <isdoublesided>1</isdoublesided>
+          <emission>0 0 0</emission>
+          <reflection>0 0 0</reflection>
+          <isEmissive>true</isEmissive>
+          <isReflective>true</isReflective>
+          <isDoubleSided>true</isDoubleSided>
+          <isAlphaPP>false</isAlphaPP>
+          <isAlphaMaster>false</isAlphaMaster>
+          <isMaster>true</isMaster>
       </materials>
       <mesh>high_poly_square</mesh>
       <texture>PORTRAIT</texture>
@@ -249,16 +357,25 @@
         </vqs>
       </position>
     </class>
-    <position/>
-    <lights_affecting/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <lightsAffecting/>
     <aspect>
       <materials>
-        <isdoublesided>1</isdoublesided>
-        <isemissive>1</isemissive>
         <emission>1 1 1</emission>
-        <isreflective>0</isreflective>
         <alphaMaster>0.4</alphaMaster>
-        <isalphaMaster>1</isalphaMaster>
+          <reflection>0 1 0</reflection>
+          <isEmissive>true</isEmissive>
+          <isReflective>false</isReflective>
+          <isDoubleSided>true</isDoubleSided>
+          <isAlphaPP>false</isAlphaPP>
+          <isAlphaMaster>true</isAlphaMaster>
+          <isMaster>true</isMaster>
       </materials>
       <mesh>disk</mesh>
       <texture>PORTAL</texture>
@@ -267,17 +384,18 @@
   <class name="light_demo" id="1A00">
     <class name="light_globe" id="A000">
       <position>
-        <lookat>
+        <lookAt>
           <origin>3 3 0</origin>
           <target>3 3 0.1</target>
-          <up_vector>0.7071 0.7071 0</up_vector>
+          <up>0.7071 0.7071 0</up>
           <s>0.1</s>
-        </lookat>
+        </lookAt>
       </position>
-      <pointlight>
-        <color>64 64 255 255</color>
+      <pointLight>
+        <color>FF000000</color>
         <intensity>1000</intensity>
-      </pointlight>
+          <position>0 0 0</position>
+      </pointLight>
       <movement>
         <direction>0 0 -9</direction>
         <pitch>-0.3</pitch>
@@ -285,17 +403,18 @@
     </class>
     <class name="light_globe" id="A000">
       <position>
-        <lookat>
+        <lookAt>
           <origin>0 3 0</origin>
           <target>-0.1 3 0</target>
-          <up_vector>0 0 1</up_vector>
+          <up>0 0 1</up>
           <s>0.1</s>
-        </lookat>
+        </lookAt>
       </position>
-      <pointlight>
-        <color>255 0 0 255</color>
+      <pointLight>
+          <position>0 0 0</position>
+        <color>0000FF00</color>
         <intensity>1000</intensity>
-      </pointlight>
+      </pointLight>
       <movement>
         <direction>0 0 -8</direction>
         <yaw>0.25</yaw>
@@ -303,25 +422,32 @@
     </class>
     <class name="light_globe" id="A000">
       <position>
-        <lookat>
+        <lookAt>
           <origin>0 0 -3</origin>
           <target>0.1 0 -3</target>
-          <up_vector>0 -1 0</up_vector>
+          <up>0 -1 0</up>
           <s>0.1</s>
-        </lookat>
+        </lookAt>
       </position>
-      <pointlight>
-        <color>0 255 0 255</color>
+      <pointLight>
+          <position>0 0 0</position>
+        <color>00FF0000</color>
         <intensity>1000</intensity>
-      </pointlight>
+      </pointLight>
       <movement>
         <direction>0 0 -10</direction>
         <yaw>0.3</yaw>
       </movement>
     </class>
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <physics/>
-    <lights_affecting/>
+    <lightsAffecting/>
     <aspect>
       <mesh>sphere_low</mesh>
       <texture>MOON</texture>
@@ -330,19 +456,19 @@
   <class name="spaceship" id="1A01">
     <class name="camera" id="C000">
       <position>
-        <lookat>
+        <lookAt>
           <origin>4 2 5</origin>
           <target>0 2 0</target>
-          <up_vector>0 1 0</up_vector>
+          <up>0 1 0</up>
           <s>1</s>
-        </lookat>
+        </lookAt>
       </position>
       <movement>
         <direction>1 0 0</direction>
         <yaw>0.1</yaw>
       </movement>
       <meta>
-        <camera_id>circling</camera_id>
+        <camera_id>1A01_circling</camera_id>
       </meta>
     </class>
     <class name="engine_trails" id="E001">
@@ -355,13 +481,16 @@
       </position>
     </class>
     <meta>
-      <name>Terran fighter</name>
-      <allegiance>Terran</allegiance>
-      <story>The Terrans are a humaniod race.</story>
     </meta>
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <physics/>
-    <lights_affecting/>
+    <lightsAffecting/>
     <aspect>
       <mesh>spaceship</mesh>
       <texture>SPACESHIP</texture>
@@ -449,14 +578,32 @@
         </vqs>
       </position>
     </class>
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
   </class>
   <class name="portal" id="1A03">
     <class name="portal_vortex" id="1B00">
-      <position/>
+        <position>
+            <vqs>
+                <v>0 0 0</v>
+                <q>1 0 0 0</q>
+                <s>1</s>
+            </vqs>
+        </position>
     </class>
-    <position/>
-    <lights_affecting/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
+    <lightsAffecting/>
     <aspect>
       <mesh>torus</mesh>
       <texture>BORG</texture>
@@ -472,7 +619,13 @@
         </vqs>
       </position>
     </class>
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <movement>
       <direction>0 0 0</direction>
       <roll>0.1</roll>
@@ -480,7 +633,7 @@
       <yaw>0.3</yaw>
     </movement>
     <physics/>
-    <lights_affecting/>
+    <lightsAffecting/>
     <aspect>
       <mesh>spaceship</mesh>
       <texture>SPACESHIP</texture>
@@ -513,17 +666,25 @@
         </vqs>
       </position>
     </class>
-    <position/>
+      <position>
+          <vqs>
+              <v>0 0 0</v>
+              <q>1 0 0 0</q>
+              <s>1</s>
+          </vqs>
+      </position>
     <movement/>
-    <spotlight>
-      <axis>0 0 -1</axis>
-      <color>255 255 255 255</color>
+    <spotLight>
+        <origin>0 0 0</origin>
+      <direction>0 0 -1</direction>
+      <color>FFFFFFFF</color>
       <intensity>200</intensity>
-    </spotlight>
-    <lights_affecting/>
+        <angles>0.1 0.2</angles>
+    </spotLight>
+    <lightsAffecting/>
     <aspect>
       <mesh>spaceship</mesh>
       <texture>SPACESHIP</texture>
     </aspect>
   </class>
-</entities>
+</root>
