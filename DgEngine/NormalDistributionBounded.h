@@ -11,7 +11,6 @@
 #define NORMAL_DISTRIBUTION_BOUNDED_H
 
 #include <random>
-#include "DgError.h"
 #include "DgTypes.h"
 #include "Dg_io.h"
 #include "Common.h"
@@ -44,13 +43,11 @@ public:
 	{
 		friend DgReader& operator>>(DgReader& in, param& dest)
 		{
-			//Read to temp values
-			in >> dest.mean >> dest.stddev >> dest.lowerBound >> dest.upperBound;
-
 			//Error check
-			if (!in)
+            if ((in >> dest.mean >> dest.stddev >> dest.lowerBound >> dest.upperBound).fail())
 			{
-				ERROR_EXIT("@operator>>(NormalDistributionBounded<T>::param&) -> Bad read.");
+                std::cerr << "@operator>>(NormalDistributionBounded<T>::param&) -> Bad read.") <<
+                std:endl;
 			}
 
 			return in;
@@ -274,7 +271,7 @@ void NormalDistributionBounded<T>::SetBounds(T lower, T upper)
 	//Check for valid range
 	if (lb_norm > ub_norm)
 	{
-		ERROR_OUT("@NormalDistributionBounded::SetBounds() -> invalid bounds.");
+        std::cerr << "@NormalDistributionBounded::SetBounds() -> invalid bounds." << std::endl;
 
 		//Set the lower and upper to the mean.
 		lowerBound = mean;

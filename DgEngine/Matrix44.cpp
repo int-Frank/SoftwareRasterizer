@@ -18,7 +18,7 @@
 #include "CommonMath.h"
 #include "Vector4.h"
 #include "BasisR3.h"
-#include "DgError.h"
+#include <assert.h>
 
 #undef CUSTOM_MATRIX_ARITHMETIC
 
@@ -502,7 +502,7 @@ Matrix44 AffineInverse(const Matrix44& mat)
 	float det = mat.mV[0]*cofactor0 + mat.mV[4]*cofactor4 + mat.mV[8]*cofactor8;
     if (::IsZero( det ))
     {
-        ERROR_OUT("@Matrix44::AffintInverse() -> No Inverse exists.");
+        std::cerr << "@Matrix44::AffintInverse() -> No Inverse exists." << std::endl;
         return result;
     }
 

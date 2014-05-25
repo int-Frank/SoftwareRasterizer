@@ -9,7 +9,7 @@
 
 #include "SimpleRNG.h"
 #include "DgTypes.h"
-#include "DgError.h"
+#include "Dg_io.h"
 #include <ctime>
 
 //--------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ uint32 SimpleRNG::GetUint(uint32 a, uint32 b)
 {
 	if (a > b)
 	{
-		ERROR_OUT("SimpleRNG::GetUnit(uint32 a, uint32 b) -> lower > upper");
+        std::cerr << "SimpleRNG::GetUnit(uint32 a, uint32 b) -> lower > upper" << std::endl;
 		return a;
 	}
 	else if (a == b)

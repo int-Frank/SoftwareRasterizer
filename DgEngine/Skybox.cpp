@@ -128,7 +128,7 @@ void Skybox::SetTexture(const std::string& name)
 	if (node.empty())
 	{
 		top = bottom = left = right = front = back = NULL;
-		ERROR_OUT("@Skybox::SetTexture -> Image set '" + name + "' not found.");
+        std::cerr << "@Skybox::SetTexture -> Image set '" << name << "' not found." << std::endl;
 	}
 		
 	//iterate through all nodes
@@ -146,10 +146,12 @@ void Skybox::SetTexture(const std::string& name)
 
 	}
 
-	if ((top == NULL) || (bottom == NULL) ||
-		(right == NULL) || (left == NULL) ||
-		(front == NULL) || (back == NULL))
-		ERROR_OUT("@Skybox::SetTexture -> Some images not assigned");
+    if ((top == NULL) || (bottom == NULL) ||
+        (right == NULL) || (left == NULL) ||
+        (front == NULL) || (back == NULL))
+    {
+        std::cerr << "@Skybox::SetTexture -> Some images not assigned" << std::endl;
+    }
 
 }	//End: Skybox::SetTexture()
 

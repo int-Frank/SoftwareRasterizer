@@ -16,7 +16,6 @@
 
 #include "Vector4.h"
 #include "CommonMath.h"
-#include "DgError.h"
 #include "VQS.h"
 #include "SimpleRNG.h"
 
@@ -65,17 +64,14 @@ Vector4& Vector4::operator=(const Vector4& other)
 //--------------------------------------------------------------------------------
 DgReader& operator>>(DgReader& in, Vector4& dest)
 {
-	//Read to temp values
-	in >> dest.x >> dest.y >> dest.z;
-
-	//Error check
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(Vector4) -> Bad read.");
-	}
-
-	//Make sure w = 0
-	dest.w = 0.0f;
+	if ((in >> dest.x >> dest.y >> dest.z).fail())
+    {
+        std::cerr << "@operator>>(Vector4) -> Bad read." << std::endl;
+    }
+    else
+    {
+        dest.w = 0.0f;
+    }
 
 	return in;
 

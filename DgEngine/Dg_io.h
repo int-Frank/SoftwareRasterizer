@@ -17,7 +17,6 @@
 #include <string>
 #include <algorithm>
 #include "DgTypes.h"
-#include "DgError.h"
 #include "pugixml.hpp"
 
 /** \addtogroup utility_io
@@ -71,9 +70,7 @@ bool LoadFile(const std::string& file, T& dest)
 	//Make sure it opened
 	if (!file_in)
 	{
-		std::string message = "@LoadFile() -> Failed to open file: " + file;
-		ERROR_OUT(message);
-
+        std::cerr << "@LoadFile() -> Failed to open file: " << file << std::endl;
 		return false;
 	}
 
@@ -110,9 +107,7 @@ bool LoadXMLFile(const std::string& file, T& dest)
 	//Make sure it opened
 	if (!result)
 	{
-		std::string message = "@DgUtility::LoadXMLFile() -> Failed to open file: " + file;
-		ERROR_OUT(message);
-
+        std::cerr << "@DgUtility::LoadXMLFile() -> Failed to open file: " << file << std::endl;
 		return false;
 	}
 
@@ -126,63 +121,17 @@ bool LoadXMLFile(const std::string& file, T& dest)
 
 
 //--------------------------------------------------------------------------------
-//	@	GetFromFile()
+//	@	ReadTo()
 //--------------------------------------------------------------------------------
 /*!
- * @ingroup utility_io
- *
- * @brief Load a value from a (.ini) file.
- *
- * This function will pass a file until the designated tag is reached. It will
- * then load the object from the stream with the >> operator. If the tag was not
- * found, no action will be taken.
- *
- * @param[in] file The name of the file to load (path + name + extension).
- * @param[in] tag The name of the tag. A single word.
- * @param[out] dest The object to load into.
- *
- * @return True if object was successfully loaded.
 */
 template<class T>
-bool GetFromFile(const std::string& file, const std::string& tag, T& dest)
+bool ReadTo(const std::string& tag, T& dest)
 {
-	//Open file
-	DgFileReader file_in(file);
+    std::istringstream iss(tag);
+    return !(iss >> dest).fail();
 
-	//Ensure file has opened
-	if (!file_in)
-	{
-		std::string message = "@DgUtility::GetFromFile() -> Failed to open file: " + file;
-		ERROR_OUT(message);
-
-		return false;
-	}
-
-	//temp values
-	std::string str;
-	char chk;
-
-	//Search file
-	while (file_in >> chk)
-	{
-		file_in.putback(chk);
-
-		file_in >> str;
-
-		//Check
-		if (str == tag)
-		{
-			file_in >> dest;
-			return true;
-		}
-	}
-
-	//Error
-	std::string message = "@DgUtility::GetFromFile() -> Tag not found: " + tag;
-	ERROR_OUT(message);
-
-	return false;
-}	//End: GetFromFile()
+}	//End: ReadTo()
 
 
 //--------------------------------------------------------------------------------

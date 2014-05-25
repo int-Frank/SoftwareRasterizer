@@ -50,16 +50,15 @@ VQS& VQS::operator=(const VQS& g)
 DgReader& operator>>(DgReader& in, VQS& dest)
 {
 	//Read from input
-	in >> dest.v >> dest.q >> dest.s;
-
-	//Error check
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(VQS) -> Bad read.");
-	}
-
-	//Ensure q is valid
-	dest.q.MakeValid();
+    if ((in >> dest.v >> dest.q >> dest.s).fail())
+    {
+        std::cerr << "@operator>>(VQS)->Bad read." << std::endl;
+    }
+    else
+    {
+        //Ensure q is valid
+        dest.q.MakeValid();
+    }
 
 	return in;
 

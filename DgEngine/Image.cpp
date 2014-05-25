@@ -13,7 +13,6 @@
 //================================================================================
 
 #include "Image.h"
-#include "DgError.h"
 #include "Color.h"
 #include "CommonGraphics.h"
 
@@ -44,13 +43,13 @@ bool Image::Set(SDL_Surface* img, bool dealloc)
 	if (img == NULL)
 	{
 		SetDefault();
-		ERROR_OUT("@Image::SetFromSDL_Surface(SDL_Surface* img, bool dealloc) -> Attemp to construct Image from NULL SDL_Surface pointer.");
+        std::cerr << "@Image::SetFromSDL_Surface(SDL_Surface* img, bool dealloc) -> Attemp to construct Image from NULL SDL_Surface pointer." << std::endl;
 		return false;
 	}
 	else if (img->format->BitsPerPixel != 32)
 	{
 		SetDefault();
-		ERROR_OUT("@Image::SetFromSDL_Surface(SDL_Surface* img, bool dealloc) -> wrong format.");
+        std::cerr << "@Image::SetFromSDL_Surface(SDL_Surface* img, bool dealloc) -> wrong format." << std::endl;
 		return false;
 	}
 

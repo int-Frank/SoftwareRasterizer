@@ -21,7 +21,6 @@
 #include "CommonMath.h"
 #include "Vector4.h"
 #include "Ray4.h"
-#include "DgError.h"
 
 //--------------------------------------------------------------------------------
 //	@	Plane4::Plane4()
@@ -163,7 +162,7 @@ void Plane4::Set(float a, float b, float c, float d)
 	//recover gracefully
 	if (::IsZero(lensq))
 	{
-		ERROR_OUT("@Plane4::Set() -> normal vector has length 0.");
+        std::cerr << "@Plane4::Set(f, f, f, f) -> normal vector has length 0." << std::endl;
 		normal = Vector4::xAxis;
 		offset = 0.0f;
 	}
@@ -190,7 +189,7 @@ void Plane4::Set(const Vector4& n, const Point4& p)
 	//recover gracefully
 	if (::IsZero(lensq))
 	{
-		ERROR_OUT("@Plane4::Set() -> normal vector has length 0.");
+        std::cerr << "@Plane4::Set(v, p) -> normal vector has length 0." << std::endl;
 		normal = Vector4::xAxis;
 		offset = 0.0f;
 	}
@@ -223,7 +222,7 @@ void Plane4::Set(const Point4& p0, const Point4& p1, const Point4& p2)
 	//if (::IsZero(lensq))
 	if (lensq == 0.0f)
 	{
-		ERROR_OUT("@Plane4::Set() -> normal vector has length 0.");
+        std::cerr << "@Plane4::Set(p, p, p) -> normal vector has length 0." << std::endl;
 		normal = Vector4::xAxis;
 		offset = 0.0f;
 	}

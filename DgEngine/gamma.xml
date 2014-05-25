@@ -9,24 +9,22 @@
         - Camera-viewport link
         
     Camera-viewport link:
-        <camera> : The meta data tag of the camera to link. Tags begin the class id, eg
-                        '1A23_front'
-        <instance> : There may be more than one camera in the tree with the same meta
-                     tag. The algorith to find the camera uses a depth-first search. 
-                     The instance value tells the algorithm to choose the nth instance
-                     of a camera class with the desired meta data name.
+        <camera> The meta data tag of the camera to link. Tags begin the class id, 
+                         eg '1A23_front'
+        <instance> There may be more than one camera in the tree with the same meta
+                   tag. The algorith to find the camera uses a depth-first search. 
+                   The instance value tells the algorithm to choose the nth instance
+                   of a camera class with the desired meta data name.
         <view> : the id of the viewport to link to.
 -->
 
-<overworld id="GAMMA">
+<root id="GAMMA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="gamedb_format.xsd">
   
-  <!-- GAME DATA (Entity list) -->
-  <game_data id="base">
-
     <!-- ################################################################################## -->
     <!-- ###                This file defines all base entity classes                   ### -->
     <!-- ################################################################################## -->
-    <base_class_file>gamma_base.xml</base_class_file>
+    <classFile>gamma_base.xml</classFile>
 
 
     <!-- ################################################################################## -->
@@ -44,18 +42,18 @@
     
     <!-- AMBIENT LIGHT -->
 
-    <ambientlight>
-      <color>255 255 255 255</color>
+    <ambientLight>
+      <color>FFFFFFFF</color>
       <intensity>0.5</intensity>
-    </ambientlight>
+    </ambientLight>
     
     <!-- DIRECTIONAL AMBIENT LIGHTS -->
 
-    <directional_light id="0">
+    <directionalLight id="1000">
       <direction>1 0 0</direction>
-      <color>255 255 255 255</color>
+      <color>FFFFFFFF</color>
       <intensity>0.5</intensity>
-    </directional_light>
+    </directionalLight>
 
 
     <!-- ################################################################################## -->
@@ -63,7 +61,7 @@
     <!-- ################################################################################## -->
 
     <!-- Light demo -->
-    <entity class="DA">
+    <entity class="1A00">
       <position>
           <vqs>
             <v>150 0 0</v>
@@ -74,7 +72,7 @@
     </entity>
     
      <!-- Ground -->
-    <entity class="DE">
+    <entity class="1000">
       <position>
           <vqs>
             <v>0 -40 0</v>
@@ -86,7 +84,7 @@
 
 
     <!-- Teapot -->
-    <entity class="A0">
+    <entity class="1001">
       <position>
           <vqs>
             <v>-67.3281 7.55024 37.472</v>
@@ -98,7 +96,7 @@
     
     
     <!-- Rock -->
-    <entity class="A7">
+    <entity class="1002">
       <position>
           <vqs>
             <v>-40.5 -20 29.5</v>
@@ -110,7 +108,7 @@
 
 
     <!-- Grass -->
-    <entity class="A9">
+    <entity class="1003">
       <position>
           <vqs>
             <v>-50.5 -20 29.5</v>
@@ -121,7 +119,7 @@
     </entity>
 
     <!-- Grass -->
-    <entity class="A9">
+    <entity class="1003">
       <position>
           <vqs>
             <v>-45.5 -20 40.5</v>
@@ -132,7 +130,7 @@
     </entity>
 
     <!-- Grass -->
-    <entity class="A9">
+    <entity class="1003">
       <position>
           <vqs>
             <v>-30.5 -20 22.5</v>
@@ -144,7 +142,7 @@
 
 
     <!-- Grass -->
-    <entity class="A9">
+    <entity class="1003">
       <position>
           <vqs>
             <v>-36.5 -20 38.5</v>
@@ -155,20 +153,18 @@
     </entity>
 
     <!-- Grass -->
-    <entity class="A9">
+    <entity class="1003">
       <position>
         <vqs>
-          <vqs>
             <v>-45.5 -20 22.5</v>
             <q>1 0 0 0</q>
             <s>7</s>
-          </vqs>
         </vqs>
       </position>
     </entity>
 
     <!-- Water splash -->
-    <entity class="A6">
+    <entity class="E003">
       <position>
           <vqs>
             <v>-40.5 -15.66 29.5</v>
@@ -179,7 +175,7 @@
     </entity>
 
     <!-- Water spout -->
-    <entity class="A5">
+    <entity class="E002">
       <position>
           <vqs>
             <v>-61.2137 4.8832 35.101</v>
@@ -192,7 +188,7 @@
     </entity>
     
     <!-- Broken Spaceship -->
-    <entity class="A2">
+    <entity class="1A04">
       <position>
           <vqs>
             <v>15.5 0 47.5</v>
@@ -203,7 +199,7 @@
     </entity>
     
     <!-- Portal -->
-    <entity class="D0">
+    <entity class="1A03">
       <position>
           <vqs>
             <v>-40 0 -29</v>
@@ -214,7 +210,7 @@
     </entity>
 
     <!-- Portrait -->
-    <entity class="F1">
+    <entity class="1004">
       <position>
           <vqs>
             <v>15.5 0 -47.5</v>
@@ -225,19 +221,19 @@
     </entity>
 
     <!-- Spaceship -->
-    <entity class="A1">
-        <camera_view_link>
+    <entity class="1A01">
+        <cameraLink>
             <camera>1A01_circling</camera>
             <instance>1</instance>
             <view>1A11</view>
-        </camera_view_link>
+        </cameraLink>
         <position>
-                <lookat>
+                <lookAt>
                     <origin>-100 0 -13</origin>
                     <target>-99 0 -12.8</target>
-                    <up_vector>0 1 0</up_vector>
+                    <up>0 1 0</up>
                     <s>1</s>
-                </lookat>
+                </lookAt>
         </position>
         <movement>
             <direction> 0 0 -30</direction>
@@ -248,42 +244,20 @@
 
     <!-- Spaceship with space dust -->
     <entity class="1A05">
-        <camera_view_link>
+        <cameraLink>
             <camera>1A05_forward</camera>
             <instance>1</instance>
             <view>AAAA</view>
-        </camera_view_link>
+        </cameraLink>
       <position>
-          <lookat>
+          <lookAt>
             <origin>0 0 0</origin>
             <target>0 0 -20</target>
+             <up>0 1 0</up>
             <s>1</s>
-          </lookat>
+          </lookAt>
       </position>
-      <player_controlled></player_controlled>
+      <playerControlled></playerControlled>
     </entity>
 
-  </game_data>
-
-
-  <!-- ################################################################################## -->
-  <!-- ###              Camera events (attaches cameras to viewports)                 ### -->
-  <!-- ################################################################################## -->
-
-  <camera_setups>
-
-    <event>
-      <entity_id>C0000000</entity_id>
-      <viewport_id>0</viewport_id>
-      <active>true</active>
-    </event>
-
-    <event>
-      <entity_id>A1C00000</entity_id>
-      <viewport_id>A1</viewport_id>
-      <active>true</active>
-    </event>
-    
-  </camera_setups>
-  
-</overworld>
+</root>

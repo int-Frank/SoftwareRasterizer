@@ -90,11 +90,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\dev\xerces-c-3.1.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.0\lib\x64;C:\dev\SDL2_ttf-2.0.12\lib\x64;C:\dev\SDL2-2.0.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\dev\xerces-c-3.1.1\Build\Win64\VC10\Debug;C:\dev\SDL2_image-2.0.0\lib\x64;C:\dev\SDL2_ttf-2.0.12\lib\x64;C:\dev\SDL2-2.0.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;xerces-c3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -119,13 +120,14 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>C:\dev\xerces-c-3.1.1\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\dev\SDL2_image-2.0.0\lib\x64;C:\dev\SDL2_ttf-2.0.12\lib\x64;C:\dev\SDL2-2.0.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\dev\xerces-c-3.1.1\Build\Win64\VC10\Release;C:\dev\SDL2_image-2.0.0\lib\x64;C:\dev\SDL2_ttf-2.0.12\lib\x64;C:\dev\SDL2-2.0.3\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2_image.lib;SDL2_ttf.lib;SDL2.lib;SDL2main.lib;xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -157,7 +159,6 @@
     <ClCompile Include="Component_SpotLight.cpp" />
     <ClCompile Include="Cone.cpp" />
     <ClCompile Include="Debugger.cpp" />
-    <ClCompile Include="DgError.cpp" />
     <ClCompile Include="Dg_io.cpp" />
     <ClCompile Include="DirectionalLight.cpp" />
     <ClCompile Include="DiscParticleEmitter.cpp" />
@@ -166,7 +167,6 @@
     <ClCompile Include="FPSTimer.cpp" />
     <ClCompile Include="Frustum.cpp" />
     <ClCompile Include="GameDatabase.cpp" />
-    <ClCompile Include="gamedatabase_validate.cpp" />
     <ClCompile Include="Global_Objects.cpp" />
     <ClCompile Include="HPoint.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -204,6 +204,7 @@
     <ClCompile Include="Rectangle.cpp" />
     <ClCompile Include="Render_Overworld.cpp" />
     <ClCompile Include="Resources.cpp" />
+    <ClCompile Include="SettingsParser.cpp" />
     <ClCompile Include="SimpleRNG.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Sphere.cpp" />
@@ -238,6 +239,7 @@
     <ClCompile Include="ViewportManager.cpp" />
     <ClCompile Include="VQS.cpp" />
     <ClCompile Include="WindowManager.cpp" />
+    <ClCompile Include="XMLValidator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AmbientLight.h" />
@@ -248,8 +250,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="Circle4.h" />
-    <ClInclude Include="class.h">
-      <DependentUpon>class.xsd</DependentUpon>
+    <ClInclude Include="class_format.h">
+      <DependentUpon>class_format.xsd</DependentUpon>
     </ClInclude>
     <ClInclude Include="Clipper.h" />
     <ClInclude Include="Color.h" />
@@ -270,7 +272,6 @@
     <ClInclude Include="Cone.h" />
     <ClInclude Include="Debugger.h" />
     <ClInclude Include="DgArray.h" />
-    <ClInclude Include="DgError.h" />
     <ClInclude Include="DgLinkedList.h" />
     <ClInclude Include="DgMap.h" />
     <ClInclude Include="DgMapS.h" />
@@ -330,6 +331,7 @@
     <ClInclude Include="rasterizer_defines.h" />
     <ClInclude Include="Ray4.h" />
     <ClInclude Include="Rectangle.h" />
+    <ClInclude Include="settingsparser.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="SimpleRNG.h" />
     <ClInclude Include="Skybox.h" />
@@ -358,6 +360,7 @@
     <ClInclude Include="ViewportManager.h" />
     <ClInclude Include="VQS.h" />
     <ClInclude Include="WindowManager.h" />
+    <ClInclude Include="XMLValidator.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NormalDistributionTable.inl" />
@@ -367,7 +370,9 @@
   <ItemGroup>
     <Xml Include="alpha_base.xml" />
     <Xml Include="debug_text.xml" />
-    <Xml Include="gamma.xml" />
+    <Xml Include="gamma.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="gamma_base.xml">
       <SubType>Designer</SubType>
     </Xml>
@@ -376,7 +381,13 @@
     <Xml Include="Viewports.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="class.xsd" />
+    <Xsd Include="class_format.xsd" />
+    <Xsd Include="gamedb_format.xsd">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </Xsd>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

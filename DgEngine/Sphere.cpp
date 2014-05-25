@@ -15,14 +15,12 @@
 #include "Cone.h"
 #include "OBB.h"
 #include "CommonMath.h"
-#include "DgError.h"
 #include "Vector4.h"
 #include "Plane4.h"
 #include "Line4.h"
 #include "Ray4.h"
 #include "LineSegment4.h"
 #include "VQS.h"
-#include "DgError.h"
 
 
 //--------------------------------------------------------------------------------
@@ -32,7 +30,11 @@
 //--------------------------------------------------------------------------------
 Sphere::Sphere(const Point4& p, float r): center(p), radius(r)
 {
-	assert(r >= 0.0f);
+    if (r < 0.0f)
+    {
+        std::cerr << "@Sphere::Sphere() -> Invalid radius: " << r << std::endl;
+        r = 0.0f;
+    }
 
 }	//End: Sphere::Sphere()
 
@@ -98,13 +100,10 @@ DgWriter& operator<<(DgWriter& out, const Sphere& source)
 DgReader& operator>>(DgReader& in, Sphere& dest)
 {
 	//Read to temp values
-	in >> dest.center >> dest.radius;
-
-	//Error check
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(HPoint) -> Bad read.");
-	}
+    if ((in >> dest.center >> dest.radius).fail())
+    {
+        std::cerr << "@operator>>(HPoint) -> Bad read." << std::endl;
+    }
 
 	return in;
 

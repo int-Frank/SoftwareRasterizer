@@ -76,10 +76,14 @@ DgReader& operator>> (DgReader& in, Mesh& dest)
 
 	//Get tag
 	in >> chk;
-	if (chk == 'g' || chk == 'o')
-		in >> dest.tag;
-	else
-		ERROR_OUT("@operator>>(Mesh) -> Failed to read tag.");
+    if (chk == 'g' || chk == 'o')
+    {
+        in >> dest.tag;
+    }
+    else
+    {
+        std::cerr << "@operator>>(Mesh) -> Failed to read tag." << std::endl;
+    }
 
 	//Skip comments
 	IgnoreComments(in);
@@ -184,8 +188,10 @@ DgReader& operator>> (DgReader& in, Mesh& dest)
 		poly.p2 = find(dest.VList, *pit->p2);
 
 		//Check for errors
-		if (poly.p0 == NULL || poly.p1 == NULL || poly.p2 == NULL)
-			ERROR_OUT("@Mesh::operator>>() -> Not all pointers assigned");
+        if (poly.p0 == NULL || poly.p1 == NULL || poly.p2 == NULL)
+        {
+            std::cerr << "@Mesh::operator>>() -> Not all pointers assigned" << std::endl;
+        }
 
 		//Add polygon
 		dest.PList.push_back(poly);
@@ -354,9 +360,10 @@ void Mesh::init(const Mesh& other)
 		PList[i].p2 = find(VList, *other.PList[i].p2);
 
 		//Check for errors
-		if (PList[i].p0 == NULL || PList[i].p1 == NULL || PList[i].p2 == NULL)
-			ERROR_OUT("@Mesh::BuildLists() -> Not all pointers assigned");
-
+        if (PList[i].p0 == NULL || PList[i].p1 == NULL || PList[i].p2 == NULL)
+        {
+            std::cerr << "@Mesh::BuildLists() -> Not all pointers assigned" << std::endl;
+        }
 	}
 
 }	//End: Mesh::BuildLists()
@@ -371,7 +378,8 @@ void Mesh::SetBV(Sphere& sphere, OBB& box)
 	//Check is VList is empty
 	if (VList.empty())
 	{
-		ERROR_OUT("BoundingBox::SetFromMesh() -> Attempt to calculate bounding box for an empty object");
+        std::cerr << "BoundingBox::SetFromMesh() -> Attempt to calculate bounding box for an empty object" <<
+            std::endl;
 		return;
 	}
 

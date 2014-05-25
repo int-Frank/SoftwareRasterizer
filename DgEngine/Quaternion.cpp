@@ -20,7 +20,6 @@
 #include "Point4.h"
 #include "Matrix44.h"
 #include "BasisR3.h"
-#include "DgError.h"
 
 //-------------------------------------------------------------------------------
 //-- Static Members -------------------------------------------------------------
@@ -156,13 +155,10 @@ DgWriter& operator<<(DgWriter& out, const Quaternion& source)
 DgReader& operator>>(DgReader& in, Quaternion& dest)
 {
 	//Read to temp values
-	in >> dest.w >> dest.x >> dest.y >> dest.z;
-
-	//Error check
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(Quaternion) -> Bad read.");
-	}
+    if ((in >> dest.w >> dest.x >> dest.y >> dest.z).fail())
+    {
+        std::cerr << "@operator>>(Quaternion) -> Bad read." << std::endl;
+    }
 
 	return in;
 

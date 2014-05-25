@@ -93,6 +93,9 @@
     <Filter Include="Source Files\Utility\pugixml">
       <UniqueIdentifier>{ed52849e-efda-4754-9029-5b68e084e98f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utility\XMLValidators">
+      <UniqueIdentifier>{d93d2da9-9c5f-48d9-a037-622b61d92da7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="errorlog.txt">
@@ -167,9 +170,6 @@
       <Filter>Source Files\Utility\pugixml</Filter>
     </ClCompile>
     <ClCompile Include="Dg_io.cpp">
-      <Filter>Source Files\Utility</Filter>
-    </ClCompile>
-    <ClCompile Include="DgError.cpp">
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="FPSTimer.cpp">
@@ -412,8 +412,11 @@
     <ClCompile Include="Component_Meta.cpp">
       <Filter>Source Files\Entity component system\Components</Filter>
     </ClCompile>
-    <ClCompile Include="gamedatabase_validate.cpp">
-      <Filter>Source Files\Entity component system</Filter>
+    <ClCompile Include="SettingsParser.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLValidator.cpp">
+      <Filter>Source Files\Utility\XMLValidators</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -642,9 +645,6 @@
     <ClInclude Include="Dg_io.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
-    <ClInclude Include="DgError.h">
-      <Filter>Source Files\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="DgRect.h">
       <Filter>Source Files\Utility</Filter>
     </ClInclude>
@@ -762,6 +762,13 @@
     <ClInclude Include="Component.h">
       <Filter>Source Files\Entity component system\Components</Filter>
     </ClInclude>
+    <ClInclude Include="settingsparser.h">
+      <Filter>Source Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLValidator.h">
+      <Filter>Source Files\Utility\XMLValidators</Filter>
+    </ClInclude>
+    <ClInclude Include="class_format.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="NormalDistributionTable.inl">
@@ -798,7 +805,10 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="class.xsd">
+    <Xsd Include="class_format.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
+    <Xsd Include="gamedb_format.xsd">
       <Filter>Resource Files</Filter>
     </Xsd>
   </ItemGroup>

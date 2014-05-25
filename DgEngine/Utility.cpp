@@ -12,13 +12,17 @@
 #include "SimpleRNG.h"
 #include "SDL_ttf.h"
 #include "Dg_io.h"
+#include "SettingsParser.h"
 #include "Text.h"
 #include "Debugger.h"
 #include "Rasterizer.h"
 #include "WindowManager.h"
 #include "TextureManager.h"
 #include "ViewportHandler.h"
+#include "GameDatabase.h"
 #include <string>
+
+#include <xercesc/parsers/XercesDOMParser.hpp>
 
 //--------------------------------------------------------------------------------
 //		Functions to assist startup
@@ -32,7 +36,6 @@ bool InitializeWindow();
 //		Initiate all systems
 //--------------------------------------------------------------------------------
 /*!
- * - Clear error log file
  * - Set random seed
  * - Initialize all SDL systems
  * - Initialize SDL true type fonts
@@ -43,26 +46,40 @@ bool InitializeWindow();
  */
 bool START()
 {
-	//Clear errorlog.txt
-	CLEAR_LOG();
+    //Parse settings file
+    g_settingsParser.Load("setup.ini");
+
+    //Initialise objects needed for schema validation
+    xercesc::XMLPlatformUtils::Initialize();
+
+    GameDatabase::GlobalInit();
 
 	//Seed the random number generator
 	SimpleRNG::SetSeedFromSystemTime();
 
 	//Initialize all SDL subsystems
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
-		return false;
+    if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
+    {
+        std::cerr << "@START() -> Fail: SDL_Init(SDL_INIT_EVERYTHING)" << std::endl;
+        return false;
+    }
 
 	//Initialize window 
-	if(!InitializeWindow())
-		return false;
+    if (!InitializeWindow())
+    {
+        std::cerr << "@START() -> Fail: InitializeWindow()" << std::endl;
+        return false;
+    }
 
 	//Load Viewports
 	ViewportHandler::LoadResources(WINDOW->w(), WINDOW->h());
 	
 	//Initialize SDL_ttf
-	if( TTF_Init() == -1 )
+    if (TTF_Init() == -1)
+    {
+        std::cerr << "@START() -> Fail: TTF_Init()" << std::endl;
         return false;
+    }
 
 	//Load texture document
 	TEXTURE_MANAGER.LoadDocument("Images.xml");
@@ -80,17 +97,26 @@ bool START()
 //--------------------------------------------------------------------------------
 //		Initialize WINDOW
 //--------------------------------------------------------------------------------
-bool InitializeWindow()
+static bool InitializeWindow()
 {
 	//Fullscreen?
-	std::string str = "false";
-	GetFromFile("setup.ini", "fullscreen", str);
-	bool fullscreen = ToBool(str);
+    std::string str;
+    bool fullscreen = false;
+    if (g_settingsParser.GetValue("fullscreen", str))
+    {
+        fullscreen = ToBool(str);
+    }
 
 	//Dimensions
-	uint32 h = 200, w = 200;
-	GetFromFile("setup.ini", "screen_height", h);
-	GetFromFile("setup.ini", "screen_width", w);
+    uint32 h = 200, w = 200;
+    if (g_settingsParser.GetValue("screen_height", str))
+    {
+        StringToNumber(h, str, std::dec);
+    }
+    if (g_settingsParser.GetValue("screen_width", str))
+    {
+        StringToNumber(w, str, std::dec);
+    }
 
 	WINDOW = new WindowManager(	w, h, fullscreen, "My Game");
 
@@ -113,6 +139,8 @@ bool InitializeWindow()
  */
 void SHUTDOWN()
 {
+    GameDatabase::GlobalShutDown();
+
 	//Clear all resources
 	Text::ClearResources();
 
@@ -124,6 +152,8 @@ void SHUTDOWN()
 
     //Quit SDL
     SDL_Quit();
+
+    xercesc::XMLPlatformUtils::Terminate();
 
 }	//End: ShutDownSDL()
 

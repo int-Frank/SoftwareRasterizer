@@ -17,7 +17,6 @@
 #include "Point4.h"
 #include "Vector4.h"
 #include "CommonMath.h"
-#include "DgError.h"
 #include "VQS.h"
 
 
@@ -63,16 +62,15 @@ Point4& Point4::operator=(const Point4& other)
 DgReader& operator>>(DgReader& in, Point4& dest)
 {
 	//Read to temp values
-	in >> dest.x >> dest.y >> dest.z;
-
-	//Error check
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(Point4) -> Bad read.");
-	}
-
-	//Ensure w = 1
-	dest.w = 1.0f;
+    if ((in >> dest.x >> dest.y >> dest.z).fail())
+    {
+        std::cerr << "@operator>>(Point4) -> Bad read." << std::endl;
+    }
+    else
+    {
+        //Ensure w = 1
+        dest.w = 1.0f;
+    }
 
 	return in;
 

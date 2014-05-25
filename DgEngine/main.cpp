@@ -10,9 +10,16 @@
 
 int main( int argc, char* args[] ) 
 { 
+    //Redirect std::cerr to file
+    std::filebuf CERR_NEW_BUF;
+    CERR_NEW_BUF.open("errorlog.txt", std::ios::out);;
+    std::streambuf* CERR_OLD_BUF = std::cerr.rdbuf(&CERR_NEW_BUF);
+
 	//Load resources, create screen
-	if (!START())
-		ERROR_OUT("Error @ START()");
+    if (!START())
+    {
+        return 1;
+    }
 
 	//Create StateInfo Object
 	StateInfo stateinfo(STATE_TITLE);
@@ -59,5 +66,6 @@ int main( int argc, char* args[] )
 	//Quit SDL 
 	SHUTDOWN();
 
+    std::cerr.rdbuf(CERR_OLD_BUF);
 	return 0; 
 }

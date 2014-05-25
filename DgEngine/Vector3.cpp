@@ -16,7 +16,6 @@
 
 #include "Vector3.h"
 #include "CommonMath.h"
-#include "DgError.h"
 
 
 //--------------------------------------------------------------------------------
@@ -101,15 +100,12 @@ DgWriter& operator<<(DgWriter& out, const Vector3& source)
 //--------------------------------------------------------------------------------
 DgReader& operator>> (DgReader& in, Vector3& dest)
 {
-	//Read to temp values
-	in >> dest.x >> dest.y >> dest.z;
+    if ((in >> dest.x >> dest.y >> dest.z).fail())
+    {
+        std::cerr << "@operator>>(Vector3) -> Bad read." << std::endl;
+    }
 
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(Vector3) -> Bad read.");
-	}
-
-	return in;
+    return in;
 
 }	//End: operator>>()
 

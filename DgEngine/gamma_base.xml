@@ -24,7 +24,7 @@
     Before a class can be used as a child class, it MUST be defined in the root node.
  -->
 <root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:noNamespaceSchemaLocation="class.xsd">
+                xsi:noNamespaceSchemaLocation="class_format.xsd">
   <class name="camera" id="C000">
     <meta>
       <camera_id>DEFAULT</camera_id>

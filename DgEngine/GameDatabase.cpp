@@ -1,7 +1,13 @@
 #include "GameDatabase.h"
-#include "DgError.h"
 #include "Dg_io.h"
 #include "SimpleRNG.h"
+
+//--------------------------------------------------------------------------------
+//		@Statics
+//--------------------------------------------------------------------------------
+XMLValidator* GameDatabase::classValidator(NULL);
+XMLValidator* GameDatabase::DBValidator(NULL);
+
 
 //--------------------------------------------------------------------------------
 //		@GetWorldSpaceVelocity()
@@ -86,7 +92,7 @@ bool GameDatabase::AddMeta(const Component_META& obj, entityID id)
     //Object not foud, try to insert object
     if (!Metas.insert(obj, id))
     {
-        ERROR_OUT("GameDatabase::AddMeta() -> Failed to insert component.");
+        std::cerr << "GameDatabase::AddMeta() -> Failed to insert component." << std::endl;
         return false;
     }
 
@@ -116,7 +122,7 @@ bool GameDatabase::AddPosition(const Component_POSITION& obj,  entityID id)
 	//Object not foud, try to insert object
 	if (!Positions.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddPosition() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddPosition() -> Failed to insert component." << std::endl;
 		return false;
 	}
 
@@ -146,7 +152,7 @@ bool GameDatabase::AddMovement(const Component_MOVEMENT& obj,  entityID id)
 	//Try to insert object
 	if (!Movements.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddMovement() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddMovement() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -176,7 +182,7 @@ bool GameDatabase::AddPhysics(const Component_PHYSICS& obj,  entityID id)
 	//Try to insert object
 	if (!Physics.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddBV() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddBV() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -206,7 +212,7 @@ bool GameDatabase::AddPointLight(const Component_POINTLIGHT& obj,  entityID id)
 	//Try to insert object
 	if (!PointLights.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddPointLight() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddPointLight() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -236,7 +242,7 @@ bool GameDatabase::AddSpotLight(const Component_SPOTLIGHT& obj,  entityID id)
 	//Try to insert object
 	if (!SpotLights.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddSpotLight() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddSpotLight() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -266,7 +272,7 @@ bool GameDatabase::AddLightsAffecting(const Component_LIGHTS_AFFECTING& obj,  en
 	//Try to insert object
 	if (!LightsAffecting.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddLightsAffecting() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddLightsAffecting() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -296,7 +302,7 @@ bool GameDatabase::AddAspect(const Component_ASPECT& obj,  entityID id)
 	//Try to insert object
 	if (!Aspects.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddAspect() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddAspect() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -326,7 +332,7 @@ bool GameDatabase::AddCamera(const Component_CAMERA& obj,  entityID id)
 	//Try to insert object
 	if (!Cameras.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddCamera() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddCamera() -> Failed to insert component." << std::endl;
 		return false;
 	}
 	
@@ -356,7 +362,7 @@ bool GameDatabase::AddParticleEmitter(const Component_PARTICLEEMITTER& obj, enti
 	//Try to insert object
 	if (!ParticleEmitters.insert(obj, id))
 	{
-		ERROR_OUT("GameDatabase::AddParticleEmitter() -> Failed to insert component.");
+		std::cerr << "GameDatabase::AddParticleEmitter() -> Failed to insert component." << std::endl;
 		return false;
 	}
 
@@ -381,9 +387,7 @@ bool GameDatabase::SetClassDocument(const std::string& file)
     //Make sure the class file has loaded
     if (!result)
     {
-        std::string message = "@GameDatabase::SetClassDocument() -> Failed to open file: "
-            + file;
-        ERROR_OUT(message);
+        std::cerr << "@GameDatabase::SetClassDocument() -> Failed to open file: " << file << std::endl;
         return false;
     }
 
@@ -409,7 +413,7 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
     //Does the class exist?
     if (!classNode)
     {
-        ERROR_OUT("LoadEntity() -> Class doen not exist: " + classID_str);
+        std::cerr << "LoadEntity() -> Class does not exist: " << classID_str << std::endl;
         return ENTITYID::E_INV_CLASS;
     }
 
@@ -438,8 +442,8 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
         }
         if (!success)
         {
-            ERROR_OUT("LoadEntity() -> All instance IDs for class " +
-                classID_str + " taken.");
+            std::cerr << "LoadEntity() -> All instance IDs for class "  <<
+                classID_str << " taken." << std::endl;
             return ENTITYID::E_INS_FULL;
         }
     }
@@ -517,14 +521,14 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
 
 			if (!idAtt)
 			{
-				ERROR_OUT("ParseNode() -> No child ID.");
+				std::cerr << "ParseNode() -> No child ID." << std::endl;
 				continue;
 			}
 
 			uint32 childID;
 			if (!StringToNumber(childID, idAtt.value(), std::hex))
 			{
-				ERROR_OUT("ParseNode() -> Failed to read child ID.");
+                std::cerr << "ParseNode() -> Failed to read child ID." << std::endl;
 				continue;
 			}
 
@@ -536,12 +540,6 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
                 return result;
             }
 
-            if (!IsChildValid(childID, it->parent()))
-            {
-                //Clean up 
-                dest.RemoveEntity(id);
-                return ENTITYID::E_REC_CLASS;
-            }
 		}
 	}
 
@@ -561,7 +559,7 @@ void operator>>(pugi::xml_node& tool, GameDatabase& dest)
 	//Ensure base class node exists
 	if (!classFileNode)
 	{
-		ERROR_OUT("operator>>(GameDatabase) -> No class file is defined.");
+        std::cerr << "operator>>(GameDatabase) -> No class file is defined." << std::endl;
 		return;
 	}
 
@@ -573,9 +571,8 @@ void operator>>(pugi::xml_node& tool, GameDatabase& dest)
 	//Make sure the class file has loaded
 	if (!result)
 	{
-		std::string message = "@operator>>(pugi::xml_node&, GameDatabase&) -> Failed to open class file: "
-			+ classFile;
-		ERROR_OUT(message);
+        std::cerr << "@operator>>(pugi::xml_node&, GameDatabase&) -> Failed to open class file: " << 
+            classFile << std::endl;
 		return;
 	}
 
@@ -604,7 +601,8 @@ void operator>>(pugi::xml_node& tool, GameDatabase& dest)
 		if (tag == "entity")
 		{
 			if (!LoadEntity(it, dest))
-				ERROR_OUT("operator>>(GameDatabase) -> Error while loading entity.");
+				std::cerr << "operator>>(GameDatabase) -> Error while loading entity." <<
+                std::endl;
 		}
 		else if (tag == "skybox")
 		{
@@ -617,7 +615,8 @@ void operator>>(pugi::xml_node& tool, GameDatabase& dest)
 		else if (tag == "directional_light")
 		{
 			if (!LoadDirectionalLight(it, dest))
-				ERROR_OUT("operator>>(GameDatabase) -> Error while loading ambient light.");
+				std::cerr << "operator>>(GameDatabase) -> Error while loading ambient light." <<
+                std::endl;
 		}
 
     }
@@ -650,7 +649,7 @@ bool LoadDirectionalLight(pugi::xml_node_iterator& node, GameDatabase& dest)
 			int index;
 			if (dest.directionalLights.find(id, index))
 			{
-				ERROR_OUT("LoadDirectionalLight() -> Duplicate id");
+				std::cerr << "LoadDirectionalLight() -> Duplicate id" << std::endl;
 				return false;
 			}
 		}
@@ -678,7 +677,7 @@ bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
 
 	if (!classAtt)
 	{
-		ERROR_OUT("LoadEntity() -> No class ID.");
+        std::cerr << "LoadEntity() -> No class ID." << std::endl;
 		return false;
 	}
 
@@ -686,7 +685,7 @@ bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
 	uint32 classID;
 	if (!StringToNumber(classID, classAtt.value(), std::hex))
 	{
-		ERROR_OUT("LoadEntity() -> Failed to read class ID.");
+        std::cerr << "LoadEntity() -> Failed to read class ID." << std::endl;
 		return false;
 	}
 
@@ -708,3 +707,164 @@ bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
 }	//End: void operator>>(pugi::xml__node_iterator& doc, GameDatabase& dest)
 
 
+//--------------------------------------------------------------------------------
+//		@GameDtabase::LoadClassFile()
+//--------------------------------------------------------------------------------
+bool GameDatabase::LoadClassFile(const std::string& file)
+{
+    //Does class file conform to schema?
+    if (!classValidator->ValidateXML(file))
+    {
+        return false;
+    }
+
+    //Load class file
+    pugi::xml_parse_result result = classDocument.load_file(file.c_str());
+
+    //Make sure it opened
+    if (!result)
+    {
+        std::cerr << "@GameDtabase::LoadClassFile() -> Failed to open file: " << file << std::endl;
+        return false;
+    }
+
+    //Get the root node
+    pugi::xml_node root = classDocument.document_element();
+
+    //iterate through all nodes
+    for (pugi::xml_node_iterator it = root.begin(); it != root.end(); ++it)
+    {
+        //Get the name of the node
+        std::string tag = it->name();
+
+        if (tag == "class")
+        {
+            uint32 thisID;
+            if (!GetIDValue(*it, thisID))
+            {
+                return false;
+            }
+
+            if (!IsIDValid(*it, thisID))
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+//--------------------------------------------------------------------------------
+//		@GameDtabase::IsIDValid()
+//--------------------------------------------------------------------------------
+bool GameDatabase::IsIDValid(pugi::xml_node& parent, uint32 thatID)
+{
+    //iterate through all child nodes
+    for (pugi::xml_node_iterator it = parent.begin(); it != parent.end(); ++it)
+    {
+        //Get the name of the node
+        std::string tag = it->name();
+
+        if (tag == "class")
+        {
+            uint32 thisID;
+            if (!GetIDValue(*it, thisID))
+            {
+                return false;
+            }
+
+            if ((thatID ==  thisID) ||          //Check this ID against input ID
+                (!IsIDValid(*it, thatID)) ||    //Check all children against input ID
+                (!IsIDInRoot(thisID)) ||        //Check this ID is in the root
+                (!IsIDValid(*it, thisID)))      //Check all children against this ID
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+
+//--------------------------------------------------------------------------------
+//		@GameDtabase::IsIDInRoot()
+//--------------------------------------------------------------------------------
+bool GameDatabase::IsIDInRoot(uint32 thatID)
+{
+    //Get the root node
+    pugi::xml_node root = classDocument.document_element();
+
+    //iterate through all nodes
+    for (pugi::xml_node_iterator it = root.begin(); it != root.end(); ++it)
+    {
+        //Get the name of the node
+        std::string tag = it->name();
+
+        if (tag == "class")
+        {
+            //Read the class id.
+            uint32 thisID;
+            if (!GetIDValue(*it, thisID))
+            {
+                return false;
+            }
+
+            if (thisID == thatID)      //Check all children against this ID
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+//--------------------------------------------------------------------------------
+//		@GameDtabase::IsIDInRoot()
+//--------------------------------------------------------------------------------
+bool GameDatabase::GetIDValue(pugi::xml_node& node, uint32& out)
+{
+    //Get the class id
+    pugi::xml_attribute classAtt = node.attribute("id");
+
+    if (!classAtt)
+    {
+        std::cerr << "@GameDtabase::GetIDValue() -> No class ID." << std::endl;
+        return false;
+    }
+
+    //Read the class id.
+    if (!StringToNumber(out, classAtt.value(), std::hex))
+    {
+        std::cerr << "@GameDtabase::GetIDValue() -> Failed to read class ID." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+
+//--------------------------------------------------------------------------------
+//		@GameDtabase::GlobalInit
+//--------------------------------------------------------------------------------
+bool GameDatabase::GlobalInit()
+{
+    std::string classFile = "class_format.xsd";
+    std::string dbFile = "gamedb_format.xsd";
+    classValidator = new XMLValidator();
+    DBValidator = new XMLValidator();
+    return (classValidator->SetSchema(classFile) &&
+            DBValidator->SetSchema(dbFile));
+}
+
+
+//--------------------------------------------------------------------------------
+//		@GameDtabase::LoadClassFile
+//--------------------------------------------------------------------------------
+bool GameDatabase::LoadClassFile(const std::string&)
+{
+    delete classValidator;
+    delete DBValidator;
+    classValidator = NULL;
+    DBValidator = NULL;
+}

@@ -57,7 +57,7 @@ void WindowManager::init(uint32 w, uint32 h, bool _fullScreen, std::string _titl
     //If there was an error in setting up the screen
     if( sdlScreen == NULL )
     {
-        ERROR_OUT("@WindowManager::WindowManager(...) -> Could not create screen");
+        std::cerr << "@WindowManager::WindowManager(...) -> Could not create screen" << std::endl;
     }
 
 	sdlRenderer = SDL_CreateRenderer(sdlScreen, -1, 0);

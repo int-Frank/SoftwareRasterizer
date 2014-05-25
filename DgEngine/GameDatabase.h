@@ -6,6 +6,7 @@
 #include "DgMap.h"
 #include "DgOrderedArray.h"
 #include "DgTypes.h"
+#include "XMLValidator.h"
 
 #include "Component_Meta.h"
 #include "Component_Aspect.h"
@@ -46,16 +47,24 @@ public:
 	//Constructor / destructor
 	GameDatabase() {}
 	~GameDatabase() {}
+
+    //! @brief Sets class schema
+    static bool GlobalInit();
+    static void GlobalShutDown();
+
 	//--------------------------------------------------------------------------------
 	//		Read from xml_node
 	//--------------------------------------------------------------------------------
-	friend void operator>>(pugi::xml_node&, GameDatabase&);
-    friend bool LoadEntity(pugi::xml_node_iterator&, GameDatabase&);
-    friend bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
-    friend entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest);
+	//friend void operator>>(pugi::xml_node&, GameDatabase&);
+    //friend bool LoadEntity(pugi::xml_node_iterator&, GameDatabase&);
+    //friend bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
+    //friend entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest);
 
-    //! @brief Validates input and sets if valid.
-    bool SetClassDocument(const std::string&);
+    //! @Load class template file
+    bool LoadClassFile(const std::string&);
+
+    //! @Load map file
+    bool LoadDataFile(const std::string&);
 
 	//Remove all components with this entityID
 	void RemoveEntity(entityID);
@@ -76,6 +85,7 @@ public:
 	bool AddParticleEmitter(const Component_PARTICLEEMITTER&, entityID);
 
 	bool SetSkybox(const Skybox& s) { skybox = s; }
+
 
 public:
 	//--------------------------------------------------------------------------------
@@ -103,10 +113,22 @@ public:
 	DgMap<entityID, DirectionalLight>	directionalLights;
 
 
-private:
-	std::string id;
-	pugi::xml_document entityClasses;
+private:    //Data
 
+	std::string id;
+	pugi::xml_document classDocument;
+
+private:    //Functions
+
+    // Functions that help validate class files.
+    bool IsIDValid(pugi::xml_node& parent, uint32 id);
+    bool IsIDInRoot(uint32);
+    bool GetIDValue(pugi::xml_node&, uint32&);
+
+private:    //Statics
+
+    static XMLValidator *classValidator;
+    static XMLValidator *DBValidator;
 };
 
 inline bool IsIDOK(entityID id)

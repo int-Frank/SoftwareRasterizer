@@ -12,7 +12,6 @@
 
 #include "DgTypes.h"
 #include "Dg_io.h"
-#include "DgError.h"
 #include "CommonMath.h"
 
 //--------------------------------------------------------------------------------
@@ -148,12 +147,10 @@ Tuple<T>::Tuple(const Tuple<T>& t)
 template <class T>
 DgReader& operator>> (DgReader& in, Tuple<T>& dest)
 {
-	in >> dest.mV[0] >> dest.mV[1] >> dest.mV[2];
-
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(Tuple) -> Bad read.");
-	}
+    if ((in >> dest.mV[0] >> dest.mV[1] >> dest.mV[2]).fail())
+    {
+        std::cerr << "@operator>>(Tuple) -> Bad read." << std::endl;
+    }
 
 	return in;
 

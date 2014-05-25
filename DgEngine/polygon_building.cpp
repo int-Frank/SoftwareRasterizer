@@ -22,7 +22,6 @@
 #include "Polygon_RASTER_SB.h"
 #include "Vertex_RASTER.h"
 #include "DgTypes.h"
-#include "DgError.h"
 #include "Materials.h"
 #include "Image.h"
 #include "rasterizer_defines.h"
@@ -741,7 +740,7 @@ void Rasterizer::SetOutput(Image& out, DgArray<int32>& z)
 		zBuffer = NULL;
 		output_W = output_H = 0;
 
-		ERROR_OUT("Rasterizer::SetOutput() -> ZBuffer too small for output image");
+        std::cerr << "Rasterizer::SetOutput() -> ZBuffer too small for output image" << std::endl;
 
 		return;
 	}

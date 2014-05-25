@@ -57,13 +57,10 @@ DgWriter& operator<<(DgWriter& out, const HPoint& source)
 DgReader& operator>>(DgReader& in, HPoint& dest)
 {
 	//Read to temp values
-	in >> dest.x >> dest.y >> dest.z >> dest.w;
-
-	//Error check
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(HPoint) -> Bad read.");
-	}
+    if ((in >> dest.x >> dest.y >> dest.z >> dest.w).fail())
+    {
+        std::cerr << "@operator>>(HPoint) -> Bad read." << std::endl;
+    }
 
 	return in;
 

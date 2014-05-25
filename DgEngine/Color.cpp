@@ -97,7 +97,7 @@ DgReader& operator>> (DgReader& in, Color& dest)
 
 	if (!in)
 	{
-		ERROR_EXIT("@operator>>(Color) -> Bad read.");
+		std::cerr << "@operator>>(Color) -> Bad read." << std::endl;
 	}
 
 	return in;

@@ -1,5 +1,4 @@
 #include "Mesh_List.h"
-#include "DgError.h"
 
 
 //--------------------------------------------------------------------------------
@@ -60,8 +59,8 @@ Mesh* Mesh_List::Load(std::string tag)
 	//Ensure the file name matches the object tag in the file.
 	if (it->tag != tag)
 	{
-		ERROR_OUT("Mesh_List::Load() -> object tag differs to the file name: filename: " +
-			tag + ". tag: " + it->tag);
+        std::cerr << "Mesh_List::Load()->object tag differs to the file name : filename : " <<
+            tag << ". tag: " << it->tag << std::endl;
 		it->tag = tag;
 	}
 

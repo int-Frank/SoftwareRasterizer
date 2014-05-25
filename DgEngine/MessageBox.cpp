@@ -80,8 +80,7 @@ bool MessageBox::Load(const std::string& str)
 	//Make sure it opened
 	if (!result)
 	{
-		std::string message = "MessageBox::Load() -> Failed to open file: " + messageBoxFile;
-		ERROR_OUT(message);
+		std::cerr << "MessageBox::Load() -> Failed to open file: " << messageBoxFile << std::endl;
 
 		return false;
 	}
@@ -96,7 +95,7 @@ bool MessageBox::Load(const std::string& str)
 	//Does the class exist?
 	if (!node)
 	{
-		ERROR_OUT("MessageBox::Load() -> Message does not exist: " + str);
+        std::cerr << "MessageBox::Load() -> Message does not exist: " << str << std::endl;
 		return false;
 	}
 
@@ -118,7 +117,7 @@ bool MessageBox::Load(const std::string& str)
 			uint32 size;
 			if (!StringToNumber(size, it->child_value(), std::dec))
 			{
-				ERROR_OUT("MessageBox::Load() -> Failed to read size.");
+                std::cerr << "MessageBox::Load() -> Failed to read size." << std::endl;
 			}
 			else
 			{
@@ -144,7 +143,7 @@ bool MessageBox::Load(const std::string& str)
 			ss >> x >> y;
 			if (!ss)
 			{
-				ERROR_OUT("MessageBox::Load() -> Failed to read position.");
+                std::cerr << "MessageBox::Load() -> Failed to read position." << std::endl;
 			}
 			else
 			{
@@ -160,7 +159,7 @@ bool MessageBox::Load(const std::string& str)
 			uint32 size;
 			if (!StringToNumber(size, it->child_value(), std::dec))
 			{
-				ERROR_OUT("MessageBox::Load() -> Failed to read border width.");
+                std::cerr << "MessageBox::Load() -> Failed to read border width." << std::endl;
 			}
 			else
 			{
@@ -176,7 +175,7 @@ bool MessageBox::Load(const std::string& str)
 			float size;
 			if (!StringToNumber(size, it->child_value(), std::dec))
 			{
-				ERROR_OUT("MessageBox::Load() -> Failed to read spacing.");
+                std::cerr << "MessageBox::Load() -> Failed to read spacing." << std::endl;
 			}
 			else
 			{
@@ -188,7 +187,7 @@ bool MessageBox::Load(const std::string& str)
 			float size;
 			if (!StringToNumber(size, it->child_value(), std::dec))
 			{
-				ERROR_OUT("MessageBox::Load() -> Failed to read tab size.");
+                std::cerr << "MessageBox::Load() -> Failed to read tab size." << std::endl;
 			}
 			else
 			{

@@ -16,7 +16,6 @@
 
 #include "Vector2.h"
 #include "CommonMath.h"
-#include "DgError.h"
 
 
 //--------------------------------------------------------------------------------
@@ -90,19 +89,10 @@ DgWriter& operator<<(DgWriter& out, const Vector2& source)
 //--------------------------------------------------------------------------------
 DgReader& operator>> (DgReader& in, Vector2& dest)
 {
-	float x,y;
-
-	//Read to temp values
-	in >> x >> y;
-
-	if (!in)
-	{
-		ERROR_EXIT("@operator>>(Vector2) -> Bad read.");
-	}
-
-	//Ammend dest
-	dest.x = x;
-	dest.y = y;
+    if ((in >> dest.x >> dest.y).fail())
+    {
+        std::cerr << "@operator>>(Vector2) -> Bad read." << std::endl;
+    }
 
 	return in;
 

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:simpleType name="classID">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="lightID">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="viewID">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f][0-9A-Fa-f]"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="hex_8">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9A-Fa-f]{8}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="list_dec">
+        <xs:list itemType="xs:decimal"/>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_3'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='3'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name='list_dec_4'>
+        <xs:restriction base='list_dec'>
+            <xs:maxLength value='4'/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="classFile" type="xs:string"/>
+    <xs:element name="playerControlled"/>
+
+    <xs:element name="skybox">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="texture"   type="xs:string"/>
+                <xs:element name="orientation" type="xs:string"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ambientLight">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="color"   type="hex_8"/>
+                <xs:element name="intensity" type="xs:decimal"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="directionalLight">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="direction"   type="list_dec_3"/>
+                <xs:element name="color"   type="hex_8"/>
+                <xs:element name="intensity" type="xs:decimal"/>
+            </xs:all>
+            <xs:attribute name="id" use="required" type="lightID"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="cameraLink">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="camera" type="xs:string"/>
+                <xs:element name="instance" type="xs:int"/>
+                <xs:element name="view" type="viewID"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="movement">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="direction" type="list_dec_3" minOccurs="0"/>
+                <xs:element name="yaw" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="pitch" type="xs:decimal" minOccurs="0"/>
+                <xs:element name="roll" type="xs:decimal" minOccurs="0"/>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="position">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="vqs">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="v" type="list_dec_3"/>
+                            <xs:element name="q" type="list_dec_4"/>
+                            <xs:element name="s" type="xs:decimal"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="lookAt">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="origin" type="list_dec_3"/>
+                            <xs:element name="target" type="list_dec_3"/>
+                            <xs:element name="up" type="list_dec_3"/>
+                            <xs:element name="s" type="xs:decimal"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="entity">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="position" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="movement" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="cameraLink" maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="playerControlled" maxOccurs="1" minOccurs="0"/>
+            </xs:choice>
+            <xs:attribute name="class" use="required" type="classID"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="root">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+                <xs:element ref="entity"  maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element ref="skybox"  maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element ref="ambientLight"  maxOccurs="1" minOccurs="0"/>
+                <xs:element ref="directionalLight"  maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element ref="classFile"  maxOccurs="1" minOccurs="1"/>
+            </xs:choice>
+            <xs:attribute name="id" use="required" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

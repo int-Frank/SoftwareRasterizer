@@ -48,12 +48,10 @@ void SYSTEM_PostProcess(GameDatabase& data)
 		int par_ind = 0;
 		if (!data.Positions.find(data.Positions[i].parent, par_ind))
 		{
-			DgString ss;
-			ss << "@SYSTEM_PostProcess() -> Parent " 
+			std::cerr << "@SYSTEM_PostProcess() -> Parent " 
 				<< std::hex << std::to_string(data.Positions[i].parent)
 				<< " not found for id: " << std:: hex
-				<< std::to_string(id);
-			ERROR_OUT(ss.str());
+				<< std::to_string(id) << std::endl;
 			continue;
 		}
 

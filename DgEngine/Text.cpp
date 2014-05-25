@@ -133,7 +133,7 @@ void Text::GenerateImages()
 
 	if (font == NULL)
 	{
-		ERROR_OUT("@Text::GenerateImages() -> Failed to load font: " + name);
+        std::cerr << "@Text::GenerateImages() -> Failed to load font: " << name << std::endl;
 		return;
 	}
 

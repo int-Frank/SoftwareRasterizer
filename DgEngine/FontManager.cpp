@@ -13,7 +13,7 @@
 //================================================================================
 
 #include "FontManager.h"
-#include "DgError.h"
+#include "Dg_io.h"
 #include "SDL_ttf.h"
 #include "DgTypes.h"
 
@@ -38,10 +38,8 @@ impl::ttf::ttf(std::string _name, Uint16 _size)
 	//Check if loaded
 	if (font == NULL)
 	{
-		std::string str;
-		str = "@ttf::ttf(constructor) -> Failed to load font '" + name 
-			+ "'";
-		ERROR_OUT(str);
+		std::cerr << "@ttf::ttf(constructor) -> Failed to load font '" << name <<
+			 "'" << std::endl;
 	}
 
 }	//End: ttf::ttf()
@@ -79,10 +77,8 @@ impl::ttf::ttf(const ttf& t)
 	//Check if loaded
 	if (font == NULL)
 	{
-		std::string str;
-		str = "@ttf::ttf(copy) -> Failed to load font '" + name 
-			+ "'";
-		ERROR_OUT(str);
+		std::cerr << "@ttf::ttf(copy) -> Failed to load font '" << name <<
+		    "'" << std::endl;
 	}
 	
 }	//End: ttf::ttf()

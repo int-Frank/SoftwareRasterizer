@@ -20,7 +20,6 @@
 #include "CommonGraphics.h"
 #include "CommonMath.h"
 #include "Image.h"
-#include "DgError.h"
 #include "Dg_io.h"
 #include "DgTypes.h"
 #include "DgRect.h"
@@ -67,12 +66,12 @@ SDL_Surface* LoadImage(std::string filename)
         }
 		else
 		{
-			ERROR_OUT("@LoadImageSDL(): failed to optimise image: " + filename);
+            std::cerr << "@LoadImageSDL(): failed to optimise image: " << filename << std::endl;
 		}
     }
 	else
 	{
-		ERROR_OUT("@LoadImageSDL(): failed to load image: " + filename);
+        std::cerr << "@LoadImageSDL(): failed to load image: " << filename << std::endl;
 	}
 
     return optimizedImage;

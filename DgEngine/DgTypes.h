@@ -17,7 +17,8 @@
 enum DgReturnCode
 {
     dg_OK,
-    dg_Fail
+    dg_Fail,
+    dg_Fatal
 };
 
 typedef unsigned __int8     uint8;
