@@ -376,30 +376,10 @@ bool GameDatabase::AddParticleEmitter(const Component_PARTICLEEMITTER& obj, enti
 }	//End: GameDatabase::AddParticleEmitter()
 
 
-bool GameDatabase::SetClassDocument(const std::string& file)
-{
-    //Reset document and errors.
-    entityClasses.reset();
-
-    //Open file
-    pugi::xml_parse_result result = entityClasses.load_file(file.c_str());
-
-    //Make sure the class file has loaded
-    if (!result)
-    {
-        std::cerr << "@GameDatabase::SetClassDocument() -> Failed to open file: " << file << std::endl;
-        return false;
-    }
-
-    //Parse the document with the schema to ensure it is valid
-    //ClassXMLValidator validator();
-    return true;
-}
-
 //--------------------------------------------------------------------------------
 //		Parse a node into the database.
 //--------------------------------------------------------------------------------
-entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
+entityID GameDatabase::LoadClass(uint32 classID, entityID parent)
 {
     //Need to convert classID to string to find in the DOM
     DgString ss;
@@ -407,24 +387,25 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
     std::string classID_str = ss.str();
 
     //Find the class in the class document
-    pugi::xml_node classNode = dest.entityClassesRoot.find_child_by_attribute(
+    pugi::xml_node root = classDocument.document_element();
+    pugi::xml_node classNode = root.find_child_by_attribute(
         "class", "id", classID_str.c_str());
 
     //Does the class exist?
     if (!classNode)
     {
-        std::cerr << "LoadEntity() -> Class does not exist: " << classID_str << std::endl;
+        std::cerr << "@GameDatabase::LoadEntity() -> Class does not exist: " << classID_str << std::endl;
         return ENTITYID::E_INV_CLASS;
     }
 
     //Build the combined id.
     SimpleRNG rng;
     uint32 instanceID = rng.GetUint(0, 0xFFFF);
-    entityID id = GetID(classID, instanceID);
+    entityID thisID = GetID(classID, instanceID);
 
     //Does the id already exist in the database?
     int32 ind;
-    if (dest.EntityIDs.find(id, ind))
+    if (EntityIDs.find(thisID, ind))
     {
         bool success = false;
         for (uint32 i = 0; i < 0xFFFF; ++i)
@@ -432,9 +413,9 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
             //Adjust id
             instanceID += (65535 + (i & 1) * 2);
             instanceID &= 0xFFFF;
-            id = GetID(classID, instanceID);
+            thisID = GetID(classID, instanceID);
 
-            if (!dest.EntityIDs.find(id, ind))
+            if (!EntityIDs.find(thisID, ind))
             {
                 success = true;
                 break;
@@ -442,7 +423,7 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
         }
         if (!success)
         {
-            std::cerr << "LoadEntity() -> All instance IDs for class "  <<
+            std::cerr << "@GameDatabase::LoadEntity() -> All instance IDs for class "  <<
                 classID_str << " taken." << std::endl;
             return ENTITYID::E_INS_FULL;
         }
@@ -458,248 +439,188 @@ entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest)
 		{
 			Component_POSITION obj;
 			Read(*it, obj, parent);
-			dest.AddPosition(obj, id);
+            AddPosition(obj, thisID);
         }
         else if (tag == "meta")
         {
             Component_META obj;
             *it >> obj;
-            dest.AddMeta(obj, id);
+            AddMeta(obj, thisID);
         }
         else if (tag == "movement")
         {
             Component_MOVEMENT obj;
             *it >> obj;
-            dest.AddMovement(obj, id);
+            AddMovement(obj, thisID);
         }
 		else if (tag == "lights_affecting")
 		{
 			Component_LIGHTS_AFFECTING obj;
 			*it >> obj;
-			dest.AddLightsAffecting(obj, id);
+            AddLightsAffecting(obj, thisID);
 		}
 		else if (tag == "pointlight")
 		{
 			Component_POINTLIGHT obj;
 			*it >> obj;
-			dest.AddPointLight(obj, id);
+            AddPointLight(obj, thisID);
 		}
 		else if (tag == "spotlight")
 		{
 			Component_SPOTLIGHT obj;
 			*it >> obj;
-			dest.AddSpotLight(obj, id);
+            AddSpotLight(obj, thisID);
 		}
 		else if (tag == "physics")
 		{
 			Component_PHYSICS obj;
 			*it >> obj;
-			dest.AddPhysics(obj, id);
+            AddPhysics(obj, thisID);
 		}
 		else if (tag == "aspect")
 		{
 			Component_ASPECT obj;
 			*it >> obj;
-			dest.AddAspect(obj, id);
+            AddAspect(obj, thisID);
 		}
 		else if (tag == "camera")
 		{
 			Component_CAMERA obj;
 			*it >> obj;
-			dest.AddCamera(obj, id);
+            AddCamera(obj, thisID);
 		}
 		else if (tag == "particle_emitter")
 		{
 			Component_PARTICLEEMITTER obj;
 			*it >> obj;
-			dest.AddParticleEmitter(obj, id);
+            AddParticleEmitter(obj, thisID);
 		}
 		else if (tag == "class")
 		{
-			//Get id
-			pugi::xml_attribute idAtt = it->attribute("id");
+			uint32 childClass;
+            if (!GetIDValue(*it, childClass))
+            {
+                return ENTITYID::E_INV_CLASS;
+            }
 
-			if (!idAtt)
-			{
-				std::cerr << "ParseNode() -> No child ID." << std::endl;
-				continue;
-			}
-
-			uint32 childID;
-			if (!StringToNumber(childID, idAtt.value(), std::hex))
-			{
-                std::cerr << "ParseNode() -> Failed to read child ID." << std::endl;
-				continue;
-			}
-
-            entityID result = ParseClassNode(childID, classID, dest);
+            entityID result = LoadClass(childClass, thisID);
             if (!IsIDOK(result))
             {
                 //Clean up 
-                dest.RemoveEntity(id);
+                RemoveEntity(thisID);
                 return result;
             }
 
 		}
 	}
 
-    return id;
+    return thisID;
 }
 
 
 //--------------------------------------------------------------------------------
 //		Builds the database from a xml file
 //--------------------------------------------------------------------------------
-void operator>>(pugi::xml_node& tool, GameDatabase& dest)
+bool GameDatabase::LoadDataFile(const std::string& file)
 {
-	//Load the class document first
-	dest.entityClasses.reset();
-	pugi::xml_node classFileNode = tool.child("base_class_file");
-
-	//Ensure base class node exists
-	if (!classFileNode)
-	{
-        std::cerr << "operator>>(GameDatabase) -> No class file is defined." << std::endl;
-		return;
-	}
-
-	//Open file
-	dest.entityClasses.reset();
-	std::string classFile = classFileNode.child_value();
-	pugi::xml_parse_result result = dest.entityClasses.load_file(classFile.c_str());
-
-	//Make sure the class file has loaded
-	if (!result)
-	{
-        std::cerr << "@operator>>(pugi::xml_node&, GameDatabase&) -> Failed to open class file: " << 
-            classFile << std::endl;
-		return;
-	}
-
-	//Set the class file root node
-	dest.entityClassesRoot = dest.entityClasses.document_element();
-
-	//iterate through all attributes
-    for (	pugi::xml_attribute_iterator ait = tool.attributes_begin(); 
-			ait != tool.attributes_end(); ++ait)
+    //Does class file conform to schema?
+    if (!DBValidator->ValidateXML(file))
     {
-		//Get the name of the attribute
-		std::string tag = ait->name();
-
-		if (tag == "id")
-		{
-			dest.SetID(ait->as_string());
-		}
+        return false;
     }
 
-	//iterate through all nodes
-	for (pugi::xml_node_iterator it = tool.begin(); it != tool.end(); ++it)
+    //Load file
+    pugi::xml_document dbDoc;
+    pugi::xml_parse_result result = dbDoc.load_file(file.c_str());
+
+    //Make sure the data file opened
+    if (!result)
+    {
+        std::cerr << "@GameDtabase::LoadDataFile() -> Failed to open file: " << file << std::endl;
+        return false;
+    }
+
+    //Get the root node
+    pugi::xml_node root = dbDoc.document_element();
+
+    //Get the class file
+    pugi::xml_node classFile = root.child("classFile");
+    if (!classFile)
+    {
+        std::cerr << "@GameDtabase::LoadDataFile() -> No classFile element: " << file << std::endl;
+        return false;
+    }
+
+    //Try to load the class file
+    if (!LoadClassFile(classFile.child_value()))
+    {
+        std::cerr << "@GameDtabase::LoadDataFile() -> Failed to load class file: " << file << std::endl;
+        return false;
+    }
+
+    //iterate through all nodes
+    for (pugi::xml_node_iterator it = root.begin(); it != root.end(); ++it)
     {
         //Get the name of the node
-		std::string tag = it->name();
+        std::string tag = it->name();
 
-		if (tag == "entity")
-		{
-			if (!LoadEntity(it, dest))
-				std::cerr << "operator>>(GameDatabase) -> Error while loading entity." <<
-                std::endl;
-		}
-		else if (tag == "skybox")
-		{
-			*it >> dest.skybox;
-		}
-		else if (tag == "ambientlight")
-		{
-			*it >> dest.ambientLight;
-		}
-		else if (tag == "directional_light")
-		{
-			if (!LoadDirectionalLight(it, dest))
-				std::cerr << "operator>>(GameDatabase) -> Error while loading ambient light." <<
-                std::endl;
-		}
-
+        if (tag == "entity")
+        {
+            if (!LoadEntity(*it))
+            {
+                std::cerr << "@GameDtabase::LoadDataFile() -> Error while loading entity." <<
+                    std::endl;
+            }
+        }
+        else if (tag == "skybox")
+        {
+            *it >> skybox;
+        }
+        else if (tag == "ambientLight")
+        {
+            *it >> ambientLight;
+        }
+        else if (tag == "directionalLight")
+        {
+            uint32 thisID;
+            if (!GetIDValue(*it, thisID))
+            {
+                std::cerr << "@GameDtabase::LoadDataFile() -> Error while loading directional light id." <<
+                    std::endl;
+            }
+            
+            DirectionalLight temp;
+            *it >> temp;
+            directionalLights.insert(temp, thisID);
+        }
     }
 
 }	//End: GameDatabase::Build()
 
 
 //--------------------------------------------------------------------------------
-//		Load a directional light into the database
-//--------------------------------------------------------------------------------
-bool LoadDirectionalLight(pugi::xml_node_iterator& node, GameDatabase& dest)
-{
-	entityID id = 0;
-
-	//iterate through all attributes
-	for (pugi::xml_attribute_iterator ait = node->attributes_begin();
-		ait != node->attributes_end(); ++ait)
-	{
-		//Get the name of the attribute
-		std::string tag = ait->name();
-
-		if (tag == "id")
-		{
-			//Read id
-			uint32 attempt;
-			if (StringToNumber(attempt, ait->as_string(), std::hex))
-				id = entityID(attempt);
-
-			//Check is unique
-			int index;
-			if (dest.directionalLights.find(id, index))
-			{
-				std::cerr << "LoadDirectionalLight() -> Duplicate id" << std::endl;
-				return false;
-			}
-		}
-	}
-
-	//Load the light
-	DirectionalLight temp;
-	*node >> temp;
-
-	//Add to the database.
-	dest.directionalLights.insert(temp, id);
-
-	return true;
-
-}	//End: LoadDirectionalLight()
-
-
-//--------------------------------------------------------------------------------
 //		Get component
 //--------------------------------------------------------------------------------
-bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
+bool GameDatabase::LoadEntity(pugi::xml_node& node)
 {
-	//Get the class id
-	pugi::xml_attribute classAtt = node->attribute("id");
+    //Get class ID
+    uint32 classID;
+    if (!GetIDValue(node, classID))
+    {
+        return false;
+    }
 
-	if (!classAtt)
-	{
-        std::cerr << "LoadEntity() -> No class ID." << std::endl;
-		return false;
-	}
-
-	//Read the class id.
-	uint32 classID;
-	if (!StringToNumber(classID, classAtt.value(), std::hex))
-	{
-        std::cerr << "LoadEntity() -> Failed to read class ID." << std::endl;
-		return false;
-	}
-
-	//Add in the default class
-    entityID id = ParseClassNode(classID, ENTITYID::ROOT, dest);
-    if (!IsIDOK(id))
+	//Add in the default class template
+    entityID thisID = LoadClass(classID, ENTITYID::ROOT);
+    if (!IsIDOK(thisID))
     {
         return false;
     }
 
     //Overwrite components from the input
-    if (!ParseInstanceNode(*node, dest, id))
+    if (!AmmendEntity(node, thisID))
     {
-        dest.RemoveEntity(id);
+        RemoveEntity(thisID);
         return false;
     }
 
@@ -712,13 +633,20 @@ bool LoadEntity(pugi::xml_node_iterator& node, GameDatabase& dest)
 //--------------------------------------------------------------------------------
 bool GameDatabase::LoadClassFile(const std::string& file)
 {
-    //Does class file conform to schema?
+    //Is this file already loaded?
+    if (file == currentClassDoc)
+    {
+        return true;
+    }
+
+    //Does class file conform to the schema?
     if (!classValidator->ValidateXML(file))
     {
         return false;
     }
 
     //Load class file
+    classDocument.reset();
     pugi::xml_parse_result result = classDocument.load_file(file.c_str());
 
     //Make sure it opened
@@ -739,18 +667,24 @@ bool GameDatabase::LoadClassFile(const std::string& file)
 
         if (tag == "class")
         {
+            //Get the class ID
             uint32 thisID;
             if (!GetIDValue(*it, thisID))
             {
                 return false;
             }
 
+            //Ensure Class structure is valid
             if (!IsIDValid(*it, thisID))
             {
                 return false;
             }
         }
     }
+
+    //Set the new class doc name
+    currentClassDoc = file;
+
     return true;
 }
 
@@ -760,6 +694,13 @@ bool GameDatabase::LoadClassFile(const std::string& file)
 //--------------------------------------------------------------------------------
 bool GameDatabase::IsIDValid(pugi::xml_node& parent, uint32 thatID)
 {
+    //Must have a position component if has children
+    bool hasPosition = false;
+    if (parent.child("position"))
+    {
+        hasPosition = true;
+    }
+
     //iterate through all child nodes
     for (pugi::xml_node_iterator it = parent.begin(); it != parent.end(); ++it)
     {
@@ -769,7 +710,7 @@ bool GameDatabase::IsIDValid(pugi::xml_node& parent, uint32 thatID)
         if (tag == "class")
         {
             uint32 thisID;
-            if (!GetIDValue(*it, thisID))
+            if (!hasPosition || !GetIDValue(*it, thisID))
             {
                 return false;
             }
@@ -861,7 +802,7 @@ bool GameDatabase::GlobalInit()
 //--------------------------------------------------------------------------------
 //		@GameDtabase::LoadClassFile
 //--------------------------------------------------------------------------------
-bool GameDatabase::LoadClassFile(const std::string&)
+void GameDatabase::GlobalShutDown()
 {
     delete classValidator;
     delete DBValidator;

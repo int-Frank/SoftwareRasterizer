@@ -136,13 +136,17 @@
         <xs:complexType>
             <xs:choice maxOccurs="unbounded" minOccurs="0">
                 <xs:element ref="entity"  maxOccurs="unbounded" minOccurs="0"/>
-                <xs:element ref="skybox"  maxOccurs="unbounded" minOccurs="0"/>
+                <xs:element ref="skybox"  maxOccurs="1" minOccurs="0"/>
                 <xs:element ref="ambientLight"  maxOccurs="1" minOccurs="0"/>
                 <xs:element ref="directionalLight"  maxOccurs="unbounded" minOccurs="0"/>
                 <xs:element ref="classFile"  maxOccurs="1" minOccurs="1"/>
             </xs:choice>
             <xs:attribute name="id" use="required" type="xs:string"/>
         </xs:complexType>
+        <xs:unique name="uniqueDLightID">
+            <xs:selector xpath="directionalLight"/>
+            <xs:field xpath="@id"/>
+        </xs:unique>
     </xs:element>
 
 </xs:schema>

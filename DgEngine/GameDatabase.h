@@ -23,7 +23,6 @@
 #include "Skybox.h"
 #include "pugixml.hpp"
 
-#define GetID(classID, instanceID) entityID((classID << 16) | instanceID)
 
 /*!
  * @ingroup entity_component
@@ -51,17 +50,6 @@ public:
     //! @brief Sets class schema
     static bool GlobalInit();
     static void GlobalShutDown();
-
-	//--------------------------------------------------------------------------------
-	//		Read from xml_node
-	//--------------------------------------------------------------------------------
-	//friend void operator>>(pugi::xml_node&, GameDatabase&);
-    //friend bool LoadEntity(pugi::xml_node_iterator&, GameDatabase&);
-    //friend bool LoadDirectionalLight(pugi::xml_node_iterator&, GameDatabase&);
-    //friend entityID ParseClassNode(uint32 classID, entityID parent, GameDatabase& dest);
-
-    //! @Load class template file
-    bool LoadClassFile(const std::string&);
 
     //! @Load map file
     bool LoadDataFile(const std::string&);
@@ -117,13 +105,22 @@ private:    //Data
 
 	std::string id;
 	pugi::xml_document classDocument;
+    std::string currentClassDoc;
 
 private:    //Functions
+
+    //! @Load class template file
+    bool LoadClassFile(const std::string&);
 
     // Functions that help validate class files.
     bool IsIDValid(pugi::xml_node& parent, uint32 id);
     bool IsIDInRoot(uint32);
     bool GetIDValue(pugi::xml_node&, uint32&);
+
+    // Load functions
+    entityID LoadClass(uint32 classID, entityID parent);
+    bool LoadEntity(pugi::xml_node& node);
+    bool AmmendEntity(pugi::xml_node& node, entityID id);
 
 private:    //Statics
 
@@ -140,5 +137,10 @@ inline bool IsIDOK(entityID id)
 // Note: The family heirarcy of positions must be established before this
 //       function should be called.
 bool GetWorldSpaceVelocity(GameDatabase&, Vector4&, entityID);
+
+inline entityID GetID(uint32 classID, uint32 instanceID)
+{
+    return entityID((classID << 16) | instanceID);
+}
 
 #endif
