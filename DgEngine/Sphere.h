@@ -20,6 +20,7 @@
 #include "DgTypes.h"
 #include "Dg_io.h"
 #include "Primitive3D.h"
+#include <assert.h>
 
 class Vector4;
 class Ray4;

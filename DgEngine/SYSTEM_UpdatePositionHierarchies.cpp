@@ -37,7 +37,7 @@ void SYSTEM_UpdatePositionHierarchies(GameDatabase& data)
 		Component_POSITION& cur_pos = data.Positions[i];
 
 		//If this is a root node
-		if ( cur_pos.parent == ROOT_ID )
+		if ( cur_pos.parent == ENTITYID::ROOT )
 		{
 			//Update world vqs
 			cur_pos.T_WLD_OBJ = cur_pos.T_PAR_OBJ;

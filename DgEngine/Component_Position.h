@@ -15,7 +15,7 @@ namespace pugi{class xml_node;}
 class Component_POSITION : public Component
 {
 public:
-    Component_POSITION() : parent(ROOT_ID) {}
+    Component_POSITION() : parent(ENTITYID::ROOT) {}
     void Clear() { children.reset(); }
 
 public:

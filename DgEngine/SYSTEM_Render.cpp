@@ -26,8 +26,6 @@ void SYSTEM_Render(GameDatabase& data)
 		//--------------------------------------------------------------------------------
 		if (data.Cameras[ci].cameraSystem.IsActive())
 			data.Cameras[ci].cameraSystem.Render();
-
-		
 	}
 
 

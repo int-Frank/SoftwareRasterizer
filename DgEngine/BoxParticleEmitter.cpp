@@ -88,13 +88,13 @@ pugi::xml_node& operator>>(pugi::xml_node& node, BoxParticleEmitter& dest)
 		//Get the name of the node
 		std::string tag = it->name();
 
-		if (tag == "box")
+		if (tag == "obb")
 		{
 			OBB b;
 			*it >> b;
 			dest.SetOBB(b);
 		}
-		else if (tag == "deviationAngle")
+		else if (tag == "deviation")
 		{
 			ndb_f_param t;
 			Vector4 v;

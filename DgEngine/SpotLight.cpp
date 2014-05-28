@@ -141,7 +141,7 @@ pugi::xml_node& operator>>(pugi::xml_node& node, SpotLight& dest)
 		{
 			DgString(it->child_value()) >> origin;
 		}
-		else if (tag == "axis")
+		else if (tag == "direction")
 		{
 			DgString(it->child_value()) >> axis;
 		}
@@ -155,7 +155,7 @@ pugi::xml_node& operator>>(pugi::xml_node& node, SpotLight& dest)
 		}
 		else if (tag == "color")
 		{
-			DgString(it->child_value()) >> clr;
+            StringToNumber(clr.i, it->child_value(), std::hex);
 		}
 
     }

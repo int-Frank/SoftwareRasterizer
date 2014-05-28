@@ -132,7 +132,7 @@ void Read_LookAt(pugi::xml_node& node, VQS& dest)
 		{
 			DgString(it->child_value()) >> target;
 		}
-		else if (tag == "up_vector")
+		else if (tag == "up")
 		{
 			DgString(it->child_value()) >> up;
 		}

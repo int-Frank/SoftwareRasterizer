@@ -38,7 +38,7 @@ void SYSTEM_PostProcess(GameDatabase& data)
 	for (int i = 0; i < data.Positions.size(); ++i)
 	{
 		//If current position has no parent, continue
-		if (data.Positions[i].parent == ROOT_ID)
+		if (data.Positions[i].parent == ENTITYID::ROOT)
 			continue;
 
 		//Get id current component

@@ -48,32 +48,32 @@ pugi::xml_node& operator>>(pugi::xml_node& node, Materials& dest)
 			DgString(it->child_value()) >> t;
 			dest.SetAlpha(t);
 		}
-		else if (tag == "isemissive")
+		else if (tag == "isEmissive")
 		{
 			bool b = ToBool(it->child_value());
 			dest.SwitchEmission(b);
 		}
-		else if (tag == "isreflective")
+		else if (tag == "isReflective")
 		{
 			bool b = ToBool(it->child_value());
 			dest.SwitchReflection(b);
 		}
-		else if (tag == "isdoublesided")
+		else if (tag == "isDoubleSided")
 		{
 			bool b = ToBool(it->child_value());
 			dest.SwitchDoubleSided(b);
 		}
-		else if (tag == "isalphaPP")
+		else if (tag == "isAlphaPP")
 		{
 			bool b = ToBool(it->child_value());
 			dest.SwitchAlphaPP(b);
 		}
-		else if (tag == "isalphaMaster")
+		else if (tag == "isAlphaMaster")
 		{
 			bool b = ToBool(it->child_value());
 			dest.SwitchAlphaM(b);
 		}
-		else if (tag == "ismaster")
+		else if (tag == "isMaster")
 		{
 			bool b = ToBool(it->child_value());
 			dest.SwitchMaster(b);

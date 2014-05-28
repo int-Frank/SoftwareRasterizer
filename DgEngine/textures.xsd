@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="frame">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="file" type="xs:string"/>
+                <xs:element name="delay" type="xs:unsignedInt"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="animated">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="1">
+                <xs:element ref="frame"/>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+
+  <xs:element name="texture">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="animated"/>
+        <xs:element name="single" type="xs:string"/>
+      </xs:choice>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="skybox">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="top" type="xs:string"/>
+        <xs:element name="bottom" type="xs:string"/>
+        <xs:element name="left" type="xs:string"/>
+        <xs:element name="right" type="xs:string"/>
+        <xs:element name="front" type="xs:string"/>
+        <xs:element name="back" type="xs:string"/>
+      </xs:all>
+      <xs:attribute name="name" use="required" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="root">
+        <xs:complexType>
+            <xs:choice maxOccurs="unbounded" minOccurs="0">
+              <xs:element ref="texture"/>
+              <xs:element ref="skybox"/>
+            </xs:choice>
+        </xs:complexType>
+    <xs:unique name="uniqueTextureID">
+      <xs:selector xpath="texture"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
+    <xs:unique name="uniqueSkyboxID">
+      <xs:selector xpath="skybox"/>
+      <xs:field xpath="@name"/>
+    </xs:unique>
+    </xs:element>
+
+</xs:schema>

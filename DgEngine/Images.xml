@@ -1,132 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Textures>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="textures.xsd">
 
-  <single id="DEFAULT">blank.png</single>
-  <single id="WHITE">white.png</single>
-  <single id="DOOR101">door101.png</single>
-  <single id="WALL304">wall304.png</single>
-  <single id="CHECKERBOARD">checkerboard.png</single>
-  <single id="MARBLE1">marble1.png</single>
-  <single id="TEAPOT101">teapot101.png</single>
-  <single id="AXIS">axis.png</single>
-  <single id="GRASS">grass.png</single>
-  <single id="WATER">water.png</single>
-  <single id="SPACESHIP">spaceship.png</single>
-  <single id="ROCK">rock.png</single>
-  <single id="ROCK_01">rock_01.png</single>
-  <single id="MOON">moon.png</single>
-  <single id="BORG">borg.png</single>
-  <single id="PORTRAIT">portrait.png</single>
+  <texture name="DEFAULT"><single>blank.png</single></texture>
+  <texture name="WHITE"><single>white.png</single></texture>
+  <texture name="DOOR101"><single>door101.png</single></texture>
+  <texture name="WALL304"><single>wall304.png</single></texture>
+  <texture name="CHECKERBOARD"><single>checkerboard.png</single></texture>
+  <texture name="MARBLE1"><single>marble1.png</single></texture>
+  <texture name="TEAPOT101"><single>teapot101.png</single></texture>
+  <texture name="AXIS"><single>axis.png</single></texture>
+  <texture name="GRASS"><single>grass.png</single></texture>
+  <texture name="WATER"><single>water.png</single></texture>
+  <texture name="SPACESHIP"><single>spaceship.png</single></texture>
+  <texture name="ROCK"><single>rock.png</single></texture>
+  <texture name="ROCK_01"><single>rock_01.png</single></texture>
+  <texture name="MOON"><single>moon.png</single></texture>
+  <texture name="BORG"><single>borg.png</single></texture>
+  <texture name="PORTRAIT"><single>portrait.png</single></texture>
 
-  <animated id="ANIMATED_CRYSTAL">
-    <frame delay="50">ani_crystal_0.png</frame>
-    <frame delay="50">ani_crystal_1.png</frame>
-    <frame delay="50">ani_crystal_2.png</frame>
-    <frame delay="50">ani_crystal_3.png</frame>
-    <frame delay="50">ani_crystal_4.png</frame>
-    <frame delay="50">ani_crystal_5.png</frame>
-    <frame delay="50">ani_crystal_6.png</frame>
-    <frame delay="50">ani_crystal_7.png</frame>
-    <frame delay="50">ani_crystal_8.png</frame>
-    <frame delay="50">ani_crystal_9.png</frame>
-    <frame delay="50">ani_crystal_10.png</frame>
-    <frame delay="50">ani_crystal_11.png</frame>
-    <frame delay="50">ani_crystal_12.png</frame>
-    <frame delay="50">ani_crystal_13.png</frame>
-    <frame delay="50">ani_crystal_14.png</frame>
-    <frame delay="50">ani_crystal_15.png</frame>
-    <frame delay="50">ani_crystal_16.png</frame>
-    <frame delay="50">ani_crystal_17.png</frame>
-    <frame delay="50">ani_crystal_18.png</frame>
-    <frame delay="50">ani_crystal_19.png</frame>
-    <frame delay="50">ani_crystal_20.png</frame>
-    <frame delay="50">ani_crystal_21.png</frame>
-    <frame delay="50">ani_crystal_22.png</frame>
-    <frame delay="50">ani_crystal_23.png</frame>
-    <frame delay="50">ani_crystal_24.png</frame>
-    <frame delay="50">ani_crystal_25.png</frame>
-    <frame delay="50">ani_crystal_26.png</frame>
-    <frame delay="50">ani_crystal_27.png</frame>
-    <frame delay="50">ani_crystal_28.png</frame>
-    <frame delay="50">ani_crystal_29.png</frame>
-    <frame delay="50">ani_crystal_30.png</frame>
-    <frame delay="50">ani_crystal_31.png</frame>
-    <frame delay="50">ani_crystal_32.png</frame>
-    <frame delay="50">ani_crystal_33.png</frame>
-    <frame delay="50">ani_crystal_34.png</frame>
-    <frame delay="50">ani_crystal_35.png</frame>
-    <frame delay="50">ani_crystal_36.png</frame>
-    <frame delay="50">ani_crystal_37.png</frame>
-    <frame delay="50">ani_crystal_38.png</frame>
-    <frame delay="50">ani_crystal_39.png</frame>
-    <frame delay="50">ani_crystal_40.png</frame>
-    <frame delay="50">ani_crystal_41.png</frame>
-    <frame delay="50">ani_crystal_42.png</frame>
-    <frame delay="50">ani_crystal_43.png</frame>
-    <frame delay="50">ani_crystal_44.png</frame>
-    <frame delay="50">ani_crystal_45.png</frame>
-    <frame delay="50">ani_crystal_46.png</frame>
-    <frame delay="50">ani_crystal_47.png</frame>
-    <frame delay="50">ani_crystal_48.png</frame>
-    <frame delay="50">ani_crystal_49.png</frame>
-    <frame delay="50">ani_crystal_50.png</frame>
-    <frame delay="50">ani_crystal_51.png</frame>
-    <frame delay="50">ani_crystal_52.png</frame>
-    <frame delay="50">ani_crystal_53.png</frame>
-    <frame delay="50">ani_crystal_54.png</frame>
-    <frame delay="50">ani_crystal_55.png</frame>
-    <frame delay="50">ani_crystal_56.png</frame>
-    <frame delay="50">ani_crystal_57.png</frame>
-    <frame delay="50">ani_crystal_58.png</frame>
-    <frame delay="50">ani_crystal_59.png</frame>
+  <texture name="ANIMATED_CRYSTAL">
+    <animated>
+      <frame>
+        <file>ani_crystal_0.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_1.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_2.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_3.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_4.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_5.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_6.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_7.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_8.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_9.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_10.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_11.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_12.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_13.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_14.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_15.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_16.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_17.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_18.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_19.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_20.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_21.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_22.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_23.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_24.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_25.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_26.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_27.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_28.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_29.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_30.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_31.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_32.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_33.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_34.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_35.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_36.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_37.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_38.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_39.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_40.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_41.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_42.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_43.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_44.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_45.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_46.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_47.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_48.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_49.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_50.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_51.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_52.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_53.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_54.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_55.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_56.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_57.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_58.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>ani_crystal_59.png</file>
+        <delay>50</delay>
+      </frame>
   </animated>
-
-  <animated id="PORTAL">
-    <frame delay="50">portal_0.png</frame>
-    <frame delay="50">portal_1.png</frame>
-    <frame delay="50">portal_2.png</frame>
-    <frame delay="50">portal_3.png</frame>
-    <frame delay="50">portal_4.png</frame>
-    <frame delay="50">portal_5.png</frame>
-    <frame delay="50">portal_6.png</frame>
-    <frame delay="50">portal_7.png</frame>
-    <frame delay="50">portal_8.png</frame>
-    <frame delay="50">portal_9.png</frame>
-    <frame delay="50">portal_10.png</frame>
-    <frame delay="50">portal_11.png</frame>
-    <frame delay="50">portal_12.png</frame>
-    <frame delay="50">portal_13.png</frame>
-    <frame delay="50">portal_14.png</frame>
-    <frame delay="50">portal_15.png</frame>
-    <frame delay="50">portal_16.png</frame>
-    <frame delay="50">portal_17.png</frame>
-    <frame delay="50">portal_18.png</frame>
-    <frame delay="50">portal_19.png</frame>
-    <frame delay="50">portal_20.png</frame>
-    <frame delay="50">portal_21.png</frame>
-    <frame delay="50">portal_22.png</frame>
-    <frame delay="50">portal_23.png</frame>
-    <frame delay="50">portal_24.png</frame>
-    <frame delay="50">portal_25.png</frame>
-    <frame delay="50">portal_26.png</frame>
-    <frame delay="50">portal_27.png</frame>
-    <frame delay="50">portal_28.png</frame>
-    <frame delay="50">portal_29.png</frame>
-    <frame delay="50">portal_30.png</frame>
-    <frame delay="50">portal_31.png</frame>
-    <frame delay="50">portal_32.png</frame>
-    <frame delay="50">portal_33.png</frame>
-    <frame delay="50">portal_34.png</frame>
-    <frame delay="50">portal_35.png</frame>
-    <frame delay="50">portal_36.png</frame>
-    <frame delay="50">portal_37.png</frame>
-    <frame delay="50">portal_38.png</frame>
-    <frame delay="50">portal_39.png</frame>
-    <frame delay="50">portal_40.png</frame>
-  </animated>
+  </texture>
+    
+  <texture name="PORTAL">
+    <animated>
+      <frame>
+        <file>portal_0.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_1.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_2.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_3.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_4.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_5.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_6.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_7.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_8.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_9.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_10.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_11.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_12.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_13.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_14.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_15.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_16.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_17.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_18.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_19.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_20.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_21.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_22.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_23.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_24.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_25.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_26.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_27.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_28.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_29.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_30.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_31.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_32.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_33.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_34.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_35.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_36.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_37.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_38.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_39.png</file>
+        <delay>50</delay>
+      </frame>
+      <frame>
+        <file>portal_40.png</file>
+        <delay>50</delay>
+      </frame>
+    </animated>
+  </texture>
   
-  
-  <skybox id="SPACE_PURPLE_NEBULA">
+  <skybox name="SPACE_PURPLE_NEBULA">
     <top>space_purple_nebula_top3.png</top>
     <bottom>space_purple_nebula_bottom4.png</bottom>
     <left>space_purple_nebula_left2.png</left>
@@ -135,7 +442,7 @@
     <back>space_purple_nebula_back6.png</back>
   </skybox>
 
-  <skybox id="SPACE101">
+  <skybox name="SPACE101">
     <top>space101_top3.png</top>
     <bottom>space101_bottom4.png</bottom>
     <left>space101_left2.png</left>
@@ -144,4 +451,4 @@
     <back>space101_back6.png</back>
   </skybox>
   
-</Textures>
+</root>

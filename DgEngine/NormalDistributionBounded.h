@@ -46,8 +46,8 @@ public:
 			//Error check
             if ((in >> dest.mean >> dest.stddev >> dest.lowerBound >> dest.upperBound).fail())
 			{
-                std::cerr << "@operator>>(NormalDistributionBounded<T>::param&) -> Bad read.") <<
-                std:endl;
+                std::cerr << "@operator>>(NormalDistributionBounded<T>::param&) -> Bad read." <<
+                std::endl;
 			}
 
 			return in;

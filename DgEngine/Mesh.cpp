@@ -167,8 +167,8 @@ DgReader& operator>> (DgReader& in, Mesh& dest)
 	//--------------------------------------------------------------------------------
 
 	//Resize lists
-	dest.PList.resize(temp_PList.size());
-	dest.VList.resize(temp_VList.size());
+	dest.PList.resize(uint32(temp_PList.size()));
+	dest.VList.resize(uint32(temp_VList.size()));
 
 	//Copy contents of VList
 	std::list<Vertex>::iterator vit = temp_VList.begin();

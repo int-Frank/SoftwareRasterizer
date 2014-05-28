@@ -805,10 +805,16 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
+    <Xsd Include="gamedb_format.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
     <Xsd Include="class_format.xsd">
       <Filter>Resource Files</Filter>
     </Xsd>
-    <Xsd Include="gamedb_format.xsd">
+    <Xsd Include="textures.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
+    <Xsd Include="viewports.xsd">
       <Filter>Resource Files</Filter>
     </Xsd>
   </ItemGroup>

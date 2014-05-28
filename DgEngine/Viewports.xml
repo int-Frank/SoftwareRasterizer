@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<renderers id="default">
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:noNamespaceSchemaLocation="viewports.xsd">
 
-  <!-- 
-  This file contains the list of viewports the application can use. It is loaded once at
-  startup and immutable. The first viewport should be the root "00" and should represent
-  the entire screen. Negative values for viewport id are invalid and will not be loaded.
-  -->
-  
   <!-- FULL SCREEN -->
   <viewport id="AAAA">
     <blend>0</blend>
@@ -52,4 +47,4 @@
     <h_rel>0.3</h_rel>
   </viewport>
 
-</renderers>
+</root>

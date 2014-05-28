@@ -10,7 +10,7 @@
 Overworld::Overworld()
 {
 	//Load from input file
-	LoadXMLFile("gamma.xml", *this);
+	Init();
 
 	//Load the help text
 	helpBox.Load("help");
@@ -41,54 +41,16 @@ Overworld::~Overworld()
 //--------------------------------------------------------------------------------
 //		Load the overworld from an xml file
 //--------------------------------------------------------------------------------
-void operator>>(pugi::xml_node& tool, Overworld& dest)
+bool Overworld::Init()
 {
-	//--------------------------------------------------------------------------------
-	//		Try to find default camera
-	//--------------------------------------------------------------------------------
-
-	//iterate through all attributes
-    for (	pugi::xml_attribute_iterator ait = tool.attributes_begin(); 
-			ait != tool.attributes_end(); ++ait)
-    {
-		//Get the name of the attribute
-		std::string tag = ait->name();
-
-		if (tag == "id")
-		{
-			dest.id = ait->as_string();
-		}
-
-    }
-
-	//iterate through all nodes
-	for (pugi::xml_node_iterator it = tool.begin(); it != tool.end(); ++it)
-    {
-        //Get the name of the node
-		std::string tag = it->name();
-
-        if (tag == "skybox")
-		{
-			*it >> dest.skybox;
-		}
-		else if (tag == "game_data")
-		{
-			*it >> dest.gameData;
-		}
-		else if (tag == "camera_setups")
-		{
-			*it >> dest.viewport_events;
-		}
-
-    }
-
+    gameData.LoadDataFile("gamma.xml");
 
 	//--------------------------------------------------------------------------------
 	//		Run post processing system
 	//--------------------------------------------------------------------------------
 
 	
-	SYSTEM_PostProcess(dest.gameData);
+	SYSTEM_PostProcess(gameData);
 	
 
 }	//End: operator>>()

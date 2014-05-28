@@ -1,6 +1,5 @@
 #include "Color.h"
 #include "SDL.h"
-#include "DgError.h"
 
 //--------------------------------------------------------------------------------
 //		Static members

@@ -14,7 +14,6 @@
 
 #include "Texture_S.h"
 #include "Texture.h"
-#include "DgError.h"
 #include "ImageManager.h"
 #include "pugixml.hpp"
 

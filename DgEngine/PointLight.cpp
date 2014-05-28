@@ -16,6 +16,7 @@
 #include "pugixml.hpp"
 #include "Sphere.h"
 #include "Materials.h"
+#include "Dg_io.h"
 
 
 //--------------------------------------------------------------------------------
@@ -139,8 +140,10 @@ pugi::xml_node& operator>>(pugi::xml_node& node, PointLight& dest)
 		else if (tag == "color")
 		{
 			Color clr;
-			DgString(it->child_value()) >> clr;
-			dest.SetColor(clr);
+            if (StringToNumber(clr.i, it->child_value(), std::hex))
+            {
+                dest.SetColor(clr);
+            }
 		}
 
     }

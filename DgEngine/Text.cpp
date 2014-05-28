@@ -15,7 +15,6 @@
 #include "Text.h"
 #include "SDL_ttf.h"
 #include "CommonGraphics.h"
-#include "DgError.h"
 #include "Dg_io.h"
 #include "SDL.h"
 #include "Viewport.h"

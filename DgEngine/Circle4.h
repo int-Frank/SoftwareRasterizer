@@ -23,8 +23,8 @@
 #include "BasisR3.h"
 #include "Point4.h"
 #include "Dg_io.h"
-#include "DgError.h"
 #include "Primitive1D.h"
+#include <assert.h>
 
 class VQS;
 class Sphere;

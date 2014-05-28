@@ -14,7 +14,7 @@ namespace pugi{class xml_node;}
 class Component_CAMERA : public Component
 {
 public:
-    Component_CAMERA() : view(VIEWPORTID_NULL) {}
+    Component_CAMERA() : view(VIEWPORTID::NONE) {}
 
 	CameraSystem cameraSystem;
 	VQS T_OBJ_WLD;			//For transforming objects in world space to camera space

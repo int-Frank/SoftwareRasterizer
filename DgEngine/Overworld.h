@@ -33,7 +33,7 @@ public:
 	~Overworld();
 
 	//Input
-	friend void operator>>(pugi::xml_node&, Overworld& dest);
+    bool Init();
 
 	//Main loop functions
 	void HandleEvents(StateInfo&, SDL_Event&);

@@ -4,7 +4,6 @@
 #include "Polygon_RASTER_SB.h"
 #include "Vertex_RASTER.h"
 #include "DgTypes.h"
-#include "DgError.h"
 #include "Materials.h"
 #include "Image.h"
 #include "rasterizer_defines.h"

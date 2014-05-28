@@ -13,7 +13,6 @@
 //================================================================================
 
 #include "TextureManager.h"
-#include "DgError.h"
 #include "pugixml.hpp"
 #include "Texture_S.h"
 #include "Texture_A.h"

@@ -78,9 +78,11 @@ pugi::xml_node& operator>>(pugi::xml_node& node, DirectionalLight& dest)
 
 		if (tag == "color")
 		{
-			Color temp;
-			DgString(it->child_value()) >> temp;
-			dest.SetColor(temp);
+            Color clr;
+            if (StringToNumber(clr.i, it->child_value(), std::hex))
+            {
+                dest.SetColor(clr);
+            }
 		}
 		else if (tag == "intensity")
 		{

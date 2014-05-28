@@ -36,15 +36,6 @@
               <s>1</s>
           </vqs>
       </position>
-    <camera>
-      <camera_system>
-        <camera_obj>
-          <fov>1.7</fov>
-          <near_clip>0.02</near_clip>
-          <far_clip>1000</far_clip>
-        </camera_obj>
-      </camera_system>
-    </camera>
   </class>
   <class name="light_globe" id="A000">
       <position>
