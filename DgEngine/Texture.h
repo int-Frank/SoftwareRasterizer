@@ -37,7 +37,7 @@ public:
 	Texture(const Texture& t) {}
 
 	//Return mipmap for input time 't' (for animations)
-	virtual const Mipmap* GetMipmap(uint32 time = 0) const =0;
+	virtual uint32 GetMipmap(uint32 time = 0) const =0;
 
 };
 

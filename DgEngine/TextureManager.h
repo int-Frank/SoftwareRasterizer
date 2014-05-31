@@ -20,13 +20,13 @@
 #ifndef TEXTURE_MANAGER_H
 #define TEXTURE_MANAGER_H
 
-#include <list>
 #include <string>
 #include "BaseWrapper.h"
 #include "Texture.h"
 #include "pugixml.hpp"
 #include "Texture_S.h"
 #include "Mipmap.h"
+#include "DgMap_d.h"
 
 
 //--------------------------------------------------------------------------------
@@ -34,8 +34,6 @@
 //--------------------------------------------------------------------------------
 class TextureManager
 {
-	typedef std::pair<BaseWrapper<Texture>, std::string> Texture_string;
-
 public:
 
 	//Constructor/destructor
@@ -43,7 +41,7 @@ public:
 	~TextureManager() {}
 
 	//Find and return a texture
-	const Texture* operator[](const std::string& tag);
+	const Texture& operator[](uint32 id);
 
 	//Find and return a specific texture xml node
 	const pugi::xml_node Find(std::string type, std::string id) const;
@@ -56,7 +54,7 @@ public:
 private:
 
 	//Data members
-	std::list<Texture_string> texture_list;	//The list of textures
+  DgMap_d<uint32, BaseWrapper<Texture>> texture_list;	//The list of textures
 
 	/*!
 	 * A valid texture must always be returned. If there was an error finding or
@@ -76,7 +74,7 @@ private:
 	const Texture* TextureManager::Load(const std::string&);
 
 	//Manipulators
-	const Texture* AddTexture(const Texture& t, const std::string& tag);
+	const Texture* AddTexture(const Texture& t, uint32 id);
 
 	//DISALLOW COPY AND ASSIGNMENT
 	TextureManager(const TextureManager&);

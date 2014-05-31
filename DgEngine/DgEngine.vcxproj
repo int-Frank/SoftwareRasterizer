@@ -250,8 +250,8 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="Circle4.h" />
-    <ClInclude Include="class_format.h">
-      <DependentUpon>class_format.xsd</DependentUpon>
+    <ClInclude Include="class.h">
+      <DependentUpon>class.xsd</DependentUpon>
     </ClInclude>
     <ClInclude Include="Clipper.h" />
     <ClInclude Include="Color.h" />
@@ -275,6 +275,7 @@
     <ClInclude Include="DgLinkedList.h" />
     <ClInclude Include="DgMap.h" />
     <ClInclude Include="DgMapS.h" />
+    <ClInclude Include="DgMap_d.h" />
     <ClInclude Include="DgOrderedArray.h" />
     <ClInclude Include="DgRect.h" />
     <ClInclude Include="DgTypes.h" />
@@ -383,10 +384,10 @@
     <Xml Include="Viewports.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="class_format.xsd">
+    <Xsd Include="class.xsd">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </Xsd>
-    <Xsd Include="gamedb_format.xsd">
+    <Xsd Include="gamedb.xsd">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>

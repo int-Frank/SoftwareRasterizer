@@ -1,7 +1,7 @@
 //================================================================================
-// @ DgMapS.h
+// @ map_s.h
 // 
-// Class: DgMapS
+// Class: map_s
 //
 // Ordered mapped list. Objects are inserted (in order) with some key. 
 // Similar to a DgMap however data is stored with the key. Best used for
@@ -21,394 +21,398 @@
 #include <assert.h>
 #include "DgTypes.h"
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U, T>:	U: key
-//						T: data
-//--------------------------------------------------------------------------------
-template<class U, class T>
-class DgMapS
+namespace Dg
 {
-	//Internal container which stores the data
-	struct Container
-	{
-		U key;
-		T item;
-	};
 
-public:
-	//Constructor / destructor
-	DgMapS();
-	DgMapS(uint32);
-	~DgMapS();
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U, T>:	U: key
+  //						T: data
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  class map_s
+  {
+	  //Internal container which stores the data
+	  struct Container
+	  {
+		  U key;
+		  T item;
+	  };
 
-	//Copy operations
-	DgMapS(const DgMapS&);
-	DgMapS& operator= (const DgMapS&);
+  public:
+	  //Constructor / destructor
+	  map_s();
+	  map_s(uint32);
+	  ~map_s();
 
-	//Accessors
+	  //Copy operations
+	  map_s(const map_s&);
+	  map_s& operator= (const map_s&);
 
-	//Get item at position
-	T& operator[](uint32 i)				{return data[i].item;}
-	const T& operator[](uint32 i) const {return data[i].item;}
-	int size()			const			{return current_size;}
-	bool empty()		const			{return current_size == 0;}
-	int max_size()		const			{return array_size;}
-	U ID(int i)			const			{return data[i].key;}
+	  //Accessors
 
-	//Returns false if not found, however, index will be set to
-	//the lower index just before where input key would be.
-	bool find(U key, int& index, int lower = 0) const;			//Use binary search
-	bool find(U key, int& index, int lower, int upper) const;	//Use binary search
+	  //Get item at position
+	  T& operator[](uint32 i)				{return data[i].item;}
+	  const T& operator[](uint32 i) const {return data[i].item;}
+	  int size()			const			{return current_size;}
+	  bool empty()		const			{return current_size == 0;}
+	  int max_size()		const			{return array_size;}
+	  U ID(int i)			const			{return data[i].key;}
+
+	  //Returns false if not found, however, index will be set to
+	  //the lower index just before where input key would be.
+	  bool find(U key, int& index, int lower = 0) const;			//Use binary search
+	  bool find(U key, int& index, int lower, int upper) const;	//Use binary search
 	
-	//Manipulators
-	bool insert(const T&, U key);		//Use find
-	bool set(U key, const T&);			//Use find
+	  //Manipulators
+	  bool insert(const T&, U key);		//Use find
+	  bool set(U key, const T&);			//Use find
     bool erase(U key);					//Use find
     bool erase_c(U key);				//Calls Clear() on object before erasing
     void clear();
     void clear_c();
-	void resize(uint32);
-	void extend();
-	void reset();				//Reset data array to size 1.
+	  void resize(uint32);
+	  void extend();
+	  void reset();				//Reset data array to size 1.
 
-private:
-	//Data members
-	Container* data;
+  private:
+	  //Data members
+	  Container* data;
 
-	int array_size;
-	int current_size;
+	  int array_size;
+	  int current_size;
 
-private:
-	void init(const DgMapS&);
-};
-
-
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::DgMapS()
-//--------------------------------------------------------------------------------
-//		Constructor
-//--------------------------------------------------------------------------------
-template<class U, class T>
-DgMapS<U, T>::DgMapS()
-	: data(NULL), array_size(1), current_size(0)
-{
-	resize(1);
-
-}	//End: DgMapS::DgMapS()
+  private:
+	  void init(const map_s&);
+  };
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::DgMapS()
-//--------------------------------------------------------------------------------
-//		Constructor
-//--------------------------------------------------------------------------------
-template<class U, class T>
-DgMapS<U, T>::DgMapS(uint32 new_size)
-	: data(NULL), array_size(0), current_size(0)
-{
-	resize(new_size);
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::map_s()
+  //--------------------------------------------------------------------------------
+  //		Constructor
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  map_s<U, T>::map_s()
+	  : data(NULL), array_size(1), current_size(0)
+  {
+	  resize(1);
 
-}	//End: DgMapS::DgMapS()
-
-
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::~DgMapS()
-//--------------------------------------------------------------------------------
-//		Destructor
-//--------------------------------------------------------------------------------
-template<class U, class T>
-DgMapS<U, T>::~DgMapS()
-{
-	//Free memory
-	delete[array_size] data;
-
-}	//End: DgMapS::~DgMapS()
+  }	//End: map_s::map_s()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::init()
-//--------------------------------------------------------------------------------
-//		Initialise DgMapS to another.
-//--------------------------------------------------------------------------------
-template<class U, class T>
-void DgMapS<U, T>::init(const DgMapS& other)
-{
-	//Resize lists
-	int sze = (other.current_size>0)?other.current_size:1;
-	resize(sze);
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::map_s()
+  //--------------------------------------------------------------------------------
+  //		Constructor
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  map_s<U, T>::map_s(uint32 new_size)
+	  : data(NULL), array_size(0), current_size(0)
+  {
+	  resize(new_size);
 
-	for (int i = 0; i < other.current_size; ++i)
-	{
-		data[i] = other.data[i];
-	}
-
-}	//End: DgMapS::init()
+  }	//End: map_s::map_s()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::DgMapS()
-//--------------------------------------------------------------------------------
-//		Copy constructor
-//--------------------------------------------------------------------------------
-template<class U, class T>
-DgMapS<U, T>::DgMapS(const DgMapS& other): 
-	data(NULL), array_size(0), current_size(0)
-{
-	init(other);
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::~map_s()
+  //--------------------------------------------------------------------------------
+  //		Destructor
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  map_s<U, T>::~map_s()
+  {
+	  //Free memory
+	  delete[] data;
 
-}	//End: DgMapS::DgMapS()
+  }	//End: map_s::~map_s()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::operator=()
-//--------------------------------------------------------------------------------
-//		Assignment
-//--------------------------------------------------------------------------------
-template<class U, class T>
-DgMapS<U, T>& DgMapS<U, T>::operator=(const DgMapS& other)
-{
-	if (this == &other)
-		return *this;
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::init()
+  //--------------------------------------------------------------------------------
+  //		Initialise map_s to another.
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  void map_s<U, T>::init(const map_s& other)
+  {
+	  //Resize lists
+	  int sze = (other.current_size>0)?other.current_size:1;
+	  resize(sze);
+
+	  for (int i = 0; i < other.current_size; ++i)
+	  {
+		  data[i] = other.data[i];
+	  }
+
+  }	//End: map_s::init()
+
+
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::map_s()
+  //--------------------------------------------------------------------------------
+  //		Copy constructor
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  map_s<U, T>::map_s(const map_s& other): 
+	  data(NULL), array_size(0), current_size(0)
+  {
+	  init(other);
+
+  }	//End: map_s::map_s()
+
+
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::operator=()
+  //--------------------------------------------------------------------------------
+  //		Assignment
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  map_s<U, T>& map_s<U, T>::operator=(const map_s& other)
+  {
+	  if (this == &other)
+		  return *this;
 	
-	init(other);
+	  init(other);
 
-	return *this;
+	  return *this;
 
-}	//End: DgMapS::operator=()
+  }	//End: map_s::operator=()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::resize()
-//--------------------------------------------------------------------------------
-//		Resize map, erases all data before resize.
-//--------------------------------------------------------------------------------
-template<class U, class T>
-void DgMapS<U, T>::resize(uint32 val)
-{
-	//Delete old data
-	delete[array_size] data;
-	data = new Container[val];
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::resize()
+  //--------------------------------------------------------------------------------
+  //		Resize map, erases all data before resize.
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  void map_s<U, T>::resize(uint32 val)
+  {
+	  //Delete old data
+	  delete[] data;
+	  data = new Container[val];
 
-	array_size = val;
-	current_size = 0;
+	  array_size = val;
+	  current_size = 0;
 	
-}	//End: DgMapS::resize()
+  }	//End: map_s::resize()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::find()
-//--------------------------------------------------------------------------------
-//		Find a value in the map, uses a binary search algorithm
-//--------------------------------------------------------------------------------
-template<class U, class T>
-bool DgMapS<U, T>::find(U key, int& index, int lower) const
-{
-	return find(key, index, lower, (current_size - 1));
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::find()
+  //--------------------------------------------------------------------------------
+  //		Find a value in the map, uses a binary search algorithm
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  bool map_s<U, T>::find(U key, int& index, int lower) const
+  {
+	  return find(key, index, lower, (current_size - 1));
 	
-}	//End: DgMapS::find()
+  }	//End: map_s::find()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::find()
-//--------------------------------------------------------------------------------
-//		Find a value in the map within a range, uses a binary search algorithm
-//--------------------------------------------------------------------------------
-template<class U, class T>
-bool DgMapS<U, T>::find(U key, int& index, int lower, int upper) const
-{
-	//Check bounds
-	lower = (lower>0)?lower:0;
-	upper = (upper<current_size-1)?upper:current_size-1;
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::find()
+  //--------------------------------------------------------------------------------
+  //		Find a value in the map within a range, uses a binary search algorithm
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  bool map_s<U, T>::find(U key, int& index, int lower, int upper) const
+  {
+	  //Check bounds
+	  lower = (lower>0)?lower:0;
+	  upper = (upper<current_size-1)?upper:current_size-1;
 
-	while (lower <= upper)
-	{
-		// calculate the midpoint for roughly equal partition
-		index = ( (upper + lower) >> 1 );
+	  while (lower <= upper)
+	  {
+		  // calculate the midpoint for roughly equal partition
+		  index = ( (upper + lower) >> 1 );
  
-		// determine which subarray to search
-		if (data[index].key < key)
-			// change min index to search upper subarray
-			lower = index + 1;
-		else if (data[index].key > key)
-			// change max index to search lower subarray
-			upper = index - 1;
-		else
-			// key found at index index
-			return true;
-	}
+		  // determine which subarray to search
+		  if (data[index].key < key)
+			  // change min index to search upper subarray
+			  lower = index + 1;
+		  else if (data[index].key > key)
+			  // change max index to search lower subarray
+			  upper = index - 1;
+		  else
+			  // key found at index index
+			  return true;
+	  }
 	
-	//Set index closest (but lower) to key
-	index = lower - 1;
-	return false;
+	  //Set index closest (but lower) to key
+	  index = lower - 1;
+	  return false;
 
-}	//End: DgMapS::find()
+  }	//End: map_s::find()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::extend()
-//--------------------------------------------------------------------------------
-//		Extend the map by a factor of 1.5, keeps all data.
-//--------------------------------------------------------------------------------
-template<class U, class T>
-void DgMapS<U, T>::extend()
-{
-	//Calculate new size (1.5 * array_size + 1)
-	int new_size = ( (array_size * 3) >> 1) + 1;
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::extend()
+  //--------------------------------------------------------------------------------
+  //		Extend the map by a factor of 1.5, keeps all data.
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  void map_s<U, T>::extend()
+  {
+	  //Calculate new size (1.5 * array_size + 1)
+	  int new_size = ( (array_size * 3) >> 1) + 1;
 	
-	//Create new arrays
-	Container* new_data = new Container[new_size];
+	  //Create new arrays
+	  Container* new_data = new Container[new_size];
 
-	for (int i = 0; i < current_size; ++i)
-		new_data[i] = data[i];
+	  for (int i = 0; i < current_size; ++i)
+		  new_data[i] = data[i];
 
-	delete[array_size] data;
-	data = new_data;
-	array_size = new_size;
+	  delete[] data;
+	  data = new_data;
+	  array_size = new_size;
 
-}	//End: DgMapS::extend()
+  }	//End: map_s::extend()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::insert()
-//--------------------------------------------------------------------------------
-//		Insert an element into the map
-//--------------------------------------------------------------------------------
-template<class U, class T>
-bool DgMapS<U, T>::insert(const T& val, U key)
-{
-	//Find the index to insert to
-	int index;
-	if (find(key, index))
-		return false;	//element already exists
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::insert()
+  //--------------------------------------------------------------------------------
+  //		Insert an element into the map
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  bool map_s<U, T>::insert(const T& val, U key)
+  {
+	  //Find the index to insert to
+	  int index;
+	  if (find(key, index))
+		  return false;	//element already exists
 	
-	//Range check
-	if (current_size ==  array_size)
-		extend();
+	  //Range check
+	  if (current_size ==  array_size)
+		  extend();
 
-	//shift all RHS objects to the right by one.
-	for (int i = current_size-1; i > index; --i)
-		data[i + 1] = data[i];
+	  //shift all RHS objects to the right by one.
+	  for (int i = current_size-1; i > index; --i)
+		  data[i + 1] = data[i];
 	
-	index++;
+	  index++;
 
-	data[index].key = key;
-	data[index].item = val;
+	  data[index].key = key;
+	  data[index].item = val;
 
-	current_size++;
+	  current_size++;
 
-	return true;
+	  return true;
 
-}	//End: DgMapS::insert()
+  }	//End: map_s::insert()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::erase()
-//--------------------------------------------------------------------------------
-//		Remove an element from the map
-//--------------------------------------------------------------------------------
-template<class U, class T>
-bool DgMapS<U, T>::erase(U key)
-{
-	//Find the index
-	int index;
-	if (!find(key, index))
-		return false;	//element not found
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::erase()
+  //--------------------------------------------------------------------------------
+  //		Remove an element from the map
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  bool map_s<U, T>::erase(U key)
+  {
+	  //Find the index
+	  int index;
+	  if (!find(key, index))
+		  return false;	//element not found
 	
-	for (int i = index; i < current_size - 1; ++i)
-		data[i] = data[i+1];
+	  for (int i = index; i < current_size - 1; ++i)
+		  data[i] = data[i+1];
 
-	current_size--;
+	  current_size--;
 
-	return true;
+	  return true;
 
-}	//End: DgMapS::erase()
-
-
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::erase_c()
-//--------------------------------------------------------------------------------
-//		Remove an element from the map, Calls Clear() on target.
-//--------------------------------------------------------------------------------
-template<class U, class T>
-bool DgMapS<U, T>::erase_c(U key)
-{
-    //Find the index
-    int index;
-    if (!find(key, index))
-        return false;	//element not found
-
-    data[index].Clear();
-
-    for (int i = index; i < current_size - 1; ++i)
-        data[i] = data[i + 1];
-
-    current_size--;
-
-    return true;
-
-}	//End: DgMapS::erase_c()
+  }	//End: map_s::erase()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMapS<U,T>::set()
-//--------------------------------------------------------------------------------
-//		Sets an element to a new value
-//--------------------------------------------------------------------------------
-template<class U, class T>
-bool DgMapS<U, T>::set(U key, const T& val)
-{
-	//Find the index to insert to
-	int index;
-	if (!find(key, index))
-		return false;	//element does not exist
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::erase_c()
+  //--------------------------------------------------------------------------------
+  //		Remove an element from the map, Calls Clear() on target.
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  bool map_s<U, T>::erase_c(U key)
+  {
+      //Find the index
+      int index;
+      if (!find(key, index))
+          return false;	//element not found
 
-	data[index].item = val;
+      data[index].Clear();
 
-	return true;
+      for (int i = index; i < current_size - 1; ++i)
+          data[i] = data[i + 1];
 
-}	//End: DgMapS::set()
+      current_size--;
 
+      return true;
 
-//--------------------------------------------------------------------------------
-//	@	DgMap<U,T>::reset()
-//--------------------------------------------------------------------------------
-//		Reset size to 1
-//--------------------------------------------------------------------------------
-template<class U, class T>
-void DgMapS<U, T>::reset()
-{
-	resize(1);
-
-}	//End: DgMapS::reset()
+  }	//End: map_s::erase_c()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMap<U,T>::clear()
-//--------------------------------------------------------------------------------
-//		Set the number of elements to zero
-//--------------------------------------------------------------------------------
-template<class U, class T>
-void DgMapS<U, T>::clear()
-{
-	current_size = 0;
+  //--------------------------------------------------------------------------------
+  //	@	map_s<U,T>::set()
+  //--------------------------------------------------------------------------------
+  //		Sets an element to a new value
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  bool map_s<U, T>::set(U key, const T& val)
+  {
+	  //Find the index to insert to
+	  int index;
+	  if (!find(key, index))
+		  return false;	//element does not exist
 
-}	//End: DgMapS::clear()
+	  data[index].item = val;
+
+	  return true;
+
+  }	//End: map_s::set()
 
 
-//--------------------------------------------------------------------------------
-//	@	DgMap<U,T>::clear_c()
-//--------------------------------------------------------------------------------
-//		Set the number of elements to zero, Calls Clear() on all active elements.
-//--------------------------------------------------------------------------------
-template<class U, class T>
-void DgMapS<U, T>::clear_c()
-{
-    for (int i = 0; i < current_size; ++i)
-        data[i].Clear();
+  //--------------------------------------------------------------------------------
+  //	@	DgMap<U,T>::reset()
+  //--------------------------------------------------------------------------------
+  //		Reset size to 1
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  void map_s<U, T>::reset()
+  {
+	  resize(1);
 
-    current_size = 0;
+  }	//End: map_s::reset()
 
-}	//End: DgMapS::clear_c()
 
+  //--------------------------------------------------------------------------------
+  //	@	DgMap<U,T>::clear()
+  //--------------------------------------------------------------------------------
+  //		Set the number of elements to zero
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  void map_s<U, T>::clear()
+  {
+	  current_size = 0;
+
+  }	//End: map_s::clear()
+
+
+  //--------------------------------------------------------------------------------
+  //	@	DgMap<U,T>::clear_c()
+  //--------------------------------------------------------------------------------
+  //		Set the number of elements to zero, Calls Clear() on all active elements.
+  //--------------------------------------------------------------------------------
+  template<class U, class T>
+  void map_s<U, T>::clear_c()
+  {
+      for (int i = 0; i < current_size; ++i)
+          data[i].Clear();
+
+      current_size = 0;
+
+  }	//End: map_s::clear_c()
+
+};
 
 #endif

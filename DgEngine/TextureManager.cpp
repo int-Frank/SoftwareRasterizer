@@ -37,13 +37,13 @@ bool TextureManager::LoadDocument(std::string file)
 //--------------------------------------------------------------------------------
 //		Add a texture to the list. Returns pointer to the added texture.
 //--------------------------------------------------------------------------------
-const Texture* TextureManager::AddTexture(const Texture& t, const std::string& tag)
+const Texture* TextureManager::AddTexture(const Texture& t, uint32 id)
 {
 	//Add to list
-	texture_list.push_back( Texture_string(t, tag) );
+	texture_list.insert(t, id);
 
 	//Return pointer to last element
-	return texture_list.back().first;
+	return texture_list.back();
 
 }	//End: TextureManager::AddTexture()
 

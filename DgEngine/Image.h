@@ -48,17 +48,17 @@ public:
 	uint32 h() const {return mH;}
 	uint32 w() const {return mW;}
 	uint32 pitch() const {return mW * sizeof(uint32);}
-	const uint32* pixels() const {return mPixels;}
-	uint32* pixels() {return mPixels;}
+	const uint32_t* pixels() const {return mPixels;}
+	uint32_t* pixels() {return mPixels;}
 
 	//Set all pixels to this value
-	void Flush(uint32 val = 0);
+	void Flush(uint32_t val = 0);
 
 private:
 	//Data members
 
 	//Pixel data
-	uint32* mPixels;
+	uint32_t* mPixels;
 
 	//Dimensions
 	uint32 mH, mW;

@@ -29,9 +29,12 @@ namespace impl
 	bool Read(const pugi::xml_node& node, impl::Frame& dest, ImageManager& resource)
 	{
 		//Assign new frame
-		dest.mipmap = resource.GetMipmap(node.child_value());
+    pugi::xml_node file = node.child("file");
+    pugi::xml_node delay = node.child("delay");
 
-		if (dest.mipmap == NULL)
+    dest.mipmapID = resource.GetMipmap(file.child_value());
+
+		if (dest.mipmapID == NULL)
 			return false;
 
 		dest.tme = uint32(node.attribute("delay").as_int());

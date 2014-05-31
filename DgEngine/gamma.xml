@@ -19,7 +19,7 @@
 -->
 
 <root id="GAMMA" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:noNamespaceSchemaLocation="gamedb_format.xsd">
+                xsi:noNamespaceSchemaLocation="gamedb.xsd">
   
     <!-- ################################################################################## -->
     <!-- ###                This file defines all base entity classes                   ### -->

@@ -29,21 +29,21 @@ struct Color
 	{
 		struct RGBA
 		{
-			uint8 blue;	
-			uint8 green;
-			uint8 red;
-			uint8 alpha;
+      uint8_t blue;
+      uint8_t green;
+      uint8_t red;
+      uint8_t alpha;
 		} rgba;			//Uint8 rgba values
 
-		uint32 i;			//Uint32 value
+    uint32_t i;			//Uint32 value
 
 	};
 
 
 	//Constructor
 	Color(): i(0) {}
-	Color(uint8 r, uint8 g, uint8 b, uint8 a = 0);
-	Color(uint32 clr) : i(clr) {}
+  Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 0);
+  Color(uint32_t clr) : i(clr) {}
 	
 	//Copy operations
 	Color(const Color& clr): i(clr.i) {}

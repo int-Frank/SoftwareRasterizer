@@ -1,61 +1,137 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
-    <xs:element name="frame">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="file" type="xs:string"/>
-                <xs:element name="delay" type="xs:unsignedInt"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+  <xs:simpleType name ="pathID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Fa-f]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-    <xs:element name="animated">
-        <xs:complexType>
-            <xs:choice maxOccurs="unbounded" minOccurs="1">
-                <xs:element ref="frame"/>
-            </xs:choice>
-        </xs:complexType>
-    </xs:element>
+  <xs:simpleType name ="fileID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Fa-f]{5}"/>
+    </xs:restriction>
+  </xs:simpleType>
 
-  <xs:element name="texture">
+  <xs:simpleType name ="filePathID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[0-9A-Fa-f]{8}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="skyboxID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="A1[0-9A-Fa-f]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tex_S_ID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="11[0-9A-Fa-f]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="tex_A_ID">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="12[0-9A-Fa-f]{6}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:element name="frame">
     <xs:complexType>
-      <xs:choice>
-        <xs:element ref="animated"/>
-        <xs:element name="single" type="xs:string"/>
-      </xs:choice>
-      <xs:attribute name="name" use="required" type="xs:string"/>
+      <xs:simpleContent>
+        <xs:extension base="filePathID">
+          <xs:attribute name="delay"  use="required" type="xs:unsignedInt"/>
+        </xs:extension>
+      </xs:simpleContent>
     </xs:complexType>
+  </xs:element>
+
+  <xs:element name="texture_s">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="filePathID">
+          <xs:attribute name="id"  use="required" type="tex_S_ID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="texture_a">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:element ref="frame"/>
+      </xs:choice>
+      <xs:attribute name="id" use="required" type="tex_A_ID"/>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="file">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute name="id"  use="required" type="fileID"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="filePath">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded" minOccurs="1">
+        <xs:element ref="file"/>
+      </xs:choice>
+      <xs:attribute name="path" use="required" type="xs:string"/>
+      <xs:attribute name="id" use="required" type="pathID"/>
+    </xs:complexType>
+    <xs:unique name="uniqueFileID">
+      <xs:selector xpath="file"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
   </xs:element>
 
   <xs:element name="skybox">
     <xs:complexType>
       <xs:all>
-        <xs:element name="top" type="xs:string"/>
-        <xs:element name="bottom" type="xs:string"/>
-        <xs:element name="left" type="xs:string"/>
-        <xs:element name="right" type="xs:string"/>
-        <xs:element name="front" type="xs:string"/>
-        <xs:element name="back" type="xs:string"/>
+        <xs:element name="top" type="filePathID"/>
+        <xs:element name="bottom" type="filePathID"/>
+        <xs:element name="left" type="filePathID"/>
+        <xs:element name="right" type="filePathID"/>
+        <xs:element name="front" type="filePathID"/>
+        <xs:element name="back" type="filePathID"/>
       </xs:all>
-      <xs:attribute name="name" use="required" type="xs:string"/>
+      <xs:attribute name="id" use="required" type="skyboxID"/>
     </xs:complexType>
   </xs:element>
 
   <xs:element name="root">
         <xs:complexType>
             <xs:choice maxOccurs="unbounded" minOccurs="0">
-              <xs:element ref="texture"/>
+              <xs:element ref="filePath"/>
+              <xs:element ref="texture_s"/>
+              <xs:element ref="texture_a"/>
               <xs:element ref="skybox"/>
             </xs:choice>
         </xs:complexType>
-    <xs:unique name="uniqueTextureID">
-      <xs:selector xpath="texture"/>
+    <xs:unique name="uniqueTextureSID">
+      <xs:selector xpath="texture_s"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
+    <xs:unique name="uniqueTextureAID">
+      <xs:selector xpath="texture_a"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
+    <xs:unique name="uniqueSkyboxName">
+      <xs:selector xpath="skybox"/>
       <xs:field xpath="@name"/>
     </xs:unique>
     <xs:unique name="uniqueSkyboxID">
       <xs:selector xpath="skybox"/>
-      <xs:field xpath="@name"/>
+      <xs:field xpath="@id"/>
+    </xs:unique>
+    <xs:unique name="uniquePathID">
+      <xs:selector xpath="pathID"/>
+      <xs:field xpath="@id"/>
     </xs:unique>
     </xs:element>
 

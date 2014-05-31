@@ -15,6 +15,7 @@
 #include "ImageManager.h"
 #include "Dg_io.h"
 
+#include "pugixml.hpp"
 
 ImageManager::ImageManager()
 {
@@ -26,38 +27,45 @@ ImageManager::ImageManager()
 //--------------------------------------------------------------------------------
 //		Retrieve an pointer to base Mipmap. Returns NULL if failed to load mipmap.
 //--------------------------------------------------------------------------------
-const Mipmap* ImageManager::GetMipmap(const std::string& tag)
+const Mipmap& ImageManager::GetMipmap(uint32_t id)
 {
-	std::list<std::pair<Mipmap, std::string>>::const_iterator it 
-		= mipmap_list.begin();
-	
-	//Try to find mipmap in the list of already loaded mipmaps
-	for (it; it != mipmap_list.end(); it++)
-	{
-		if (it->second == tag)
-		{
-			//If the image has been found
-			return &it->first;
-		}
-	}
+  uint32 index;
+  if (mipmaps.find(id, index))
+  {
+    return *mipmaps[index];
+  }
 
-	//Full path
-	std::string complete = folder+tag;
+	//Try to load the mapping file.
 
-	//Try to load mipmap
-	Mipmap temp;
-	if (!temp.Load(complete))
-	{
-		return &DEFAULT_MIPMAP;
-	}
+  //Get the file-id mapping
 
-	//Add to list
-	mipmap_list.push_back( M_pair(temp, tag) );
+  //Try to load the mipmap into the list
 
-	//Return pointer to last element
-	return &(mipmap_list.back().first);
+  //Return newly added mipmap
 
 }	//End: ImageManager::operator[]()
+
+
+//--------------------------------------------------------------------------------
+//	@	ImageManager::GetFilenameFromXML()
+//--------------------------------------------------------------------------------
+//		Retrieve an pointer to base Mipmap. Returns NULL if failed to load mipmap.
+//--------------------------------------------------------------------------------
+std::string ImageManager::GetFilenameFromXML(uint32_t id)
+{
+  //Load file
+  pugi::xml_document doc;
+  pugi::xml_parse_result result = doc.load_file(xmlFile.c_str());
+
+  //Try to load the mapping file.
+
+  //Get the file-id mapping
+
+  //Try to load the mipmap into the list
+
+  //Return newly added mipmap
+
+}	//End: ImageManager::GetFilenameFromXML()
 
 
 //--------------------------------------------------------------------------------

@@ -59,8 +59,8 @@ bool Image::Set(SDL_Surface* img, bool dealloc)
 
 	//Copy pixels
 	delete[] mPixels;
-	mPixels = new uint32[mH*mW];
-	const uint32* input_pixels = (uint32*)img->pixels;
+	mPixels = new uint32_t[mH*mW];
+	const uint32_t* input_pixels = (uint32_t*)img->pixels;
 
 	for (uint32 i = 0; i < mH*mW; i++)
 	{
@@ -120,7 +120,7 @@ Image::~Image()
 //--------------------------------------------------------------------------------
 Image::Image(const Image& other) : mPixels(NULL), mH(other.mH), mW(other.mW)
 {
-	mPixels = new uint32[mH*mW];
+	mPixels = new uint32_t[mH*mW];
 	
 	for (uint32 i = 0; i < mH*mW; i++)
 		mPixels[i] = other.mPixels[i];
@@ -145,7 +145,7 @@ Image& Image::operator=(const Image& other)
 	mH = other.mH;
 	mW = other.mW;
 
-	mPixels = new uint32[mH*mW];
+	mPixels = new uint32_t[mH*mW];
 
 	for (uint32 i = 0; i < mH*mW; i++)
 		mPixels[i] = other.mPixels[i];
@@ -196,7 +196,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 	if (new_w <= img.mW && new_h <= img.mH)
 	{
 		//Create pixel array
-		uint32* new_mPixels = new uint32[new_h*new_w];
+		uint32_t* new_mPixels = new uint32_t[new_h*new_w];
 
 		//Input dimensions (fixed-point 48:16 format)
 		uint64 in_h64 = (uint64(img.mH) << 16);
@@ -220,17 +220,17 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 				uint32 xe = ((j+1)*img.mW) / new_w;
 				
 				//Final pixel colors in 48:16 format
-				uint32 red		= 0;
-				uint32 green	= 0;
-				uint32 blue		= 0;
-				uint32 alpha	= 0;
+				uint32_t red		= 0;
+				uint32_t green	= 0;
+				uint32_t blue		= 0;
+				uint32_t alpha	= 0;
 
 				//Count number of pixels added in
-				uint32 rgb_denom = 0;
+        uint32_t rgb_denom = 0;
 
 				//Alpha channel will alway be added in, 
 				//(even if pixel is colorkeyed). 
-				uint32 a_denom = 0;
+        uint32_t a_denom = 0;
 
 				//Add in whole pixels
 				for (uint32 ii = ys; ii < ye; ii++)
@@ -262,7 +262,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 					}
 				}
 				
-				uint32 final_pixel;
+				uint32_t final_pixel;
 
 				//If final pixel is the colorkey
 				if (rgb_denom == 0)
@@ -307,7 +307,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 	if (new_w < img.mW)
 	{
 		//Create pixel array
-		uint32* new_mPixels = new uint32[img.mH*new_w];
+    uint32_t* new_mPixels = new uint32_t[img.mH*new_w];
 
 		//Input dimensions (fixed-point 48:16 format)
 		uint64 in_h64 = (uint64(img.mH) << 16);
@@ -327,17 +327,17 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 				uint32 xe = ((j+1)*img.mW) / new_w;
 				
 				//Final pixel colors in 48:16 format
-				uint32 red		= 0;
-				uint32 green	= 0;
-				uint32 blue		= 0;
-				uint32 alpha	= 0;
+        uint32_t red = 0;
+        uint32_t green = 0;
+        uint32_t blue = 0;
+        uint32_t alpha = 0;
 
 				//Count number of pixels added in
-				uint32 rgb_denom = 0;
+        uint32_t rgb_denom = 0;
 
 				//Alpha channel will alway be added in, 
 				//(even if pixel is colorkeyed). 
-				uint32 a_denom = 0;
+        uint32_t a_denom = 0;
 
 				//Add in whole pixels
 				for (uint32 jj = xs; jj < xe; jj++)
@@ -367,7 +367,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 				}
 				
 				
-				uint32 final_pixel;
+        uint32_t final_pixel;
 
 				//If final pixel is the colorkey
 				if (rgb_denom == 0)
@@ -414,7 +414,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 	if (new_h < img.mH)
 	{
 		//Create pixel array
-		uint32* new_mPixels = new uint32[img.mW*new_h];
+    uint32_t* new_mPixels = new uint32_t[img.mW*new_h];
 
 		//Input dimensions (fixed-point 48:16 format)
 		uint64 in_h64 = (uint64(img.mH) << 16);
@@ -434,17 +434,17 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 			for (uint32 j = 0; j < img.mW ; j++)
 			{
 				//Final pixel colors in 48:16 format
-				uint32 red		= 0;
-				uint32 green	= 0;
-				uint32 blue		= 0;
-				uint32 alpha	= 0;
+        uint32_t red = 0;
+        uint32_t green = 0;
+        uint32_t blue = 0;
+        uint32_t alpha = 0;
 
 				//Count number of pixels added in
-				uint32 rgb_denom = 0;
+        uint32_t rgb_denom = 0;
 
 				//Alpha channel will alway be added in, 
 				//(even if pixel is colorkeyed). 
-				uint32 a_denom = 0;
+        uint32_t a_denom = 0;
 
 				//Add in whole pixels
 				for (uint32 ii = ys; ii < ye; ii++)
@@ -474,7 +474,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 					
 				}
 				
-				uint32 final_pixel;
+        uint32_t final_pixel;
 
 				//If final pixel is the colorkey
 				if (rgb_denom == 0)
@@ -519,7 +519,7 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 	//--------------------------------------------------------------------------------
 	
 	//Create final pixel array
-	uint32* dest = new uint32 [new_w*new_h];
+  uint32_t* dest = new uint32_t[new_w*new_h];
 
 	//--------------------------------------------------------------------------------
 	//		Enlarging, Bilinear method
@@ -537,12 +537,12 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 		for (uint32 j = 0; j < new_w; j++)
 		{
 			//texel cordinates: fixed-point 16:16 format
-			uint32 u = uint32( uint64(img.mW)*((uint64(j) << 16) / new_w) );
-			uint32 v = uint32( uint64(img.mH)*((uint64(i) << 16) / new_h) );
+      uint32_t u = uint32_t(uint64(img.mW)*((uint64(j) << 16) / new_w));
+      uint32_t v = uint32_t(uint64(img.mH)*((uint64(i) << 16) / new_h));
 
 			//Bottom left texel coord on image
-			uint32 u_int = u >> 16;
-			uint32 v_int = v >> 16;
+      uint32_t u_int = u >> 16;
+      uint32_t v_int = v >> 16;
 
 			//48:16 format
 			uint64 u_frac = uint64( uint16(u) );
@@ -574,58 +574,58 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 				pxl01 == Color::COLORKEY || pxl11 == Color::COLORKEY)
 			{
 				//Get the average pixel from all non colorkey pixels
-				uint32 pxl_avg_r = 0;
-				uint32 pxl_avg_g = 0;
-				uint32 pxl_avg_b = 0;
-				uint32 pxl_avg_a = 0;
+        uint32_t pxl_avg_r = 0;
+        uint32_t pxl_avg_g = 0;
+        uint32_t pxl_avg_b = 0;
+        uint32_t pxl_avg_a = 0;
 				Color pxl_avg;
 
 				//Counter
-				uint32 counter = 0;
+        uint32_t counter = 0;
 
 				//Add in colors if not colorkey
 				if (pxl00 != Color::COLORKEY)
 				{
-					pxl_avg_r += uint32(pxl00.rgba.red);
-					pxl_avg_g += uint32(pxl00.rgba.green);
-					pxl_avg_b += uint32(pxl00.rgba.blue);
-					pxl_avg_a += uint32(pxl00.rgba.alpha);
+          pxl_avg_r += uint32_t(pxl00.rgba.red);
+          pxl_avg_g += uint32_t(pxl00.rgba.green);
+          pxl_avg_b += uint32_t(pxl00.rgba.blue);
+          pxl_avg_a += uint32_t(pxl00.rgba.alpha);
 
 					counter++;
 				}
 				if (pxl10 != Color::COLORKEY)
 				{
-					pxl_avg_r += uint32(pxl10.rgba.red);
-					pxl_avg_g += uint32(pxl10.rgba.green);
-					pxl_avg_b += uint32(pxl10.rgba.blue);
-					pxl_avg_a += uint32(pxl10.rgba.alpha);
+          pxl_avg_r += uint32_t(pxl10.rgba.red);
+          pxl_avg_g += uint32_t(pxl10.rgba.green);
+          pxl_avg_b += uint32_t(pxl10.rgba.blue);
+          pxl_avg_a += uint32_t(pxl10.rgba.alpha);
 
 					counter++;
 				}
 				if (pxl01 != Color::COLORKEY)
 				{
-					pxl_avg_r += uint32(pxl01.rgba.red);
-					pxl_avg_g += uint32(pxl01.rgba.green);
-					pxl_avg_b += uint32(pxl01.rgba.blue);
-					pxl_avg_a += uint32(pxl01.rgba.alpha);
+          pxl_avg_r += uint32_t(pxl01.rgba.red);
+          pxl_avg_g += uint32_t(pxl01.rgba.green);
+          pxl_avg_b += uint32_t(pxl01.rgba.blue);
+          pxl_avg_a += uint32_t(pxl01.rgba.alpha);
 
 					counter++;
 				}
 				if (pxl11 != Color::COLORKEY)
 				{
-					pxl_avg_r += uint32(pxl11.rgba.red);
-					pxl_avg_g += uint32(pxl11.rgba.green);
-					pxl_avg_b += uint32(pxl11.rgba.blue);
-					pxl_avg_a += uint32(pxl11.rgba.alpha);
+          pxl_avg_r += uint32_t(pxl11.rgba.red);
+          pxl_avg_g += uint32_t(pxl11.rgba.green);
+          pxl_avg_b += uint32_t(pxl11.rgba.blue);
+          pxl_avg_a += uint32_t(pxl11.rgba.alpha);
 
 					counter++;
 				}
 
 				//Find average value
-				pxl_avg.rgba.red = uint8(pxl_avg_r/counter);
-				pxl_avg.rgba.green = uint8(pxl_avg_g/counter);
-				pxl_avg.rgba.blue = uint8(pxl_avg_b/counter);
-				pxl_avg.rgba.alpha = uint8(pxl_avg_a/4);
+        pxl_avg.rgba.red = uint8_t(pxl_avg_r / counter);
+        pxl_avg.rgba.green = uint8_t(pxl_avg_g / counter);
+        pxl_avg.rgba.blue = uint8_t(pxl_avg_b / counter);
+        pxl_avg.rgba.alpha = uint8_t(pxl_avg_a / 4);
 
 				//Set any of the original 4 pixels to this new color average
 				//if they are colorkeyed
@@ -681,10 +681,10 @@ void Resize(Image& img, uint32 new_h, uint32 new_w)
 					(	(((alpha11*u_frac) >> 16)*v_frac) >> 16) ) >> 16; 
 
 			//Build final pixel
-			uint32 final_pixel = ((((((	  uint8(alphaF) << 8)
-										| uint8(redF)) << 8)
-										| uint8(greenF)) << 8)
-										| uint8(blueF));
+      uint32 final_pixel = ((((((uint8_t(alphaF) << 8)
+        | uint8_t(redF)) << 8)
+        | uint8_t(greenF)) << 8)
+        | uint8_t(blueF));
 
 			//Map to new image
 			dest[i*new_w + j] = final_pixel;

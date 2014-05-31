@@ -20,7 +20,7 @@ const Color Color::WHITE(255,255,255);
 //--------------------------------------------------------------------------------
 //		Constructor
 //--------------------------------------------------------------------------------
-Color::Color(uint8 r, uint8 g, uint8 b, uint8 a)
+Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a)
 {
 	rgba.red = r;
 	rgba.green = g;
@@ -89,10 +89,10 @@ DgReader& operator>> (DgReader& in, Color& dest)
 	uint32 r,g,b,a;
 	in >> r >> g >> b >> a;
 
-	dest.rgba.red = uint8(r);
-	dest.rgba.green = uint8(g);
-	dest.rgba.blue = uint8(b);
-	dest.rgba.alpha = uint8(a);
+  dest.rgba.red = uint8_t(r);
+  dest.rgba.green = uint8_t(g);
+  dest.rgba.blue = uint8_t(b);
+  dest.rgba.alpha = uint8_t(a);
 
 	if (!in)
 	{

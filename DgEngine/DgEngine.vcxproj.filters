@@ -768,7 +768,10 @@
     <ClInclude Include="XMLValidator.h">
       <Filter>Source Files\Utility\XMLValidators</Filter>
     </ClInclude>
-    <ClInclude Include="class_format.h" />
+    <ClInclude Include="class.h" />
+    <ClInclude Include="DgMap_d.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="NormalDistributionTable.inl">
@@ -805,16 +808,16 @@
     </Xml>
   </ItemGroup>
   <ItemGroup>
-    <Xsd Include="gamedb_format.xsd">
-      <Filter>Resource Files</Filter>
-    </Xsd>
-    <Xsd Include="class_format.xsd">
-      <Filter>Resource Files</Filter>
-    </Xsd>
     <Xsd Include="textures.xsd">
       <Filter>Resource Files</Filter>
     </Xsd>
     <Xsd Include="viewports.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
+    <Xsd Include="class.xsd">
+      <Filter>Resource Files</Filter>
+    </Xsd>
+    <Xsd Include="gamedb.xsd">
       <Filter>Resource Files</Filter>
     </Xsd>
   </ItemGroup>

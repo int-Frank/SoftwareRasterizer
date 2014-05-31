@@ -34,19 +34,19 @@ namespace impl
 	struct Frame
 	{
 		//Constructor
-		Frame() : mipmap(NULL) {}
+		Frame() : mipmapID(0) {}
 
 		//Destructor
 		~Frame() {}
 
 		//Copy operations
-		Frame(const Frame& f) : tme(f.tme), mipmap(f.mipmap) {}
+		Frame(const Frame& f) : tme(f.tme), mipmapID(f.mipmapID) {}
 
 		//Input
 		friend bool Read(const pugi::xml_node&, Frame&, ImageManager&);
 
 		//Data members
-		const Mipmap* mipmap;		//The image
+		uint32 mipmapID;		//The image
 		uint32 tme;					//Display time of the image
 	};
 }
@@ -70,7 +70,7 @@ public:
 	friend void Read(const pugi::xml_node& in, Texture_A& dest, ImageManager& resource);
 
 	//Return functions
-	const Mipmap* GetMipmap(uint32 time = 0) const;
+	uint32 GetMipmap(uint32 time = 0) const;
 
 	//Create copy
 	Texture_A* clone() const {return new Texture_A(*this);}
