@@ -22,8 +22,12 @@
 //--------------------------------------------------------------------------------
 //		Data managers
 //--------------------------------------------------------------------------------
-ImageManager	IMAGE_MANAGER;		//Managers images and mipmaps
-TextureManager	TEXTURE_MANAGER;	//All textures are stored/loaded from here.
-Mesh_List		MESH_MANAGER;		//All base objects stored/loaded from here
-SettingsParser  g_settingsParser;
-WindowManager	*WINDOW = NULL;
+namespace global
+{
+  ImageManager    *IMAGE_MANAGER   = NULL;		
+  TextureManager  *TEXTURE_MANAGER = NULL;
+  Mesh_List       *MESH_MANAGER    = NULL;
+  SettingsParser  *SETTINGS        = NULL;
+  WindowManager   *WINDOW          = NULL;
+}
+

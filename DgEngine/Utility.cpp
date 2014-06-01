@@ -18,6 +18,8 @@
 #include "Rasterizer.h"
 #include "WindowManager.h"
 #include "TextureManager.h"
+#include "Mesh_list.h"
+#include "ImageManager.h"
 #include "ViewportHandler.h"
 #include "GameDatabase.h"
 #include <string>
@@ -46,13 +48,22 @@ bool InitializeWindow();
  */
 bool START()
 {
-    //Parse settings file
-    g_settingsParser.Load("setup.ini");
-
     //Initialise objects needed for schema validation
     xercesc::XMLPlatformUtils::Initialize();
 
-    GameDatabase::GlobalInit();
+    //Initiate globals
+    global::IMAGE_MANAGER = new ImageManager();
+    global::TEXTURE_MANAGER = new TextureManager();
+    global::MESH_MANAGER = new Mesh_List();
+    global::SETTINGS = new SettingsParser();
+
+    //Parse settings file
+    global::SETTINGS->Load("setup.ini");
+
+    if (!GameDatabase::GlobalInit())
+    {
+      return false;
+    }
 
 	//Seed the random number generator
 	SimpleRNG::SetSeedFromSystemTime();
@@ -72,7 +83,7 @@ bool START()
     }
 
 	//Load Viewports
-	ViewportHandler::LoadResources(WINDOW->w(), WINDOW->h());
+	ViewportHandler::LoadResources(global::WINDOW->w(), global::WINDOW->h());
 	
 	//Initialize SDL_ttf
     if (TTF_Init() == -1)
@@ -82,7 +93,7 @@ bool START()
     }
 
 	//Load texture document
-	TEXTURE_MANAGER.LoadDocument("Images.xml");
+	global::TEXTURE_MANAGER->LoadDocument("Images.xml");
 
 	//Load in debug file
 	DEBUGGER.Load("debug_text.xml");
@@ -102,23 +113,23 @@ static bool InitializeWindow()
 	//Fullscreen?
     std::string str;
     bool fullscreen = false;
-    if (g_settingsParser.GetValue("fullscreen", str))
+    if (global::SETTINGS->GetValue("fullscreen", str))
     {
         fullscreen = ToBool(str);
     }
 
 	//Dimensions
     uint32 h = 200, w = 200;
-    if (g_settingsParser.GetValue("screen_height", str))
+    if (global::SETTINGS->GetValue("screen_height", str))
     {
         StringToNumber(h, str, std::dec);
     }
-    if (g_settingsParser.GetValue("screen_width", str))
+    if (global::SETTINGS->GetValue("screen_width", str))
     {
         StringToNumber(w, str, std::dec);
     }
 
-	WINDOW = new WindowManager(	w, h, fullscreen, "My Game");
+	global::WINDOW = new WindowManager(	w, h, fullscreen, "My Game");
 
     //If everything initialized fine
     return true;
@@ -139,21 +150,25 @@ static bool InitializeWindow()
  */
 void SHUTDOWN()
 {
-    GameDatabase::GlobalShutDown();
+  GameDatabase::GlobalShutDown();
 
 	//Clear all resources
 	Text::ClearResources();
 
 	//Quit SDL_ttf
-    TTF_Quit();
+  TTF_Quit();
 
 	//Destroy window
-	delete WINDOW;
+	delete global::WINDOW;
+  delete global::IMAGE_MANAGER;
+  delete global::TEXTURE_MANAGER;
+  delete global::MESH_MANAGER;
+  delete global::SETTINGS;
 
-    //Quit SDL
-    SDL_Quit();
+  //Quit SDL
+  SDL_Quit();
 
-    xercesc::XMLPlatformUtils::Terminate();
+  xercesc::XMLPlatformUtils::Terminate();
 
 }	//End: ShutDownSDL()
 
@@ -168,7 +183,7 @@ void RESIZE_WINDOW(uint32 w, uint32 h)
 	if (w == 0 || h == 0)
 		return;
 
-	WINDOW->Resize(w, h);
+	global::WINDOW->Resize(w, h);
 	ViewportHandler::SetParentDimensions(w, h);
 
 }	//End: RESIZE_WINDOW()

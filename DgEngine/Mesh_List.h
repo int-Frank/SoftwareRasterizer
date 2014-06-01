@@ -40,7 +40,10 @@ private:
 //--------------------------------------------------------------------------------
 //		Global declarations
 //--------------------------------------------------------------------------------
-extern Mesh_List MESH_MANAGER;
+namespace global
+{
+  extern Mesh_List *MESH_MANAGER;
+}
 
 
 #endif

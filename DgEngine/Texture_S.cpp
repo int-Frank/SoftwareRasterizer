@@ -25,11 +25,7 @@
 //--------------------------------------------------------------------------------
 Texture_S& Texture_S::operator=(const Texture_S& other)
 {
-	if (this == &other)
-		return *this;
-
-	mipmap = other.mipmap;
-
+	mipmapID = other.mipmapID;
 	return *this;
 
 }	//End: Texture_S::operator=()
@@ -43,6 +39,11 @@ Texture_S& Texture_S::operator=(const Texture_S& other)
 void Read(const pugi::xml_node& in, Texture_S& dest, ImageManager& resource)
 {
 	//Assign new texture
+  std::string tempMMID(in.child_value());
+
+  uint32_t id;
+  if (String)
+
   pugi::xml_node single = in.child("single");
   dest.mipmap = resource.GetMipmap(single.child_value());
 

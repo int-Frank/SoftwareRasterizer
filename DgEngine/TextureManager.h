@@ -26,7 +26,7 @@
 #include "pugixml.hpp"
 #include "Texture_S.h"
 #include "Mipmap.h"
-#include "DgMap_d.h"
+#include "dg_map.h"
 
 
 //--------------------------------------------------------------------------------
@@ -85,6 +85,9 @@ private:
 //--------------------------------------------------------------------------------
 //		GLOBALS
 //--------------------------------------------------------------------------------
-extern TextureManager TEXTURE_MANAGER;
+namespace global
+{
+  extern TextureManager *TEXTURE_MANAGER;
+}
 
 #endif

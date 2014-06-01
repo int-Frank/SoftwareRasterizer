@@ -85,6 +85,9 @@ private:
 //--------------------------------------------------------------------------------
 //		Globals
 //--------------------------------------------------------------------------------
-extern WindowManager *WINDOW;
+namespace global
+{
+  extern WindowManager *WINDOW;
+}
 
 #endif

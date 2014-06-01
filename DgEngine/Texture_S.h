@@ -4,6 +4,7 @@
 // Class: Texture_S
 //
 // Texture class for static images. 
+// 
 //
 // -------------------------------------------------------------------------------
 //
@@ -16,6 +17,7 @@
 #define TEXTURE_S_H
 
 #include "Texture.h"
+#include "ImageManager.h"
 
 class Mipmap;
 class ImageManager;
@@ -28,27 +30,27 @@ class Texture_S : public Texture
 {
 public:
 	//Constructor/destructor
-	Texture_S(): mipmap(NULL) {}
-	Texture_S(const Mipmap* img): mipmap(img) {}
+	Texture_S(): mipmapID(ImageManager::NULL_ID) {}
+	Texture_S(uint32_t a_id): mipmapID(a_id) {}
 	~Texture_S() {}
 
 	//Copy operations
-	Texture_S(const Texture_S& t): mipmap(t.mipmap) {}
-	Texture_S& operator=(const Texture_S&);
+	Texture_S(const Texture_S& a_mm): mipmapID(a_mm.mipmapID) {}
+  Texture_S& operator=(const Texture_S&);
 
 	//Input. Images are retrieved from the ImageManager input.
 	friend void Read(const pugi::xml_node& in, Texture_S& dest, ImageManager& resource);
 
 	//Return functions
-	const Mipmap* GetMipmap(uint32 time = 0) const 
-		{return mipmap;}
+	uint32_t GetMipmap(uint32 time = 0) const 
+		{return mipmapID;}
 
 	//Create copy
 	Texture_S* clone() const {return new Texture_S(*this);}
 
 private:
 	//Data members
-	const Mipmap* mipmap;
+	uint32_t mipmapID;
 };
 
 

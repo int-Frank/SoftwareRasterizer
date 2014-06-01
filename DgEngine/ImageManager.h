@@ -3,14 +3,6 @@
 // 
 // Class: ImageManager
 //
-// Class for loading, storing and handing out Images and Mipmaps. Since images 
-// and mipmaps are large objects, a constant pointer is given 
-// instead of the object itself itself. The static member ImageManager::folder 
-// defines which folder the font files are located. This is defined
-// in Resources.cpp.
-//
-// To retreive an image or mipmap, the manager checks the lists to see if it
-// already exists. If not, it attempts to load from the designated folder.
 //
 // -------------------------------------------------------------------------------
 //
@@ -24,10 +16,11 @@
 #define ImageManager_H
 
 #include <string>
-#include <memory>
 #include "Mipmap.h"
 #include "Image.h"
-#include "DgMap_d.h"
+#include "dg_shared_ptr.h"
+#include "dg_map.h"
+#include "XMLValidator.h"
 
 
 //--------------------------------------------------------------------------------
@@ -37,18 +30,22 @@ class ImageManager
 {
 public:
 
-  enum Values
+  enum
   {
-    HEADER        = 0xFF000000,
-    IMAGE_HEAD    = 0x11000000,
-    MIPMAP_HEAD   = 0x12000000,
-    RESERVE_MASK  = 0xFF,
+    PATH_MASK     = 0xFFF00000,
+    FILE_MASK     = 0x000FFFFF,
+    PATH_MASK_RES = 0x0FF00000, //Values lower than this in the path mask are reserved
+    FILE_MASK_RES = 0x0000FFFF, //Values lower than this in the file mask are reserved
     NULL_ID       = 0
   };
 
 	//Constructor/Destructor
 	ImageManager();
 	~ImageManager() {}
+
+  //Disallow Copy operations
+  ImageManager(const ImageManager&);
+  ImageManager& operator=(const ImageManager&);
 
 	//Accessors
 	const Mipmap& GetMipmap(uint32_t id);
@@ -60,32 +57,33 @@ public:
 	void clearImages() {images.clear();}
 
   //Set the path to the (XML) file which maps image file names to IDs.
-  void SetDataFile(const std::string& path) const;
+  bool SetDataFile(const std::string& path);
 
 private:
   //Data members
-	Dg::map<uint32_t, std::shared_ptr<Mipmap>> mipmaps;	//Container for all mipmaps
-  Dg::map<uint32_t, std::shared_ptr<Image>> images;	//Container for all Images
+	Dg::map<uint32_t, Dg::shared_ptr<Mipmap>> mipmaps;	//Container for all mipmaps
+  Dg::map<uint32_t, Dg::shared_ptr<Image>> images;	//Container for all Images
 
   std::string xmlFile;              //The xml file that maps image files to ids.
 
 	//Defaults
-	const Mipmap DEFAULT_MIPMAP;
-	const Image DEFAULT_IMAGE;
+	const Mipmap defaultMipmap;
+	const Image defaultImage;
 
 private:
   //Functions
-  std::string GetFilenameFromXML(uint32_t id);
+  std::string GetFilePathFromXML(uint32_t id);
 
-	//Disallow Copy operations
-	ImageManager(const ImageManager&);
-	ImageManager& operator=(const ImageManager&);
-	
+private:
+  const static std::string s_schemaPath;
 };
 
 //--------------------------------------------------------------------------------
 //		Globals
 //--------------------------------------------------------------------------------
-extern ImageManager IMAGE_MANAGER;
+namespace global
+{
+  extern ImageManager* IMAGE_MANAGER;
+}
 
 #endif

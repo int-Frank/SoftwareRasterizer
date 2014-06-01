@@ -29,6 +29,14 @@ class Texture : public BaseClass<Texture>
 {
 public:
 
+  enum
+  {
+    TYPE_MASK    = 0xFF000000,
+    TYPE_S       = 0x11000000,
+    TYPE_A       = 0x12000000,
+    RESERVE_MASK = 0x000FFFFF 
+  };
+
 	//Constructor/Destructor
 	Texture(){}
 	virtual ~Texture() {}
@@ -37,7 +45,7 @@ public:
 	Texture(const Texture& t) {}
 
 	//Return mipmap for input time 't' (for animations)
-	virtual uint32 GetMipmap(uint32 time = 0) const =0;
+	virtual uint32_t GetMipmap(uint32 time = 0) const =0;
 
 };
 

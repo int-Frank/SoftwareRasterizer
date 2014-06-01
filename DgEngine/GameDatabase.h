@@ -47,12 +47,12 @@ public:
 	GameDatabase() {}
 	~GameDatabase() {}
 
-    //! @brief Sets class schema
-    static bool GlobalInit();
-    static void GlobalShutDown();
+  //! @brief Sets class schema
+  static bool GlobalInit();
+  static void GlobalShutDown();
 
-    //! @Load map file
-    bool LoadDataFile(const std::string&);
+  //! @Load map file
+  bool LoadDataFile(const std::string&);
 
 	//Remove all components with this entityID
 	void RemoveEntity(entityID);
@@ -61,8 +61,8 @@ public:
 	std::string ID() const {return id;}
 
 	//Adding items into the lists should be done through these functions
-    bool AddMeta(const Component_META&, entityID);
-    bool AddPosition(const Component_POSITION&, entityID);
+  bool AddMeta(const Component_META&, entityID);
+  bool AddPosition(const Component_POSITION&, entityID);
 	bool AddPhysics(const Component_PHYSICS&, entityID);
 	bool AddPointLight(const Component_POINTLIGHT&, entityID);
 	bool AddSpotLight(const Component_SPOTLIGHT&, entityID);
@@ -81,7 +81,7 @@ public:
 	//		the interface.
 	//--------------------------------------------------------------------------------
 	DgOrderedArray<entityID>						EntityIDs;
-    DgMap<entityID, Component_META>                 Metas;
+  DgMap<entityID, Component_META>                 Metas;
 	DgMap<entityID, Component_POSITION>				Positions;
 	DgMap<entityID, Component_MOVEMENT>				Movements;
 	DgMap<entityID, Component_PHYSICS>				Physics;

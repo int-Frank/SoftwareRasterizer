@@ -612,21 +612,6 @@
     <ClInclude Include="Quaternion.h">
       <Filter>Source Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="DgArray.h">
-      <Filter>Source Files\Utility\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="DgLinkedList.h">
-      <Filter>Source Files\Utility\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="DgMap.h">
-      <Filter>Source Files\Utility\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="DgMapS.h">
-      <Filter>Source Files\Utility\Containers</Filter>
-    </ClInclude>
-    <ClInclude Include="DgOrderedArray.h">
-      <Filter>Source Files\Utility\Containers</Filter>
-    </ClInclude>
     <ClInclude Include="MouseLook.h">
       <Filter>Source Files\Utility\Controls</Filter>
     </ClInclude>
@@ -769,8 +754,26 @@
       <Filter>Source Files\Utility\XMLValidators</Filter>
     </ClInclude>
     <ClInclude Include="class.h" />
-    <ClInclude Include="DgMap_d.h">
+    <ClInclude Include="dg_map_sl.h">
       <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dg_vector_s.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dg_list_s.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dg_map.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dg_map_s.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dg_set.h">
+      <Filter>Source Files\Utility\Containers</Filter>
+    </ClInclude>
+    <ClInclude Include="dg_shared_ptr.h">
+      <Filter>Source Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

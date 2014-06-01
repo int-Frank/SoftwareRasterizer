@@ -27,7 +27,7 @@
 //--------------------------------------------------------------------------------
 const std::string ERRORFILE = "errorlog.txt";
 const std::string impl::ttf::folder = "fonts/";
-const std::string ImageManager::folder = "images/";
+const std::string ImageManager::s_schemaPath = "textures.xsd";
 const std::string Mesh_List::folder = "objects/base_files/";
 const std::string Mesh_List::file_extension = "obj";
 const std::string Skybox::obj_file = "skybox";

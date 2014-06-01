@@ -3,37 +3,37 @@
 
   <xs:simpleType name ="pathID">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9A-Fa-f]{3}"/>
+      <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f]{2}"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name ="fileID">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9A-Fa-f]{5}"/>
+      <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f]{4}"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name ="filePathID">
     <xs:restriction base="xs:string">
-      <xs:pattern value="[0-9A-Fa-f]{8}"/>
+      <xs:pattern value="[1-9A-Fa-f][0-9A-Fa-f]{2}[1-9A-Fa-f][0-9A-Fa-f]{4}"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="skyboxID">
     <xs:restriction base="xs:string">
-      <xs:pattern value="A1[0-9A-Fa-f]{6}"/>
+      <xs:pattern value="A1[1-9A-Fa-f][0-9A-Fa-f]{5}"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="tex_S_ID">
     <xs:restriction base="xs:string">
-      <xs:pattern value="11[0-9A-Fa-f]{6}"/>
+      <xs:pattern value="11[1-9A-Fa-f][0-9A-Fa-f]{5}"/>
     </xs:restriction>
   </xs:simpleType>
 
   <xs:simpleType name="tex_A_ID">
     <xs:restriction base="xs:string">
-      <xs:pattern value="12[0-9A-Fa-f]{6}"/>
+      <xs:pattern value="12[1-9A-Fa-f][0-9A-Fa-f]{5}"/>
     </xs:restriction>
   </xs:simpleType>
 
