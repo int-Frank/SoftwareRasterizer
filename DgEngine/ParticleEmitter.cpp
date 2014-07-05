@@ -534,10 +534,10 @@ uint32 ParticleEmitter::GetNumberToAdd(float dt)
 //--------------------------------------------------------------------------------
 //		Culls particles against a frustum
 //--------------------------------------------------------------------------------
-void ParticleEmitter::SetNewParticle(Particle* par, float dt)
+void ParticleEmitter::SetNewParticle(Particle* par, float dt, const Vector4& emitterVelocity)
 {
     par->position = Point4::origin + vqs.V();
-    par->velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + dt * velocity_global;
+    par->velocity = GetRandomVector() * entry_speed.Get() * vqs.S() + dt * emitterVelocity;
     par->acceleration = acceleration_global;
     par->life = 0.0f;
 
@@ -580,7 +580,7 @@ void ParticleEmitter::UpdateParticle(DgLinkedList<Particle>::iterator& it, float
 //--------------------------------------------------------------------------------
 //		Loop through all pixels and update data
 //--------------------------------------------------------------------------------
-uint32 ParticleEmitter::Update(float dt)
+uint32 ParticleEmitter::Update(float dt, const Vector4& emitterVelocity)
 {
 	if (!IsActive())
 		return 0;
@@ -611,7 +611,7 @@ uint32 ParticleEmitter::Update(float dt)
 
         //Set new particle data
         Particle* par = &particles.front();
-        SetNewParticle(par, t); 
+        SetNewParticle(par, t, emitterVelocity);
 
         //Move the particle along
         it = particles.begin();

@@ -19,7 +19,7 @@
 #include "Texture.h"
 #include "Mipmap.h"
 #include "DgTypes.h"
-#include <vector>
+#include "dg_vector_s.h"
 
 class Mipmap;
 class ImageManager;
@@ -34,7 +34,7 @@ namespace impl
 	struct Frame
 	{
 		//Constructor
-		Frame() : mipmapID(0) {}
+		Frame() : mipmapID(ImageManager::DEFAULT_MM), tme(10) {}
 
 		//Destructor
 		~Frame() {}
@@ -43,10 +43,10 @@ namespace impl
 		Frame(const Frame& f) : tme(f.tme), mipmapID(f.mipmapID) {}
 
 		//Input
-		friend bool Read(const pugi::xml_node&, Frame&, ImageManager&);
+		friend void Read(const pugi::xml_node&, Frame&, ImageManager&);
 
 		//Data members
-		uint32 mipmapID;		//The image
+		uint32_t mipmapID;		//The image
 		uint32 tme;					//Display time of the image
 	};
 }
@@ -70,7 +70,7 @@ public:
 	friend void Read(const pugi::xml_node& in, Texture_A& dest, ImageManager& resource);
 
 	//Return functions
-	uint32 GetMipmap(uint32 time = 0) const;
+	uint32_t GetMipmap(uint32) const;
 
 	//Create copy
 	Texture_A* clone() const {return new Texture_A(*this);}
@@ -78,11 +78,11 @@ public:
 private:
 
 	//Data members
-	std::vector<impl::Frame> framelist;
+	Dg::vector_s<impl::Frame> framelist;
 	uint32 looptime;
 
 	//Editing functions
-	void Add(impl::Frame);	//Add frame and display time
+	void Add(const impl::Frame&);	//Add frame and display time
 
 };
 

@@ -37,7 +37,7 @@ class TextureManager
 public:
 
 	//Constructor/destructor
-	TextureManager() : DEFAULT_MIPMAP(), DEFAULT_TEXTURE_S(&DEFAULT_MIPMAP) {}
+  TextureManager() : defaultTextureS(){}
 	~TextureManager() {}
 
 	//Find and return a texture
@@ -54,14 +54,13 @@ public:
 private:
 
 	//Data members
-  DgMap_d<uint32, BaseWrapper<Texture>> texture_list;	//The list of textures
+  Dg::map<uint32, BaseWrapper<Texture>> texture_list;	//The list of textures
 
 	/*!
 	 * A valid texture must always be returned. If there was an error finding or
 	 * loading a texture, the default static texture is returned.
 	 */
-	const Texture_S DEFAULT_TEXTURE_S;
-	const Mipmap DEFAULT_MIPMAP;
+	const Texture_S defaultTextureS;
 	
 	//Resources
 	pugi::xml_document document;

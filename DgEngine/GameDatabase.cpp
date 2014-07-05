@@ -2,12 +2,6 @@
 #include "Dg_io.h"
 #include "SimpleRNG.h"
 
-//--------------------------------------------------------------------------------
-//		@Statics
-//--------------------------------------------------------------------------------
-XMLValidator* GameDatabase::classValidator(NULL);
-XMLValidator* GameDatabase::DBValidator(NULL);
-
 
 //--------------------------------------------------------------------------------
 //		@GetWorldSpaceVelocity()
@@ -62,7 +56,7 @@ void GameDatabase::RemoveEntity(entityID id)
     }
 
 	EntityIDs.erase(id);
-    Metas.erase_c(id);
+  Metas.erase_c(id);
 	Positions.erase_c(id);
 	Movements.erase_c(id);
 	Physics.erase_c(id);

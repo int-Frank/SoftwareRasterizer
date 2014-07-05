@@ -36,7 +36,9 @@ public:
     FILE_MASK     = 0x000FFFFF,
     PATH_MASK_RES = 0x0FF00000, //Values lower than this in the path mask are reserved
     FILE_MASK_RES = 0x0000FFFF, //Values lower than this in the file mask are reserved
-    NULL_ID       = 0
+    NULL_ID       = 0,
+    DEFAULT_IMG   = 1,
+    DEFAULT_MM    = 2,
   };
 
 	//Constructor/Destructor
@@ -50,6 +52,10 @@ public:
 	//Accessors
 	const Mipmap& GetMipmap(uint32_t id);
 	const Image& GetImage(uint32_t id);
+
+  //Loads the resource into memory if exists.
+  bool MipmapExists(uint32_t a_id) { return (&GetMipmap(a_id) != &defaultMipmap); }
+  bool ImageExists(uint32_t a_id) { return (&GetImage(a_id) != &defaultImage); }
 
 	//Manipulators
 	void clearAll() {mipmaps.clear(); images.clear();}

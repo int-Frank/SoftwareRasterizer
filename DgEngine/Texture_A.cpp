@@ -15,7 +15,7 @@
 #include "Texture_A.h"
 #include "ImageManager.h"
 #include "pugixml.hpp"
-#include <vector>
+#include "Dg_io.h"
 #include <string>
 
 
@@ -26,20 +26,17 @@
 //--------------------------------------------------------------------------------
 namespace impl
 {
-	bool Read(const pugi::xml_node& node, impl::Frame& dest, ImageManager& resource)
+	void Read(const pugi::xml_node& node, impl::Frame& dest, ImageManager& resource)
 	{
-		//Assign new frame
-    pugi::xml_node file = node.child("file");
-    pugi::xml_node delay = node.child("delay");
+    std::string fileID(node.child_value());
+    uint32_t id;
+    StringToNumber(id, fileID, std::hex);
+    dest.tme = uint32(node.attribute("delay").as_int());
 
-    dest.mipmapID = resource.GetMipmap(file.child_value());
-
-		if (dest.mipmapID == NULL)
-			return false;
-
-		dest.tme = uint32(node.attribute("delay").as_int());
-
-		return true;
+    if (resource.MipmapExists(id))
+    {
+      dest.mipmapID = id;
+    }
 
 	}	//End: Frame::Read()
 }
@@ -91,8 +88,7 @@ void Read(const pugi::xml_node& node, Texture_A& dest, ImageManager& resource)
 		if (tag == "frame")
 		{
 			impl::Frame temp;
-			if (!impl::Read(*it, temp, resource))
-				continue;
+      impl::Read(*it, temp, resource);
 			dest.Add(temp);
 		}
 	}
@@ -105,7 +101,7 @@ void Read(const pugi::xml_node& node, Texture_A& dest, ImageManager& resource)
 //--------------------------------------------------------------------------------
 //		Add a frame to the frame list
 //--------------------------------------------------------------------------------
-void Texture_A::Add(impl::Frame f)
+void Texture_A::Add(const impl::Frame& f)
 {
 	//add frame to framelist
 	framelist.push_back(f);
@@ -121,7 +117,7 @@ void Texture_A::Add(impl::Frame f)
 //--------------------------------------------------------------------------------
 //		Get current frame (mipmap). Returns NULL of frame list empty.
 //--------------------------------------------------------------------------------
-const Mipmap* Texture_A::GetMipmap(uint32 time) const
+uint32_t Texture_A::GetMipmap(uint32 time) const
 {
 	//wrap input time to looptime
 	time %= looptime;
@@ -134,10 +130,10 @@ const Mipmap* Texture_A::GetMipmap(uint32 time) const
 
 		if (time < step)
 		{
-			return framelist[i].mipmap;
+			return framelist[i].mipmapID;
 		}
 	}
 
-	return NULL;
+	return ImageManager::DEFAULT_MM;
 
 }	//End: Texture_A::Add()

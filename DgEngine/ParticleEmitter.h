@@ -69,7 +69,7 @@ public:
 	 * @param dt The change in time since the last update.
 	 * @return Return code, not yet implemented
 	 */
-	uint32 Update(float dt);
+	uint32 Update(float dt, const Vector4&);
 
 	//! The class-specific particle generator.
 	//! Must be call to affect any changes.
@@ -221,7 +221,7 @@ private:
 	//--------------------------------------------------------------------------------
 	void init(const ParticleEmitter& other);
 	uint32 GetNumberToAdd(float dt);
-    virtual void SetNewParticle(Particle*, float dt);
+    virtual void SetNewParticle(Particle*, float dt, const Vector4&);
 
     //May decrement the iterator if a particle is removed
     void UpdateParticle(DgLinkedList<Particle>::iterator&, float dt);

@@ -3,10 +3,11 @@
 
 #include <string>
 
-#include "DgMap.h"
-#include "DgOrderedArray.h"
+#include "dg_map.h"
+#include "dg_map_sl.h"
+#include "dg_map_s.h"
+#include "dg_set.h"
 #include "DgTypes.h"
-#include "XMLValidator.h"
 
 #include "Component_Meta.h"
 #include "Component_Aspect.h"
@@ -21,7 +22,6 @@
 #include "AmbientLight.h"
 #include "DirectionalLight.h"
 #include "Skybox.h"
-#include "pugixml.hpp"
 
 
 /*!
@@ -80,17 +80,17 @@ public:
 	//		Data Lists. Adding/removing entities should be done through
 	//		the interface.
 	//--------------------------------------------------------------------------------
-	DgOrderedArray<entityID>						EntityIDs;
-  DgMap<entityID, Component_META>                 Metas;
-	DgMap<entityID, Component_POSITION>				Positions;
-	DgMap<entityID, Component_MOVEMENT>				Movements;
-	DgMap<entityID, Component_PHYSICS>				Physics;
-	DgMap<entityID, Component_LIGHTS_AFFECTING>		LightsAffecting;
-	DgMap<entityID, Component_POINTLIGHT>			PointLights;
-	DgMap<entityID, Component_SPOTLIGHT>			SpotLights;
-	DgMap<entityID, Component_ASPECT>				Aspects;
-	DgMap<entityID, Component_CAMERA>				Cameras;
-	DgMap<entityID, Component_PARTICLEEMITTER>		ParticleEmitters;
+	Dg::set<entityID>						EntityIDs;
+  Dg::map_sl<entityID, Component_META>                 Metas;
+  Dg::map_sl<entityID, Component_POSITION>				Positions;
+  Dg::map_sl<entityID, Component_MOVEMENT>				Movements;
+  Dg::map_sl<entityID, Component_PHYSICS>				Physics;
+  Dg::map_sl<entityID, Component_LIGHTS_AFFECTING>		LightsAffecting;
+  Dg::map_sl<entityID, Component_POINTLIGHT>			PointLights;
+  Dg::map_sl<entityID, Component_SPOTLIGHT>			SpotLights;
+  Dg::map_sl<entityID, Component_ASPECT>				Aspects;
+  Dg::map_sl<entityID, Component_CAMERA>				Cameras;
+  Dg::map_sl<entityID, Component_PARTICLEEMITTER>		ParticleEmitters;
 
 	//--------------------------------------------------------------------------------
 	//		Other level data
@@ -98,14 +98,12 @@ public:
 	entityID							player;
 	Skybox								skybox;
 	AmbientLight						ambientLight;
-	DgMap<entityID, DirectionalLight>	directionalLights;
+  Dg::map_sl<entityID, DirectionalLight>	directionalLights;
 
 
 private:    //Data
 
 	std::string id;
-	pugi::xml_document classDocument;
-    std::string currentClassDoc;
 
 private:    //Functions
 
@@ -122,10 +120,6 @@ private:    //Functions
     bool LoadEntity(pugi::xml_node& node);
     bool AmmendEntity(pugi::xml_node& node, entityID id);
 
-private:    //Statics
-
-    static XMLValidator *classValidator;
-    static XMLValidator *DBValidator;
 };
 
 inline bool IsIDOK(entityID id)

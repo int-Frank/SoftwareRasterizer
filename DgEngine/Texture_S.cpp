@@ -15,6 +15,7 @@
 #include "Texture_S.h"
 #include "Texture.h"
 #include "ImageManager.h"
+#include "Dg_io.h"
 #include "pugixml.hpp"
 
 
@@ -42,9 +43,14 @@ void Read(const pugi::xml_node& in, Texture_S& dest, ImageManager& resource)
   std::string tempMMID(in.child_value());
 
   uint32_t id;
-  if (String)
+  if (!StringToNumber(id, tempMMID, std::hex))
+  {
+    return;
+  }
 
-  pugi::xml_node single = in.child("single");
-  dest.mipmap = resource.GetMipmap(single.child_value());
+  if (resource.MipmapExists(id))
+  {
+    dest.mipmapID = id;
+  }
 
 }	//End: Read()

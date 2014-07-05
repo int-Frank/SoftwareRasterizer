@@ -59,6 +59,18 @@ ImageManager& ImageManager::operator=(const ImageManager& other)
 //--------------------------------------------------------------------------------
 const Mipmap& ImageManager::GetMipmap(uint32_t id)
 {
+  //Check for defaults
+  if (id <= FILE_MASK_RES)
+  {
+    switch (id)
+    {
+    default:
+      {
+        return defaultMipmap;
+      }
+    }
+  }
+
   uint32 index;
   if (mipmaps.find(id, index))
   {
@@ -97,6 +109,18 @@ const Mipmap& ImageManager::GetMipmap(uint32_t id)
 //--------------------------------------------------------------------------------
 const Image& ImageManager::GetImage(uint32_t id)
 {
+  //Check for defaults
+  if (id <= FILE_MASK_RES)
+  {
+    switch (id)
+    {
+    default:
+      {
+        return defaultImage;
+      }
+    }
+  }
+
   uint32 index;
   if (images.find(id, index))
   {

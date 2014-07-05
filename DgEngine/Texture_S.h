@@ -30,7 +30,7 @@ class Texture_S : public Texture
 {
 public:
 	//Constructor/destructor
-	Texture_S(): mipmapID(ImageManager::NULL_ID) {}
+	Texture_S(): mipmapID(ImageManager::DEFAULT_MM) {}
 	Texture_S(uint32_t a_id): mipmapID(a_id) {}
 	~Texture_S() {}
 
